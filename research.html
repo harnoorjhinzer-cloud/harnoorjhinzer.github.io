@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research — Harnoor Jhinzer</title>
+<meta name="description" content="Independent research and case studies on luxury consumer psychology, HNW behavior, and brand strategy by Harnoor Jhinzer.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0908;
+  --bone:#F0EBE1;
+  --gold:#B8935A;
+  --gold2:#D4B483;
+  --muted:rgba(240,235,225,0.45);
+  --line:rgba(184,147,90,0.18);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--ink);
+  color:var(--bone);
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:32px 72px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(to bottom,rgba(10,9,8,0.98),transparent);
+}
+.nav-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;letter-spacing:0.2em;
+  color:var(--gold);font-weight:300;
+  text-decoration:none;
+}
+.nav-links{display:flex;gap:44px;list-style:none;}
+.nav-links a{
+  font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color 0.3s;
+}
+.nav-links a:hover{color:var(--gold);}
+
+/* PAGE HEADER */
+.page-header{
+  padding:180px 72px 80px;
+  border-bottom:1px solid var(--line);
+}
+.s-label{
+  font-size:0.55rem;letter-spacing:0.45em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:56px;
+  display:flex;align-items:center;gap:18px;
+}
+.s-label::before{content:'';width:32px;height:1px;background:var(--gold);}
+.s-heading{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,3.5rem);
+  font-weight:300;line-height:1.15;margin-bottom:28px;
+}
+.s-heading em{font-style:italic;color:var(--gold2);}
+.page-intro{
+  font-size:0.88rem;color:rgba(240,235,225,0.55);
+  line-height:1.95;max-width:620px;
+}
+
+/* RESEARCH LIST */
+.research-list{padding:0 72px;}
+.research-item{
+  display:grid;
+  grid-template-columns:100px 1fr auto;
+  gap:48px;align-items:start;
+  padding:48px 0;
+  border-bottom:1px solid var(--line);
+  text-decoration:none;color:var(--bone);
+  transition:padding-left 0.3s;
+}
+.research-item:hover{padding-left:12px;}
+.ri-number{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;font-weight:300;
+  color:rgba(184,147,90,0.15);line-height:1;
+}
+.ri-content{display:flex;flex-direction:column;gap:12px;}
+.ri-tag{
+  font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;
+  color:var(--gold);
+}
+.ri-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;font-weight:400;line-height:1.3;
+  transition:color 0.3s;
+}
+.research-item:hover .ri-title{color:var(--gold2);}
+.ri-desc{
+  font-size:0.78rem;color:rgba(240,235,225,0.45);
+  line-height:1.85;max-width:600px;
+}
+.ri-status{
+  font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);
+  display:flex;align-items:center;gap:10px;
+  align-self:center;white-space:nowrap;
+}
+.ri-status::after{content:'→';}
+.ri-status.soon{color:rgba(184,147,90,0.35);}
+.ri-status.soon::after{content:'';}
+
+/* BACK LINK */
+.back-link{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:60px 72px;
+  font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;transition:gap 0.3s;
+}
+.back-link:hover{gap:20px;}
+.back-link::before{content:'←';}
+
+/* FOOTER */
+footer{
+  padding:44px 72px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.f-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:0.9rem;letter-spacing:0.2em;color:var(--gold);font-weight:300;
+}
+.f-copy{font-size:0.58rem;letter-spacing:0.15em;color:rgba(240,235,225,0.2);}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.9s ease,transform 0.9s ease;}
+.reveal.on{opacity:1;transform:translateY(0);}
+
+@media(max-width:900px){
+  nav{padding:24px 28px;}
+  .nav-links{display:none;}
+  .page-header{padding:140px 28px 60px;}
+  .research-list{padding:0 28px;}
+  .research-item{grid-template-columns:1fr;gap:16px;}
+  .ri-number{font-size:2rem;}
+  .back-link{padding:40px 28px;}
+  footer{padding:32px 28px;flex-direction:column;gap:12px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">Harnoor Jhinzer</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#research">Research</a></li
+    <li><a href="index.html#thinking">Thinking</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="s-label reveal">Research Archive</div>
+  <h1 class="s-heading reveal">All <em>case studies</em></h1>
+  <p class="page-intro reveal">
+    Independent research analyzing luxury brands and HNW consumer behavior through a behavioral psychology lens. Each piece is grounded in academic research and applied to real brands, real consumers, and real purchasing decisions.
+  </p>
+</div>
+
+<div class="research-list">
+
+  <!--
+    =============================================
+    HOW TO ADD A NEW CASE STUDY:
+
+    1. Put your PDF in the docs/ folder
+    2. Copy a PUBLISHED block below
+    3. Change the number, title, description, and PDF filename in the href
+    4. If it's not published yet, use a NOT YET PUBLISHED block instead
+
+    PUBLISHED case study template:
+
+    <a href="docs/YOUR-FILE-NAME.pdf" class="research-item reveal">
+      <div class="ri-number">XX</div>
+      <div class="ri-content">
+        <span class="ri-tag">Case Study · Published</span>
+        <h2 class="ri-title">YOUR TITLE HERE</h2>
+        <p class="ri-desc">YOUR DESCRIPTION HERE</p>
+      </div>
+      <span class="ri-status">Read</span>
+    </a>
+
+    NOT YET PUBLISHED template:
+
+    <div class="research-item reveal">
+      <div class="ri-number">XX</div>
+      <div class="ri-content">
+        <span class="ri-tag">Case Study · Planned</span>
+        <h2 class="ri-title">YOUR TITLE HERE</h2>
+        <p class="ri-desc">YOUR DESCRIPTION HERE</p>
+      </div>
+      <span class="ri-status soon">Coming soon</span>
+    </div>
+    =============================================
+  -->
+
+  <!-- ========== 01 ========== -->
+  <a href="docs/What Louis Vuitton Taught Me About Belonging.pdf" class="research-item reveal">
+    <div class="ri-number">01</div>
+    <div class="ri-content">
+      <span class="ri-tag">Case Study · Published</span>
+      <h2 class="ri-title">What Louis Vuitton Taught Me About Belonging</h2>
+      <p class="ri-desc">A personal and academic analysis of luxury consumption psychology — why the product is almost beside the point, what the space is really selling, and why three people in the same room can feel completely different things.</p>
+    </div>
+    <span class="ri-status">Read</span>
+  </a>
+
+  <!-- ========== 02 ========== -->
+  <a href="docs/Dressed As Someone Else.pdf" class="research-item reveal">
+    <div class="ri-number">02</div>
+    <div class="ri-content">
+      <span class="ri-tag">Case Study · Published</span>
+      <h2 class="ri-title">Dressed As Someone Else</h2>
+      <p class="ri-desc">Can clothing construct a temporary identity that redirects real consumer behavior? A first-person experiment in Toronto testing enclothed cognition, identity extension, and front-stage performance.</p>
+    </div>
+    <span class="ri-status">Read</span>
+  </a>
+
+  <!-- ========== 03 ========== -->
+  <div class="research-item reveal">
+    <div class="ri-number">03</div>
+    <div class="ri-content">
+      <span class="ri-tag">Case Study · In Development</span>
+      <h2 class="ri-title">What Kimpton Vividora Taught Me About Feeling</h2>
+      <p class="ri-desc">Brief description of what this one covers.</p>
+    </div>
+    <span class="ri-status soon">Coming soon</span>
+  </div>
+
+  <!-- ========== 04 ========== -->
+  <div class="research-item reveal">
+    <div class="ri-number">04</div>
+    <div class="ri-content">
+      <span class="ri-tag">Case Study · In Development</span>
+      <h2 class="ri-title">The Customer Is Always Right</h2>
+      <p class="ri-desc">An original framework for understanding how the same consumer activates completely different purchasing motivations depending on environment, life stage, occasion, and social context.</p>
+    </div>
+    <span class="ri-status soon">Coming Soon</span>
+  </div>
+
+  <!-- ========== 05 ========== -->
+  <!-- EMPTY SLOT — copy a template from above and fill it in when ready -->
+<div class="research-item reveal">
+    <div class="ri-number">04</div>
+    <div class="ri-content">
+      <span class="ri-tag">Case Study · In Development</span>
+      <h2 class="ri-title">The Price Is The Product</h2>
+      <p class="ri-desc">An original framework for understanding how the same consumer activates completely different purchasing motivations depending on environment, life stage, occasion, and social context.</p>
+    </div>
+    <span class="ri-status soon">Coming Soon</span>
+  </div>
+
+  <!-- ========== 06 ========== -->
+
+  <!-- ========== 07 ========== -->
+
+  <!-- ========== 08 ========== -->
+
+  <!-- ========== 09 ========== -->
+
+  <!-- ========== 10 ========== -->
+
+  <!-- ========== 11 ========== -->
+
+  <!-- ========== 12 ========== -->
+
+  <!-- ========== 13 ========== -->
+
+  <!-- ========== 14 ========== -->
+
+  <!-- ========== 15 ========== -->
+
+  <!-- ========== 16 ========== -->
+
+  <!-- ========== 17 ========== -->
+
+  <!-- ========== 18 ========== -->
+
+  <!-- ========== 19 ========== -->
+
+  <!-- ========== 20 ========== -->
+
+</div>
+
+<a href="index.html" class="back-link">Back to Home</a>
+
+<footer>
+  <div class="f-name">Harnoor Jhinzer</div>
+  <div class="f-copy">© <script>document.write(new Date().getFullYear())</script> · Luxury Consumer Psychology · Canada</div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
