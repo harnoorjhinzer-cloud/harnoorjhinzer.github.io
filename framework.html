@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motive × Context — A Framework for Luxury Consumer Psychology</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0908;
+  --ink-2:#141210;
+  --bone:#F0EBE1;
+  --bone-dim:rgba(240,235,225,0.55);
+  --bone-faint:rgba(240,235,225,0.28);
+  --gold:#B8935A;
+  --gold-2:#D4B483;
+  --gold-dim:rgba(184,147,90,0.55);
+  --line:rgba(184,147,90,0.22);
+  --line-faint:rgba(184,147,90,0.1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--ink);
+  color:var(--bone);
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  line-height:1.7;
+}
+
+/* NAV BAR */
+.toc{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:20px 48px;
+  background:linear-gradient(to bottom,rgba(10,9,8,0.98),rgba(10,9,8,0.85) 70%,transparent);
+  display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid var(--line-faint);
+}
+.toc-title{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:0.95rem;
+  letter-spacing:0.18em;
+  color:var(--gold);
+  text-decoration:none;
+  transition:color 0.3s;
+}
+.toc-title:hover{color:var(--gold-2);}
+.toc-back{
+  font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;
+  color:var(--bone-faint);
+  text-decoration:none;
+  display:inline-flex;align-items:center;gap:12px;
+  transition:color 0.3s,gap 0.3s;
+}
+.toc-back::before{content:'←';color:var(--gold);}
+.toc-back:hover{color:var(--gold);gap:20px;}
+.toc-count{
+  font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--bone-faint);
+}
+
+/* SLIDE BASE */
+.slide{
+  min-height:100vh;
+  padding:140px 96px 100px;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;
+  border-bottom:1px solid var(--line-faint);
+  overflow:hidden;
+}
+.slide-num{
+  position:absolute;top:32px;right:48px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:0.85rem;letter-spacing:0.25em;
+  color:var(--gold-dim);
+}
+.slide-tag{
+  font-size:0.55rem;letter-spacing:0.45em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:36px;
+  display:flex;align-items:center;gap:18px;
+}
+.slide-tag::before{content:'';width:32px;height:1px;background:var(--gold);}
+
+/* TITLE SLIDE */
+.title-slide{
+  justify-content:center;align-items:flex-start;
+  background:
+    radial-gradient(ellipse at top right,rgba(184,147,90,0.06),transparent 60%),
+    radial-gradient(ellipse at bottom left,rgba(184,147,90,0.04),transparent 50%),
+    var(--ink);
+}
+.title-slide .overline{
+  font-size:0.6rem;letter-spacing:0.5em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:48px;
+}
+.title-main{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3.5rem,8vw,7rem);
+  font-weight:300;line-height:1;letter-spacing:-0.02em;
+  margin-bottom:16px;
+}
+.title-main em{font-style:italic;color:var(--gold-2);}
+.title-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:clamp(1.2rem,2vw,1.6rem);
+  color:var(--bone-dim);
+  max-width:700px;
+  margin-bottom:80px;
+  line-height:1.5;
+}
+.title-meta{
+  display:flex;gap:48px;
+  padding-top:32px;
+  border-top:1px solid var(--line);
+  font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--bone-dim);
+}
+.title-meta span strong{
+  color:var(--gold);font-weight:400;display:block;margin-bottom:4px;
+  font-size:0.55rem;letter-spacing:0.4em;
+}
+.title-meta span{
+  font-family:'Jost',sans-serif;
+}
+.title-meta .val{
+  color:var(--bone);
+  letter-spacing:0.12em;
+  text-transform:none;
+  font-size:0.8rem;
+  font-weight:300;
+  margin-top:6px;
+  display:block;
+}
+
+/* HEADINGS */
+.h-display{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.4rem,5vw,4.2rem);
+  font-weight:300;line-height:1.08;letter-spacing:-0.01em;
+  margin-bottom:48px;
+  max-width:1000px;
+}
+.h-display em{font-style:italic;color:var(--gold-2);}
+
+.h-section{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.8rem,3vw,2.6rem);
+  font-weight:300;line-height:1.2;letter-spacing:-0.005em;
+  margin-bottom:32px;
+}
+
+/* BODY TEXT */
+.body-lg{
+  font-size:1.05rem;line-height:1.9;color:var(--bone);
+  max-width:780px;font-weight:300;
+}
+.body-md{
+  font-size:0.92rem;line-height:1.95;color:var(--bone-dim);
+  max-width:780px;
+}
+.body-md + .body-md{margin-top:20px;}
+
+.pullquote{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:clamp(1.3rem,2.2vw,1.7rem);
+  line-height:1.45;
+  color:var(--gold-2);
+  max-width:820px;
+  margin:0 0 48px;
+  padding-left:32px;
+  border-left:1px solid var(--gold);
+}
+
+/* QUESTION SLIDE */
+.question-stack{
+  display:flex;flex-direction:column;gap:36px;
+  max-width:900px;
+}
+.q-line{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.8rem,3.2vw,2.8rem);
+  font-weight:300;line-height:1.3;
+  color:var(--bone);
+}
+.q-line.gold{color:var(--gold-2);font-style:italic;}
+.q-line.dim{color:var(--bone-dim);font-size:clamp(1.2rem,2vw,1.6rem);}
+
+/* LINEAGE */
+.lineage-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:48px;
+  margin-bottom:48px;
+  padding-bottom:48px;
+  border-bottom:1px solid var(--line);
+}
+.thinker{
+  display:flex;flex-direction:column;gap:12px;
+}
+.thinker-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;
+  color:var(--gold);
+  font-weight:400;
+}
+.thinker-name em{font-style:italic;display:block;font-size:0.8rem;color:var(--bone-dim);letter-spacing:0.1em;margin-top:4px;}
+.thinker-contribution{
+  font-size:0.88rem;color:var(--bone);line-height:1.75;
+}
+.thinker-limit{
+  font-size:0.78rem;color:var(--bone-faint);line-height:1.7;
+  font-style:italic;
+  padding-top:12px;border-top:1px solid var(--line-faint);
+  margin-top:4px;
+}
+
+/* FRAMEWORK CORE */
+.framework-equation{
+  display:flex;align-items:center;gap:48px;
+  margin:32px 0 64px;
+  font-family:'Cormorant Garamond',serif;
+}
+.eq-term{
+  font-size:clamp(2.5rem,5vw,4rem);
+  font-weight:300;
+  color:var(--gold-2);
+  font-style:italic;
+}
+.eq-mult{
+  font-size:clamp(2rem,4vw,3rem);
+  color:var(--gold);
+  font-weight:300;
+}
+.fw-definitions{
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;
+  max-width:1100px;
+  margin-bottom:48px;
+}
+.fw-def h4{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1.6rem;
+  color:var(--gold);
+  margin-bottom:16px;
+  font-weight:400;
+}
+.fw-def p{
+  font-size:0.95rem;color:var(--bone);line-height:1.85;
+}
+
+/* ACTIVATORS */
+.activators{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:0;
+  max-width:1200px;
+  border-top:1px solid var(--line);
+}
+.activator{
+  padding:32px 48px 32px 0;
+  border-bottom:1px solid var(--line);
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:32px;
+  align-items:baseline;
+}
+.activator:nth-child(odd){padding-right:48px;}
+.activator:nth-child(even){padding-left:48px;border-left:1px solid var(--line);}
+.activator-num{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1.4rem;
+  color:var(--gold);
+  font-weight:400;
+}
+.activator-body{
+  display:flex;flex-direction:column;gap:8px;
+}
+.activator-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;
+  color:var(--bone);
+  font-weight:400;
+  letter-spacing:0.01em;
+}
+.activator-desc{
+  font-size:0.82rem;color:var(--bone-dim);line-height:1.75;
+}
+
+/* DIMENSIONS */
+.dimensions{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:2px;
+  background:var(--line);
+  border:1px solid var(--line);
+  margin-top:24px;
+  margin-bottom:32px;
+}
+.dimension{
+  background:var(--ink);
+  padding:36px 28px;
+  display:flex;flex-direction:column;gap:14px;
+}
+.dimension-label{
+  font-size:0.55rem;letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--gold);
+}
+.dimension-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;
+  color:var(--bone);
+  font-weight:400;
+  font-style:italic;
+}
+.dimension-desc{
+  font-size:0.78rem;color:var(--bone-dim);line-height:1.75;
+}
+.caveat{
+  font-size:0.78rem;color:var(--bone-faint);font-style:italic;
+  max-width:600px;line-height:1.7;
+}
+
+/* INTERACTION */
+.interaction-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:2px;
+  background:var(--line);
+  border:1px solid var(--line);
+  margin:32px 0 48px;
+}
+.interaction-cell{
+  background:var(--ink);
+  padding:40px 36px;
+  display:flex;flex-direction:column;gap:18px;
+}
+.interaction-formula{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  color:var(--gold);
+  font-size:1rem;
+  letter-spacing:0.05em;
+}
+.interaction-formula .bullet{color:var(--bone-faint);margin:0 10px;}
+.interaction-result{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;
+  color:var(--bone);
+  line-height:1.5;
+  font-weight:400;
+}
+
+/* SCENARIO */
+.scenario{
+  background:
+    linear-gradient(180deg,rgba(184,147,90,0.02),transparent 40%),
+    var(--ink-2);
+  border-left:1px solid var(--gold);
+  padding:64px 72px;
+  margin:32px 0 40px;
+  max-width:1100px;
+}
+.scenario-overline{
+  font-size:0.6rem;letter-spacing:0.5em;text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:24px;
+}
+.scenario-title{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:clamp(1.8rem,3vw,2.4rem);
+  color:var(--gold-2);
+  margin-bottom:32px;
+  font-weight:400;
+  line-height:1.25;
+}
+.scenario-body{
+  font-size:0.95rem;line-height:2;color:var(--bone);
+  margin-bottom:32px;
+}
+.scenario-body em{color:var(--gold-2);font-style:italic;}
+.scenario-decode{
+  display:grid;grid-template-columns:auto 1fr;
+  row-gap:16px;column-gap:32px;
+  padding-top:32px;
+  border-top:1px solid var(--line);
+}
+.decode-label{
+  font-size:0.55rem;letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--gold);
+  padding-top:4px;
+}
+.decode-value{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;
+  color:var(--bone);
+  line-height:1.5;
+  font-style:italic;
+}
+.scenario-reveal{
+  margin-top:32px;padding-top:32px;
+  border-top:1px solid var(--line);
+  font-size:0.92rem;line-height:1.9;color:var(--bone-dim);
+  font-style:italic;
+}
+.scenario-reveal strong{color:var(--gold-2);font-weight:400;font-style:normal;letter-spacing:0.05em;font-size:0.6rem;text-transform:uppercase;display:block;margin-bottom:12px;}
+
+/* NOT LIST */
+.not-list{
+  display:flex;flex-direction:column;gap:24px;
+  max-width:800px;
+  margin-bottom:48px;
+}
+.not-item{
+  display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:baseline;
+  padding-bottom:24px;
+  border-bottom:1px solid var(--line-faint);
+}
+.not-cross{
+  font-family:'Cormorant Garamond',serif;
+  color:var(--gold);
+  font-size:1.4rem;
+  font-style:italic;
+}
+.not-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;
+  color:var(--bone);
+  font-weight:400;
+  line-height:1.4;
+}
+.not-text em{color:var(--bone-dim);font-style:italic;font-size:0.88rem;display:block;margin-top:8px;letter-spacing:0.02em;}
+
+/* CLOSING */
+.closing{
+  text-align:left;max-width:900px;
+}
+.closing-statement{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:clamp(1.6rem,2.8vw,2.4rem);
+  line-height:1.4;
+  color:var(--bone);
+  margin-bottom:64px;
+}
+.closing-statement em{color:var(--gold-2);}
+.signature{
+  padding-top:48px;
+  border-top:1px solid var(--gold);
+  display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:32px;
+}
+.sig-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;
+  color:var(--gold);
+  font-weight:400;
+  letter-spacing:0.05em;
+}
+.sig-details{
+  font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--bone-dim);
+  text-align:right;
+  line-height:2;
+}
+.sig-details a{color:inherit;text-decoration:none;}
+
+/* FOOTER */
+.site-footer{
+  padding:44px 72px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.site-footer .f-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:0.9rem;letter-spacing:0.2em;color:var(--gold);font-weight:300;
+}
+.site-footer .f-name a{
+  color:inherit;text-decoration:none;transition:color 0.3s;
+}
+.site-footer .f-name a:hover{color:var(--gold-2);}
+.site-footer .f-copy{
+  font-size:0.58rem;letter-spacing:0.15em;color:rgba(240,235,225,0.2);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .slide{padding:110px 32px 70px;}
+  .toc{padding:16px 28px;}
+  .slide-num{right:28px;top:24px;}
+  .lineage-grid{grid-template-columns:1fr;gap:32px;}
+  .fw-definitions{grid-template-columns:1fr;gap:32px;}
+  .activators{grid-template-columns:1fr;}
+  .activator:nth-child(even){padding-left:0;border-left:none;}
+  .activator:nth-child(odd){padding-right:0;}
+  .dimensions{grid-template-columns:1fr 1fr;}
+  .interaction-grid{grid-template-columns:1fr;}
+  .scenario{padding:40px 28px;}
+  .title-meta{flex-direction:column;gap:20px;}
+  .framework-equation{flex-direction:column;gap:16px;align-items:flex-start;}
+  .site-footer{padding:32px 28px;flex-direction:column;gap:12px;text-align:center;}
+}
+
+/* PRINT */
+@media print{
+  .toc{display:none;}
+  .slide{page-break-after:always;min-height:auto;padding:60px;}
+}
+</style>
+</head>
+<body>
+
+<div class="toc">
+  <a href="index.html" class="toc-title">Motive × Context</a>
+  <a href="index.html" class="toc-back">Back to Archive</a>
+</div>
+
+<!-- ============================================================
+     SLIDE 01 — TITLE
+============================================================ -->
+<section class="slide title-slide">
+  <div class="overline">A Framework by Harnoor Jhinzer</div>
+  <h1 class="title-main">Motive <em>×</em> Context</h1>
+  <p class="title-sub">A framework for reading luxury consumer psychology — why the same consumer behaves completely differently in different moments, and what brands miss when they don't see it.</p>
+  <div class="title-meta">
+    <span>
+      <strong>Author</strong>
+      <span class="val">Harnoor Jhinzer</span>
+    </span>
+    <span>
+      <strong>Archive</strong>
+      <span class="val">harnoorarchive.com</span>
+    </span>
+    <span>
+      <strong>Version</strong>
+      <span class="val">1.0 — 2026</span>
+    </span>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 02 — THE QUESTION
+============================================================ -->
+<section class="slide">
+  <div class="slide-num">01</div>
+  <div class="slide-tag">The Question</div>
+  <div class="question-stack">
+    <p class="q-line">Why does the same luxury consumer</p>
+    <p class="q-line gold">behave completely differently in different moments?</p>
+    <p class="q-line dim">And why do most brands never see it?</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 03 — WHAT EXISTING THEORY MISSES
+============================================================ -->
+<section class="slide">
+  <div class="slide-num">02</div>
+  <div class="slide-tag">The Lineage</div>
+  <h2 class="h-display">What existing theory <em>explains</em> — and what it misses.</h2>
+
+  <div class="lineage-grid">
+    <div class="thinker">
+      <div class="thinker-name">Veblen<em>Conspicuous Consumption, 1899</em></div>
+      <div class="thinker-contribution">Luxury goods communicate status. The point of buying is being seen to buy.</div>
+      <div class="thinker-limit">But the same consumer performs status loudly in one setting and invisibly in another. Why?</div>
+    </div>
+    <div class="thinker">
+      <div class="thinker-name">Bourdieu<em>Distinction, 1979</em></div>
+      <div class="thinker-contribution">Taste is not personal. It is class signaling trained into the body by upbringing and access.</div>
+      <div class="thinker-limit">But taste doesn't explain why the same person buys differently on vacation versus at home.</div>
+    </div>
+    <div class="thinker">
+      <div class="thinker-name">Maslow<em>Hierarchy of Needs, 1943</em></div>
+      <div class="thinker-contribution">Needs stack in order — survival, safety, belonging, esteem, self-actualization.</div>
+      <div class="thinker-limit">But luxury consumers activate different levels in different rooms. The hierarchy flattens under context.</div>
+    </div>
+  </div>
+
+  <p class="pullquote">Each theory explains part of luxury behavior. None explain why the <em>same consumer</em> activates entirely different motivations depending on the moment around them. That is the gap this framework addresses.</p>
+</section>
+
+<!-- ============================================================
+     SLIDE 04 — THE FRAMEWORK
+============================================================ -->
+<section class="slide">
+  <div class="slide-num">03</div>
+  <div class="slide-tag">The Framework</div>
+  <h2 class="h-display">Luxury consumer behavior is the product of <em>two variables</em> interacting.</h2>
+
+  <div class="framework-equation">
+    <span class="eq-term">Motive</span>
+    <span class="eq-mult">×</span>
+    <span class="eq-term">Context</span>
+    <span class="eq-mult">=</span>
+    <span class="eq-term">Behavior</span>
+  </div>
+
+  <div class="fw-definitions">
+    <div class="fw-def">
+      <h4>Motive</h4>
+      <p>What the consumer is psychologically trying to get from this purchase. Not what they say they want. What the purchase is actually <em>doing</em> for them emotionally.</p>
+    </div>
+    <div class="fw-def">
+      <h4>Context</h4>
+      <p>The environment and circumstances in which the decision is being made. Spatial, temporal, social, economic — the conditions that determine which motive activates.</p>
+    </div>
+  </div>
+
+  <p class="body-md">The same motive in different contexts produces different behavior. The same context with different motives does the same. Luxury brands succeed when they design for this switching — and fail when they assume a single consumer wants a single thing.</p>
+</section>
+
+<!-- ============================================================
+     SLIDE 05 — MOTIVE: THE SIX ACTIVATORS
+============================================================ -->
+<section class="slide">
+  <div class="slide-num">04</div>
+  <div class="slide-tag">Motive</div>
+  <h2 class="h-display">The <em>six activators</em>.</h2>
+  <p class="body-md" style="margin-bottom:48px;">The recurring psychological drivers observed across luxury consumer research. A consumer rarely activates only one — more often two or three stack, with one dominant.</p>
+
+  <div class="activators">
+    <div class="activator">
+      <div class="activator-num">i.</div>
+      <div class="activator-body">
+        <div class="activator-name">Belonging</div>
+        <div class="activator-desc">The desire to be recognized as part of a world. To cross a threshold and be received rather than tolerated.</div>
+      </div>
+    </div>
+    <div class="activator">
+      <div class="activator-num">ii.</div>
+      <div class="activator-body">
+        <div class="activator-name">Transformation</div>
+        <div class="activator-desc">The desire to become a different version of self. The purchase is a costume for a life one has not yet fully entered.</div>
+      </div>
+    </div>
+    <div class="activator">
+      <div class="activator-num">iii.</div>
+      <div class="activator-body">
+        <div class="activator-name">Sensory Pleasure</div>
+        <div class="activator-desc">The desire to be held by the environment. The purchase of feeling — scent, texture, temperature, sound — before object.</div>
+      </div>
+    </div>
+    <div class="activator">
+      <div class="activator-num">iv.</div>
+      <div class="activator-body">
+        <div class="activator-name">Proof</div>
+        <div class="activator-desc">The desire for material evidence of status. The purchase as receipt, visible and specific, for a position earned.</div>
+      </div>
+    </div>
+    <div class="activator">
+      <div class="activator-num">v.</div>
+      <div class="activator-body">
+        <div class="activator-name">Safety</div>
+        <div class="activator-desc">The desire for assurance through legacy, pedigree, discretion. The purchase that does not need to be seen to confirm the self.</div>
+      </div>
+    </div>
+    <div class="activator">
+      <div class="activator-num">vi.</div>
+      <div class="activator-body">
+        <div class="activator-name">Escape</div>
+        <div class="activator-desc">The desire for removal from ordinary life. The purchase as permission to leave the version of self that exists elsewhere.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 06 — CONTEXT: THE FOUR DIMENSIONS
+============================================================ -->
+<section class="slide">
+  <div class="slide-num">05</div>
+  <div class="slide-tag">Context</div>
+  <h2 class="h-display">The <em>four dimensions</em>.</h2>
+  <p class="body-md" style="margin-bottom:24px;">The conditions under which a motive activates. Every purchase is shaped by the intersection of these — change one and the behavior shifts, often completely.</p>
+
+  <div class="dimensions">
+    <div class="dimension">
+      <div class="dimension-label">Dimension I</div>
+      <div class="dimension-name">Spatial</div>
+      <div class="dimension-desc">The physical environment of the purchase. A Place Vendôme flagship and a duty-free terminal sell the same object under different psychological weather.</div>
+    </div>
+    <div class="dimension">
+      <div class="dimension-label">Dimension II</div>
+      <div class="dimension-name">Temporal</div>
+      <div class="dimension-desc">The life stage or occasion. A promotion, a wedding, a first real income — these hinge-points activate motives that never appear on an ordinary Tuesday.</div>
+    </div>
+    <div class="dimension">
+      <div class="dimension-label">Dimension III</div>
+      <div class="dimension-name">Social</div>
+      <div class="dimension-desc">Who is present, who will see, who the purchase signals to. The same bag carries one meaning to a mother and another to a coworker.</div>
+    </div>
+    <div class="dimension">
+      <div class="dimension-label">Dimension IV</div>
+      <div class="dimension-name">Economic</div>
+      <div class="dimension-desc">The price tier relative to the consumer's own position. A purchase that represents 1% of one woman's wealth represents 40% of another's. Different people entirely.</div>
+    </div>
+  </div>
+
+  <p class="caveat">These are not the only dimensions — but they are the ones that recurred across every case study. Subsequent iterations of the framework may expand this set.</p>
+</section>
+
+<!-- ============================================================
+     SLIDE 07 — HOW THEY INTERACT
+============================================================ -->
+<section class="slide">
+  <div class="slide-num">06</div>
+  <div class="slide-tag">The Interaction</div>
+  <h2 class="h-display">One motive. <em>Different contexts.</em></h2>
+  <p class="body-md" style="margin-bottom:32px;">The interaction is the substance of the framework. Hold a motive constant, change the context, watch the behavior transform. This is what most analyses miss.</p>
+
+  <div class="interaction-grid">
+    <div class="interaction-cell">
+      <div class="interaction-formula">Belonging <span class="bullet">·</span> Flagship spatial context</div>
+      <div class="interaction-result">Nervous first-time entry. Slow threshold crossing. Staff-mediated initiation rituals. The purchase confirms one has been allowed in.</div>
+    </div>
+    <div class="interaction-cell">
+      <div class="interaction-formula">Belonging <span class="bullet">·</span> Industry dinner social context</div>
+      <div class="interaction-result">Careful outfit signaling. Deliberate name-dropping. The purchase was made months ago; tonight is the performance of already-belonging.</div>
+    </div>
+    <div class="interaction-cell">
+      <div class="interaction-formula">Belonging <span class="bullet">·</span> Legacy family temporal context</div>
+      <div class="interaction-result">Near-invisible luxury. Monograms removed. Pedigree signaled through silence. The purchase announces itself only to those already inside.</div>
+    </div>
+    <div class="interaction-cell">
+      <div class="interaction-formula">Belonging <span class="bullet">·</span> Diaspora economic context</div>
+      <div class="interaction-result">First major purchase sent home as photograph before worn in person. The object travels ahead of the self. Belonging is signaled backward, not forward.</div>
+    </div>
+  </div>
+
+  <p class="pullquote">Same motive. Four different consumers, four different behaviors. Treat them identically and the brand becomes <em>legible to none of them</em>.</p>
+</section>
+
+<!-- ============================================================
+     SLIDE 08 — SCENARIO 01
+============================================================ -->
+<section class="slide">
+  <div class="slide-num">07</div>
+  <div class="slide-tag">Scenario One</div>
+  <h2 class="h-section">The first flagship visit.</h2>
+
+  <div class="scenario">
+    <div class="scenario-overline">Framework applied</div>
+    <div class="scenario-title">A thirty-four-year-old marketing director walks into a Louis Vuitton flagship for the first time — alone, after a promotion, with the intent to buy her own bag.</div>
+    <div class="scenario-body">
+      She has carried other brands before. She has been in the store before, briefly, with friends. Today is different. She stood at the corner of Bloor Street for ninety seconds before crossing. She has rehearsed the interaction. She is not nervous about the money. She is nervous about <em>whether they will see her as someone who belongs</em>.
+      <br><br>
+      The door is opened for her. She is greeted by name before she gives one, because the staff have been trained to make first-time visitors feel addressed. She is walked, not led. She is shown three bags but only one matters — the one she already knew she wanted from the website, now being placed into her hands under warm directional light. She does not haggle. She does not rush. The purchase takes forty-five minutes. Most of that is ritual.
+    </div>
+    <div class="scenario-decode">
+      <div class="decode-label">Motive</div>
+      <div class="decode-value">Belonging</div>
+      <div class="decode-label">Context</div>
+      <div class="decode-value">Spatial · flagship as threshold space <br>Temporal · promotion as hinge moment</div>
+    </div>
+    <div class="scenario-reveal">
+      <strong>What the framework reveals</strong>
+      She is not buying the bag. She is buying evidence that she has arrived. The bag is the <em>receipt</em> for a psychological event that had already happened by the time she crossed the threshold. A brand that sees only the transaction has missed the entire purchase.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 09 — SCENARIO 02
+============================================================ -->
+<section class="slide">
+  <div class="slide-num">08</div>
+  <div class="slide-tag">Scenario Two</div>
+  <h2 class="h-section">The blazer effect.</h2>
+
+  <div class="scenario">
+    <div class="scenario-overline">Framework applied</div>
+    <div class="scenario-title">A twenty-eight-year-old consultant puts on a tailored blazer before a pitch she has been anxious about for three weeks.</div>
+    <div class="scenario-body">
+      The blazer is not new. She has owned it for two years. It cost more than a week of rent and she has worn it perhaps six times. Today she is not wearing it for the client. She is wearing it <em>for herself</em> — for the woman she will need to be in the room in forty-five minutes.
+      <br><br>
+      In the meeting, she speaks with more authority. Holds eye contact a beat longer. Pushes back on one of the client's assumptions in a way she would not have pushed back in a softer jacket. She closes. The next morning she wears the same blazer to brunch with a friend and feels ridiculous. Overdressed. Costumed. The blazer has not changed. The context has.
+    </div>
+    <div class="scenario-decode">
+      <div class="decode-label">Motive</div>
+      <div class="decode-value">Transformation</div>
+      <div class="decode-label">Context</div>
+      <div class="decode-value">Social · the pitch as performance stage <br>Temporal · career hinge moment</div>
+    </div>
+    <div class="scenario-reveal">
+      <strong>What the framework reveals</strong>
+      The blazer did not give her skill. It gave her <em>permission</em>. The same object, same woman, in a different social context is suddenly a costume rather than armor. Enclothed cognition is not about the garment — it is about the intersection of the garment with the moment. Luxury brands selling "confidence" or "power" without designing for the contexts where those motives activate are selling a feeling that will not survive brunch.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 10 — SCENARIO 03
+============================================================ -->
+<section class="slide">
+  <div class="slide-num">09</div>
+  <div class="slide-tag">Scenario Three</div>
+  <h2 class="h-section">The threshold moment.</h2>
+
+  <div class="scenario">
+    <div class="scenario-overline">Framework applied</div>
+    <div class="scenario-title">A couple checks into a quiet boutique hotel after an eleven-hour flight. They have not unpacked. They already feel wealthier than they did this morning.</div>
+    <div class="scenario-body">
+      The lobby smells faintly of citrus and something green — not identifiable, but deliberate. The lighting is warm and low, almost domestic. A glass of something cold appears in their hands within ninety seconds of entry. The concierge greets them by name before the reservation is confirmed on screen. The music is considered — not playlist filler, a composition. The staff are dressed like characters in a television series set in this city, which in forty-degree heat is either remarkable professionalism or air conditioning the guests have not been invited to use. Either way, they look <em>effortless</em>.
+      <br><br>
+      The room has not yet been seen. The bags are still at reception. And the work is already done.
+    </div>
+    <div class="scenario-decode">
+      <div class="decode-label">Motive</div>
+      <div class="decode-value">Sensory pleasure · Belonging</div>
+      <div class="decode-label">Context</div>
+      <div class="decode-value">Spatial · the hotel as constructed world <br>Temporal · arrival as ritual moment</div>
+    </div>
+    <div class="scenario-reveal">
+      <strong>What the framework reveals</strong>
+      The hotel is not selling a room. It is selling the <em>feeling of arrival itself</em> — and that feeling is activated through sensory sequencing before the product (the room) enters awareness. Most hotels sell the room and hope the feeling follows. The best invert the order. The product is the feeling; the room is the alibi.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 11 — SCENARIO 04
+============================================================ -->
+<section class="slide">
+  <div class="slide-num">10</div>
+  <div class="slide-tag">Scenario Four</div>
+  <h2 class="h-section">Two HNW consumers, one room.</h2>
+
+  <div class="scenario">
+    <div class="scenario-overline">Framework applied</div>
+    <div class="scenario-title">Two high-net-worth clients walk into the same private banking lounge on the same Tuesday. The brand treats them identically. It loses both.</div>
+    <div class="scenario-body">
+      The first is a forty-seven-year-old second-generation heiress. She has been in rooms like this since she was twelve. She wants <em>discretion</em>. She does not want a welcome video. She does not want the relationship manager who uses the word <em>journey</em>. She wants someone who knows her family by name without needing to be reminded. Her wealth is legacy; her motive is <em>safety</em>. She is not asking the bank to prove itself. She is asking it to not embarrass her.
+      <br><br>
+      The second is a thirty-one-year-old tech founder who liquidated eight months ago. His wealth is eight months old. He wants the opposite of discretion. He wants the marble, the view, the handshake that confirms he is no longer the person he was at twenty-six. His motive is <em>proof</em>. His context is economic — the price tier relative to where he stood last spring.
+    </div>
+    <div class="scenario-decode">
+      <div class="decode-label">Client A</div>
+      <div class="decode-value">Safety · Social context (legacy, family weight)</div>
+      <div class="decode-label">Client B</div>
+      <div class="decode-value">Proof · Economic context (recent liquidity)</div>
+    </div>
+    <div class="scenario-reveal">
+      <strong>What the framework reveals</strong>
+      They are not the same consumer. They will never be the same consumer. A single "HNW experience" designed to impress will alienate the first and patronize the second. Treat them identically and the brand is legible to neither. The HNW segment is not one audience — it is at least four, stratified by motive and context, and the brands that understand this are the ones that keep multi-generational clients across both kinds.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 12 — WHAT IT IS NOT
+============================================================ -->
+<section class="slide">
+  <div class="slide-num">11</div>
+  <div class="slide-tag">Guardrails</div>
+  <h2 class="h-display">What the framework <em>is not</em>.</h2>
+  <p class="body-md" style="margin-bottom:32px;">Every framework is vulnerable to misuse. These are the misreadings this one most needs to be defended from.</p>
+
+  <div class="not-list">
+    <div class="not-item">
+      <div class="not-cross">—</div>
+      <div class="not-text">Not a predictive model.<em>It does not tell you what a specific consumer will do. It tells you how to read what they are already doing.</em></div>
+    </div>
+    <div class="not-item">
+      <div class="not-cross">—</div>
+      <div class="not-text">Not a segmentation tool.<em>Motives are not personas. The same individual activates different motives across a single week.</em></div>
+    </div>
+    <div class="not-item">
+      <div class="not-cross">—</div>
+      <div class="not-text">Not a universal law.<em>It is built from luxury behavior in specific cultures, specific decades, specific categories. Its limits are not yet mapped.</em></div>
+    </div>
+    <div class="not-item">
+      <div class="not-cross">—</div>
+      <div class="not-text">Not a finished theory.<em>It is a lens. A starting point for diagnosis. An invitation to look more carefully — not a claim to have already seen everything.</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 13 — WHERE IT GOES NEXT
+============================================================ -->
+<section class="slide">
+  <div class="slide-num">12</div>
+  <div class="slide-tag">Closing</div>
+
+  <div class="closing">
+    <p class="closing-statement">This is <em>living work.</em> The framework is in active development. Future iterations will test it against legacy houses, emerging brands, and luxury categories beyond fashion and hospitality — jewelry, hospitality, automotive, wine, private aviation, real estate.
+    <br><br>
+    Readers are invited to disagree, refine, and extend.</p>
+
+    <div class="signature">
+      <div class="sig-name">Harnoor Archive</div>
+      <div class="sig-details">
+        <a href="https://harnoorarchive.com">harnoorarchive.com</a><br>
+        connect@harnoorarchive.com<br>
+        Motive × Context · v1.0 · 2026
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER RETURN -->
+<footer class="site-footer">
+  <div class="f-name"><a href="index.html">Harnoor Archive</a></div>
+  <div class="f-copy">© <script>document.write(new Date().getFullYear())</script> · Luxury Consumer Psychology · Canada</div>
+</footer>
+
+</body>
+</html>

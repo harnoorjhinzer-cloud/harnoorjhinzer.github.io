@@ -266,6 +266,48 @@ footer{
 }
 .f-copy{font-size:0.58rem;letter-spacing:0.15em;color:rgba(240,235,225,0.2);}
 
+/* FRAMEWORK CALLOUT */
+.framework-callout{
+  padding:96px 90px;
+  border-top:1px solid var(--line);
+  display:flex;flex-direction:column;align-items:flex-start;gap:24px;
+  background:
+    radial-gradient(ellipse at right center,rgba(184,147,90,0.05),transparent 60%),
+    transparent;
+}
+.fc-label{
+  font-size:0.55rem;letter-spacing:0.45em;text-transform:uppercase;
+  color:var(--gold);
+  display:flex;align-items:center;gap:18px;
+}
+.fc-label::before{content:'';width:32px;height:1px;background:var(--gold);}
+.fc-link{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.8rem,3.2vw,2.6rem);
+  font-weight:300;
+  font-style:italic;
+  color:var(--bone);
+  text-decoration:none;
+  display:inline-flex;align-items:baseline;gap:22px;
+  transition:color 0.35s ease,gap 0.35s ease;
+  line-height:1.2;
+}
+.fc-link:hover{color:var(--gold2);gap:34px;}
+.fc-arrow{
+  font-size:0.65em;color:var(--gold);
+  transition:transform 0.35s ease;
+}
+.fc-link:hover .fc-arrow{transform:translateX(4px);}
+.fc-caption{
+  font-size:0.82rem;
+  color:rgba(240,235,225,0.45);
+  max-width:560px;line-height:1.75;margin-top:4px;
+}
+.fc-caption em{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;color:var(--gold);font-size:0.95rem;
+}
+
 /* ANIMATIONS */
 @keyframes up{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
@@ -379,6 +421,16 @@ footer{
     </div>
   </div>
 </section>
+
+<!-- FRAMEWORK CALLOUT -->
+<div class="framework-callout reveal">
+  <div class="fc-label">The Framework</div>
+  <a href="framework.html" class="fc-link">
+    <span>Explore Motive × Context</span>
+    <span class="fc-arrow">→</span>
+  </a>
+  <p class="fc-caption">The original method underlying the archive — <em>why the same luxury consumer behaves completely differently in different moments, and what brands miss when they don't see it.</em></p>
+</div>
 
 <!-- ============================================================ -->
 <!-- RESEARCH SECTION                                              -->
