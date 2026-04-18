@@ -327,6 +327,19 @@ footer{
   .case-grid{grid-template-columns:1fr;}
   footer{padding:32px 28px;flex-direction:column;gap:12px;text-align:center;}
 }
+.credentials-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px;
+}
+.credentials-grid .detail{
+  text-decoration:none;
+  color:inherit;
+  display:block;
+}
+@media(max-width:760px){
+  .credentials-grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
@@ -503,11 +516,15 @@ footer{
 <section id="credentials">
   <div class="s-label reveal">Credentials</div>
   <h2 class="s-heading reveal">Certifications &<br><em>qualifications</em></h2>
-  <div class="details reveal" style="max-width:720px;">
-    <div class="detail">
+  <div class="credentials-grid reveal" style="max-width:720px;">
+    <a href="certificates/hubspot.png" target="_blank" rel="noopener" class="detail">
       <div class="d-label">HubSpot Academy</div>
       <div class="d-val">SEO Certified · 2026</div>
-    </div>
+    </a>
+    <a href="certificates/bocconi.pdf" target="_blank" rel="noopener" class="detail">
+      <div class="d-label">SDA Bocconi</div>
+      <div class="d-val">Management of Fashion and Luxury Companies · 2026</div>
+    </a>
     <!-- Add new ones below as you get them -->
   </div>
 </section>
