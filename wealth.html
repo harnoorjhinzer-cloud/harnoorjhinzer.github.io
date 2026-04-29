@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wealth Architecture & Legacy — Harnoor Archive</title>
+<meta name="description" content="How money actually works at the highest levels — trust structures, family offices, dynastic wealth, and the mechanics underneath the surface.">
+<meta name="author" content="Harnoor Archive">
+<meta property="og:title" content="Wealth Architecture & Legacy — Harnoor Archive">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0908;
+  --bone:#F0EBE1;
+  --gold:#B8935A;
+  --gold2:#D4B483;
+  --muted:rgba(240,235,225,0.45);
+  --line:rgba(184,147,90,0.18);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--ink);
+  color:var(--bone);
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:32px 72px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(to bottom,rgba(10,9,8,0.98),transparent);
+}
+.nav-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;letter-spacing:0.2em;
+  color:var(--gold);font-weight:300;
+  text-decoration:none;
+}
+.nav-links{display:flex;gap:44px;list-style:none;}
+.nav-links a{
+  font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color 0.3s;
+}
+.nav-links a:hover{color:var(--gold);}
+
+/* PAGE HEADER */
+.page-header{
+  padding:180px 90px 80px;
+  border-bottom:1px solid var(--line);
+  position:relative;overflow:hidden;
+}
+.page-header-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 80% 40%,rgba(184,147,90,0.06) 0%,transparent 65%);
+}
+.page-header-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(184,147,90,0.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(184,147,90,0.07) 1px,transparent 1px);
+  background-size:70px 70px;
+  mask-image:radial-gradient(ellipse at center,black 10%,transparent 75%);
+}
+.page-label{
+  font-size:0.55rem;letter-spacing:0.45em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;
+  display:flex;align-items:center;gap:18px;
+  position:relative;z-index:2;
+  opacity:0;animation:up 1s ease 0.2s forwards;
+}
+.page-label::before{content:'';width:32px;height:1px;background:var(--gold);}
+.page-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,6vw,5.5rem);
+  font-weight:300;line-height:0.95;
+  position:relative;z-index:2;
+  opacity:0;animation:up 1s ease 0.1s forwards;
+}
+.page-title em{font-style:italic;color:var(--gold2);}
+.page-intro{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1rem,1.6vw,1.2rem);
+  font-style:italic;font-weight:300;
+  color:rgba(240,235,225,0.5);
+  line-height:1.75;max-width:620px;
+  margin-top:32px;
+  position:relative;z-index:2;
+  opacity:0;animation:up 1s ease 0.4s forwards;
+}
+
+/* SECTION BASE */
+section{padding:100px 90px;border-top:1px solid var(--line);}
+.s-label{
+  font-size:0.55rem;letter-spacing:0.45em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px;
+  display:flex;align-items:center;gap:18px;
+}
+.s-label::before{content:'';width:32px;height:1px;background:var(--gold);}
+.s-heading{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  font-weight:300;line-height:1.15;margin-bottom:12px;
+}
+.s-heading em{font-style:italic;color:var(--gold2);}
+.s-desc{
+  font-size:0.82rem;color:rgba(240,235,225,0.42);
+  line-height:1.9;max-width:560px;margin-bottom:52px;
+}
+
+/* FRAMEWORK LIST */
+.framework-list{display:flex;flex-direction:column;gap:2px;}
+.framework-item{
+  display:grid;
+  grid-template-columns:80px 1fr auto;
+  gap:48px;align-items:start;
+  padding:48px 0;
+  border-bottom:1px solid var(--line);
+  text-decoration:none;color:inherit;
+  transition:padding-left 0.3s;
+  position:relative;
+}
+.framework-item::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,var(--gold),transparent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.5s;
+}
+a.framework-item:hover::before{transform:scaleX(1);}
+a.framework-item:hover{padding-left:8px;}
+.fi-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;font-weight:300;
+  color:rgba(184,147,90,0.12);line-height:1;
+  padding-top:4px;
+}
+.fi-body{display:flex;flex-direction:column;gap:12px;}
+.fi-tag{font-size:0.52rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);}
+.fi-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;font-weight:400;line-height:1.25;
+  transition:color 0.3s;
+}
+a.framework-item:hover .fi-title{color:var(--gold2);}
+.fi-desc{font-size:0.78rem;color:rgba(240,235,225,0.42);line-height:1.9;max-width:580px;}
+.fi-meta{
+  font-size:0.62rem;color:rgba(240,235,225,0.28);
+  letter-spacing:0.08em;line-height:1.6;
+  margin-top:4px;
+}
+.fi-action{
+  font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);white-space:nowrap;
+  display:flex;align-items:center;gap:10px;
+  transition:gap 0.3s;
+  align-self:center;
+}
+a.framework-item:hover .fi-action{gap:18px;}
+.fi-action::after{content:'→';}
+.fi-soon{
+  font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(184,147,90,0.28);
+  align-self:center;white-space:nowrap;
+}
+
+/* BACK LINK */
+.back-link{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:60px 90px;
+  font-size:0.55rem;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;transition:gap 0.3s;
+}
+.back-link:hover{gap:20px;}
+.back-link::before{content:'←';}
+
+/* FOOTER */
+footer{
+  padding:44px 72px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.f-name{font-family:'Cormorant Garamond',serif;font-size:0.9rem;letter-spacing:0.2em;color:var(--gold);font-weight:300;}
+.f-copy{font-size:0.58rem;letter-spacing:0.15em;color:rgba(240,235,225,0.2);}
+
+/* ANIMATIONS */
+@keyframes up{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.9s ease,transform 0.9s ease;}
+.reveal.on{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:24px 28px;}
+  .nav-links{display:none;}
+  .page-header{padding:140px 28px 60px;}
+  section{padding:72px 28px;}
+  .framework-item{grid-template-columns:1fr;gap:16px;}
+  .fi-num{font-size:2rem;}
+  .fi-action,.fi-soon{align-self:flex-start;}
+  .back-link{padding:48px 28px;}
+  footer{padding:32px 28px;flex-direction:column;gap:12px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">Harnoor Archive</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="philosophy.html">Philosophy</a></li>
+    <li><a href="wealth.html">Wealth</a></li>
+    <li><a href="index.html#cultural">Cultural</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-grid"></div>
+  <div class="page-label">Wealth Architecture &amp; Legacy</div>
+  <h1 class="page-title">How the money<br><em>actually works</em></h1>
+  <p class="page-intro">
+    Understanding UHNW consumer psychology means understanding the world they actually operate in — not the cartoon version. Trust structures, family offices, dynastic wealth, the social infrastructure of old money. The mechanics underneath the surface.
+  </p>
+</div>
+
+<!-- STRUCTURES & SYSTEMS -->
+<section>
+  <div class="s-label reveal">Structures &amp; Systems</div>
+  <h2 class="s-heading reveal">How wealth is <em>held and protected</em></h2>
+  <p class="s-desc reveal">The legal and financial architecture that sits beneath UHNW life — trusts, holding companies, family offices, private banks. Not as scandal. As system.</p>
+
+  <div class="framework-list">
+
+    <div class="framework-item reveal">
+      <div class="fi-num">I</div>
+      <div class="fi-body">
+        <span class="fi-tag">Essay · In Development</span>
+        <h3 class="fi-title">The Family Office</h3>
+        <p class="fi-desc">How ultra-high-net-worth families structure, protect, and perpetuate capital across generations — and what the architecture of a family office reveals about the psychology of the people who build them. The single-family office as both financial instrument and identity project.</p>
+        <p class="fi-meta">Family Office · UHNW · Generational Wealth</p>
+      </div>
+      <span class="fi-soon">In Progress</span>
+    </div>
+
+    <div class="framework-item reveal">
+      <div class="fi-num">II</div>
+      <div class="fi-body">
+        <span class="fi-tag">Essay · Planned</span>
+        <h3 class="fi-title">The Invisible Structure</h3>
+        <p class="fi-desc">Trusts, holding companies, and the legal mechanics of how extreme wealth is structured to persist and compound. How the architecture of ownership shapes the world luxury operates inside — and why the people who understand these structures see a completely different picture than those who don't.</p>
+        <p class="fi-meta">Trusts · Holding Companies · Wealth Preservation</p>
+      </div>
+      <span class="fi-soon">Planned</span>
+    </div>
+
+    <div class="framework-item reveal">
+      <div class="fi-num">III</div>
+      <div class="fi-body">
+        <span class="fi-tag">Essay · Planned</span>
+        <h3 class="fi-title">Why UHNWIs Use Multiple Private Banks Simultaneously</h3>
+        <p class="fi-desc">It's not diversification. It's deliberate opacity. No single institution should have full visibility into the complete picture — and that's a governance decision, not a financial one. A study in how the ultra-wealthy manage information as carefully as they manage capital.</p>
+        <p class="fi-meta">Private Banking · Wealth Governance · UHNW Behavior</p>
+      </div>
+      <span class="fi-soon">Planned</span>
+    </div>
+
+    <div class="framework-item reveal">
+      <div class="fi-num">IV</div>
+      <div class="fi-body">
+        <span class="fi-tag">Essay · Planned</span>
+        <h3 class="fi-title">What Prenups and Trusts Actually Signal</h3>
+        <p class="fi-desc">Not distrust. Not pessimism. The systems that protect generational wealth exist because nothing is guaranteed — and understanding that distinction separates people who grasp how this world works from those who don't. On how legal instruments function as expressions of values, not just risk management.</p>
+        <p class="fi-meta">Trusts · Prenuptial Agreements · Wealth Psychology</p>
+      </div>
+      <span class="fi-soon">Planned</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- DYNASTIC THINKING -->
+<section>
+  <div class="s-label reveal">Dynastic Thinking</div>
+  <h2 class="s-heading reveal">How old money <em>thinks differently</em></h2>
+  <p class="s-desc reveal">The psychology of generational wealth is distinct from the psychology of earned wealth. How it's preserved, transmitted, and signaled — and what that means for understanding UHNW behavior as a consumer group.</p>
+
+  <div class="framework-list">
+
+    <div class="framework-item reveal">
+      <div class="fi-num">I</div>
+      <div class="fi-body">
+        <span class="fi-tag">Essay · In Development</span>
+        <h3 class="fi-title">Why Old European Money Distrusts Growth</h3>
+        <p class="fi-desc">The fundamental difference between dynastic wealth preservation and American accumulation thinking — and why it changes everything about how those clients behave. Preservation over expansion. Continuity over disruption. The psychology of wealth that measures itself in centuries.</p>
+        <p class="fi-meta">Old Money · Dynastic Wealth · European vs American Wealth</p>
+      </div>
+      <span class="fi-soon">In Progress</span>
+    </div>
+
+    <div class="framework-item reveal">
+      <div class="fi-num">II</div>
+      <div class="fi-body">
+        <span class="fi-tag">Essay · Planned</span>
+        <h3 class="fi-title">Legacy by Design</h3>
+        <p class="fi-desc">Generational wealth isn't inherited — it's engineered. How old-money families deliberately construct legacy through governance structures, philanthropic positioning, educational choices, and marriage. A study in how the ultra-wealthy design continuity rather than leave it to chance.</p>
+        <p class="fi-meta">Legacy · Family Governance · Generational Wealth</p>
+      </div>
+      <span class="fi-soon">Planned</span>
+    </div>
+
+    <div class="framework-item reveal">
+      <div class="fi-num">III</div>
+      <div class="fi-body">
+        <span class="fi-tag">Essay · Planned</span>
+        <h3 class="fi-title">How UHNW Families Raise Children</h3>
+        <p class="fi-desc">What gets transmitted alongside the money — values, behaviors, codes, and the particular psychology of growing up knowing the floor is always there. How the ultra-wealthy approach the problem of raising children who understand wealth without being destroyed by it.</p>
+        <p class="fi-meta">UHNW · Child Rearing · Wealth Psychology</p>
+      </div>
+      <span class="fi-soon">Planned</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- CORPORATE & DEAL MECHANICS -->
+<section>
+  <div class="s-label reveal">Corporate &amp; Deal Mechanics</div>
+  <h2 class="s-heading reveal">How empires <em>are built</em></h2>
+  <p class="s-desc reveal">Mergers, acquisitions, private equity — the mechanics of how capital moves at scale, and what that means for the luxury brands that operate inside these structures.</p>
+
+  <div class="framework-list">
+
+    <div class="framework-item reveal">
+      <div class="fi-num">I</div>
+      <div class="fi-body">
+        <span class="fi-tag">Essay · Planned</span>
+        <h3 class="fi-title">The Acquisition</h3>
+        <p class="fi-desc">How luxury conglomerates like LVMH grow through acquisition — the strategic logic, the negotiation mechanics, and what happens to a brand's identity when it enters a larger empire. What gets preserved, what gets standardized, and what the target brand's consumers actually feel.</p>
+        <p class="fi-meta">M&amp;A · LVMH · Luxury Conglomerates · Brand Identity</p>
+      </div>
+      <span class="fi-soon">Planned</span>
+    </div>
+
+    <div class="framework-item reveal">
+      <div class="fi-num">II</div>
+      <div class="fi-body">
+        <span class="fi-tag">Essay · Planned</span>
+        <h3 class="fi-title">Private Equity and the Luxury Brand</h3>
+        <p class="fi-desc">What happens when a PE firm buys a luxury house. The tension between financial engineering and brand equity — and why the things that make a luxury brand worth acquiring are often the first things destroyed by the people who acquire it.</p>
+        <p class="fi-meta">Private Equity · Brand Strategy · Luxury Economics</p>
+      </div>
+      <span class="fi-soon">Planned</span>
+    </div>
+
+  </div>
+</section>
+
+<a href="index.html" class="back-link">Back to Archive</a>
+
+<footer>
+  <div class="f-name">Harnoor Archive</div>
+  <div class="f-copy">© <script>document.write(new Date().getFullYear())</script> · Independent Research · Canada</div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>

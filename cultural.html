@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taste & Culture — Harnoor Archive</title>
+<meta name="description" content="Cultural essays, historical deep dives, and creative writing by Harnoor Jhinzer — tracing the roots of luxury, access, and belonging through history, architecture, and the worlds wealth builds.">
+<meta name="author" content="Harnoor Archive">
+<meta property="og:title" content="Taste & Culture — Harnoor Archive">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0908;
+  --bone:#F0EBE1;
+  --gold:#B8935A;
+  --gold2:#D4B483;
+  --muted:rgba(240,235,225,0.45);
+  --line:rgba(184,147,90,0.18);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--ink);
+  color:var(--bone);
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:32px 72px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(to bottom,rgba(10,9,8,0.98),transparent);
+}
+.nav-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;letter-spacing:0.2em;
+  color:var(--gold);font-weight:300;
+  text-decoration:none;
+}
+.nav-links{display:flex;gap:44px;list-style:none;}
+.nav-links a{
+  font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color 0.3s;
+}
+.nav-links a:hover{color:var(--gold);}
+
+/* PAGE HEADER */
+.page-header{
+  padding:180px 90px 80px;
+  border-bottom:1px solid var(--line);
+  position:relative;overflow:hidden;
+}
+.page-header-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 80% 40%,rgba(184,147,90,0.06) 0%,transparent 65%);
+}
+.page-header-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(184,147,90,0.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(184,147,90,0.07) 1px,transparent 1px);
+  background-size:70px 70px;
+  mask-image:radial-gradient(ellipse at center,black 10%,transparent 75%);
+}
+.page-label{
+  font-size:0.55rem;letter-spacing:0.45em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;
+  display:flex;align-items:center;gap:18px;
+  position:relative;z-index:2;
+  opacity:0;animation:up 1s ease 0.2s forwards;
+}
+.page-label::before{content:'';width:32px;height:1px;background:var(--gold);}
+.page-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,6vw,5.5rem);
+  font-weight:300;line-height:0.95;
+  position:relative;z-index:2;
+  opacity:0;animation:up 1s ease 0.1s forwards;
+}
+.page-title em{font-style:italic;color:var(--gold2);}
+.page-intro{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1rem,1.6vw,1.2rem);
+  font-style:italic;font-weight:300;
+  color:rgba(240,235,225,0.5);
+  line-height:1.75;max-width:620px;
+  margin-top:32px;
+  position:relative;z-index:2;
+  opacity:0;animation:up 1s ease 0.4s forwards;
+}
+
+/* SECTION BASE */
+section{padding:100px 90px;border-top:1px solid var(--line);}
+.s-label{
+  font-size:0.55rem;letter-spacing:0.45em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px;
+  display:flex;align-items:center;gap:18px;
+}
+.s-label::before{content:'';width:32px;height:1px;background:var(--gold);}
+.s-heading{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  font-weight:300;line-height:1.15;margin-bottom:12px;
+}
+.s-heading em{font-style:italic;color:var(--gold2);}
+.s-desc{
+  font-size:0.82rem;color:rgba(240,235,225,0.42);
+  line-height:1.9;max-width:560px;margin-bottom:52px;
+}
+
+/* FRAMEWORK LIST */
+.framework-list{display:flex;flex-direction:column;gap:2px;}
+.framework-item{
+  display:grid;
+  grid-template-columns:80px 1fr auto;
+  gap:48px;align-items:start;
+  padding:48px 0;
+  border-bottom:1px solid var(--line);
+  text-decoration:none;color:inherit;
+  transition:padding-left 0.3s;
+  position:relative;
+}
+.framework-item::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,var(--gold),transparent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.5s;
+}
+a.framework-item:hover::before{transform:scaleX(1);}
+a.framework-item:hover{padding-left:8px;}
+.fi-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;font-weight:300;
+  color:rgba(184,147,90,0.12);line-height:1;
+  padding-top:4px;
+}
+.fi-body{display:flex;flex-direction:column;gap:12px;}
+.fi-tag{font-size:0.52rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);}
+.fi-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;font-weight:400;line-height:1.25;
+  transition:color 0.3s;
+}
+a.framework-item:hover .fi-title{color:var(--gold2);}
+.fi-desc{font-size:0.78rem;color:rgba(240,235,225,0.42);line-height:1.9;max-width:580px;}
+.fi-meta{
+  font-size:0.62rem;color:rgba(240,235,225,0.28);
+  letter-spacing:0.08em;line-height:1.6;
+  margin-top:4px;
+}
+.fi-action{
+  font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);white-space:nowrap;
+  display:flex;align-items:center;gap:10px;
+  transition:gap 0.3s;
+  align-self:center;
+}
+a.framework-item:hover .fi-action{gap:18px;}
+.fi-action::after{content:'→';}
+.fi-soon{
+  font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(184,147,90,0.28);
+  align-self:center;white-space:nowrap;
+}
+
+/* BACK LINK */
+.back-link{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:60px 90px;
+  font-size:0.55rem;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;transition:gap 0.3s;
+}
+.back-link:hover{gap:20px;}
+.back-link::before{content:'←';}
+
+/* FOOTER */
+footer{
+  padding:44px 72px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.f-name{font-family:'Cormorant Garamond',serif;font-size:0.9rem;letter-spacing:0.2em;color:var(--gold);font-weight:300;}
+.f-copy{font-size:0.58rem;letter-spacing:0.15em;color:rgba(240,235,225,0.2);}
+
+/* ANIMATIONS */
+@keyframes up{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.9s ease,transform 0.9s ease;}
+.reveal.on{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:24px 28px;}
+  .nav-links{display:none;}
+  .page-header{padding:140px 28px 60px;}
+  section{padding:72px 28px;}
+  .framework-item{grid-template-columns:1fr;gap:16px;}
+  .fi-num{font-size:2rem;}
+  .fi-action,.fi-soon{align-self:flex-start;}
+  .back-link{padding:48px 28px;}
+  footer{padding:32px 28px;flex-direction:column;gap:12px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">Harnoor Archive</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="philosophy.html">Philosophy</a></li>
+    <li><a href="wealth.html">Wealth</a></li>
+    <li><a href="cultural.html">Cultural</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-grid"></div>
+  <div class="page-label">Taste &amp; Culture</div>
+  <h1 class="page-title">The history<br><em>underneath</em></h1>
+  <p class="page-intro">
+    The systems that govern luxury, access, and belonging aren't new. They have roots — in history, in architecture, in the worlds that wealth has always built for itself. This section traces those roots through essays, historical dives, and creative writing.
+  </p>
+</div>
+
+<!-- CREATIVE WRITING -->
+<section>
+  <div class="s-label reveal">Creative Writing</div>
+  <h2 class="s-heading reveal">Fiction as <em>a mode of research</em></h2>
+  <p class="s-desc reveal">Some things are better understood from the inside. Historical fiction as a way of inhabiting a world — its codes, its fears, its logic — that pure analysis can't reach.</p>
+
+  <div class="framework-list">
+
+    <a href="docs/witch.pdf" target="_blank" class="framework-item reveal">
+      <div class="fi-num">I</div>
+      <div class="fi-body">
+        <span class="fi-tag">Historical Fiction · Published</span>
+        <h3 class="fi-title">The Witches They Didn't Burn</h3>
+        <p class="fi-desc">Salem wasn't about witchcraft. It was about women who had autonomous knowledge, operated outside male-controlled systems, and refused to disappear quietly. A fictional memoir from inside 1692 — written under the pen name Isolde Nightthorne — and what it reveals about how power has always punished people who don't belong.</p>
+        <p class="fi-meta">Salem · 1692 · Power · Female Autonomy · Historical Fiction</p>
+      </div>
+      <span class="fi-action">Read</span>
+    </a>
+
+    <a href="docs/Operation_Aquarius.pdf" target="_blank" class="framework-item reveal">
+      <div class="fi-num">II</div>
+      <div class="fi-body">
+        <span class="fi-tag">Speculative Fiction · Published · NSS Honourable Mention</span>
+        <h3 class="fi-title">Operation Aquarius</h3>
+        <p class="fi-desc">A full speculative world-building project — a detailed fictional account of a space settlement designed to house 3,000 people escaping an AI takeover on Earth. Co-written and co-led as team lead, covering engineering, governance, healthcare, fashion, agriculture, and culture. Received an honourable mention in the NSS Space Settlement Design Contest, judged globally.</p>
+        <p class="fi-meta">Speculative Fiction · World-Building · NSS · Space Settlement · Co-authored</p>
+      </div>
+      <span class="fi-action">Read</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ARCHITECTURE & PLACE -->
+<section>
+  <div class="s-label reveal">Architecture &amp; Place</div>
+  <h2 class="s-heading reveal">What buildings <em>actually say</em></h2>
+  <p class="s-desc reveal">Architecture is never neutral. Every structure is an argument about who belongs inside and who stays out — a physical expression of the same systems that govern luxury, access, and status.</p>
+
+  <div class="framework-list">
+
+    <div class="framework-item reveal">
+      <div class="fi-num">I</div>
+      <div class="fi-body">
+        <span class="fi-tag">Cultural Essay · Planned</span>
+        <h3 class="fi-title">What Castles Were Actually For</h3>
+        <p class="fi-desc">Architecture as controlled access. The castle wasn't just a home — it was a physical argument about who belongs inside and who stays out. The moat, the drawbridge, the tower — not security measures but signals. The logic hasn't changed. The materials have.</p>
+        <p class="fi-meta">Architecture · Medieval History · Access · Status Signaling</p>
+      </div>
+      <span class="fi-soon">Planned</span>
+    </div>
+
+    <div class="framework-item reveal">
+      <div class="fi-num">II</div>
+      <div class="fi-body">
+        <span class="fi-tag">Cultural Essay · Planned</span>
+        <h3 class="fi-title">How New York Built Itself Into a Circle Worth Belonging To</h3>
+        <p class="fi-desc">Cities don't become hubs by accident. New York deliberately constructed the infrastructure — cultural, financial, social — that made certain conversations only happen there. A study in how belonging gets engineered at scale, and why the people who built it understood exactly what they were doing.</p>
+        <p class="fi-meta">New York · Urban History · Wealth Networks · Belonging</p>
+      </div>
+      <span class="fi-soon">Planned</span>
+    </div>
+
+    <div class="framework-item reveal">
+      <div class="fi-num">III</div>
+      <div class="fi-body">
+        <span class="fi-tag">Cultural Essay · Planned</span>
+        <h3 class="fi-title">The Private Club and What It Actually Sells</h3>
+        <p class="fi-desc">Membership isn't about the amenities. It's about the people you're guaranteed not to encounter. How private clubs — from gentlemen's clubs in London to modern members-only spaces — engineer exclusion as the primary product, and why that logic has never really changed.</p>
+        <p class="fi-meta">Private Clubs · Exclusion · Social Architecture · UHNW</p>
+      </div>
+      <span class="fi-soon">Planned</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- FASHION & HISTORY -->
+<section>
+  <div class="s-label reveal">Fashion &amp; History</div>
+  <h2 class="s-heading reveal">How dress has always <em>communicated power</em></h2>
+  <p class="s-desc reveal">Fashion is never just clothing. It has always been a system of signals — about rank, allegiance, wealth, and who is allowed to be seen. A study in how that system has evolved and what it reveals about the present.</p>
+
+  <div class="framework-list">
+
+    <div class="framework-item reveal">
+      <div class="fi-num">I</div>
+      <div class="fi-body">
+        <span class="fi-tag">Cultural Essay · Planned</span>
+        <h3 class="fi-title">Queen Victoria and the Politics of Mourning Dress</h3>
+        <p class="fi-desc">Queen Victoria didn't mourn Prince Albert privately — she made mourning a public statement, a political position, and eventually a fashion system that defined an era. On how a woman used dress to communicate grief, power, and the terms of her own reign simultaneously.</p>
+        <p class="fi-meta">Victorian Fashion · Queen Victoria · Mourning · Power · History</p>
+      </div>
+      <span class="fi-soon">Planned</span>
+    </div>
+
+    <div class="framework-item reveal">
+      <div class="fi-num">II</div>
+      <div class="fi-body">
+        <span class="fi-tag">Cultural Essay · Planned</span>
+        <h3 class="fi-title">Why Horses Are a Social Currency, Not a Hobby</h3>
+        <p class="fi-desc">In UHNW circles, equestrian culture isn't about the animal. It's about the network, the shared language, the access to rooms that don't advertise themselves. A study in how leisure functions as social infrastructure — and why the activities that look most optional are often the most carefully chosen.</p>
+        <p class="fi-meta">Equestrian Culture · UHNW · Social Networks · Leisure as Signal</p>
+      </div>
+      <span class="fi-soon">Planned</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- TRAVEL & OBSERVATION -->
+<section>
+  <div class="s-label reveal">Travel &amp; Observation</div>
+  <h2 class="s-heading reveal">What places <em>teach you</em></h2>
+  <p class="s-desc reveal">The best research happens in person. Notes from places — what they reveal about how wealth, culture, and belonging operate differently in different geographies.</p>
+
+  <div class="framework-list">
+
+    <div class="framework-item reveal">
+      <div class="fi-num">I</div>
+      <div class="fi-body">
+        <span class="fi-tag">Travel Essay · Planned</span>
+        <h3 class="fi-title">What Europe Taught Me About American Luxury</h3>
+        <p class="fi-desc">European luxury operates on a completely different logic from American luxury — older, quieter, less interested in being seen. A firsthand study in how geography shapes the aesthetics and psychology of wealth, and what American brands consistently misunderstand about the European consumer.</p>
+        <p class="fi-meta">Travel · European vs American Luxury · Consumer Psychology · Observation</p>
+      </div>
+      <span class="fi-soon">Planned</span>
+    </div>
+
+    <div class="framework-item reveal">
+      <div class="fi-num">II</div>
+      <div class="fi-body">
+        <span class="fi-tag">Travel Essay · Planned</span>
+        <h3 class="fi-title">The Yacht as a World</h3>
+        <p class="fi-desc">A yacht isn't a vehicle — it's a jurisdiction. The ultra-wealthy don't go on yachts to travel. They go to be in a place where the rules are theirs. On the psychology of total environmental control, and what the desire for a private floating world reveals about how UHNW individuals relate to public space.</p>
+        <p class="fi-meta">Yachts · UHNW · Privacy · Environmental Control · Wealth Psychology</p>
+      </div>
+      <span class="fi-soon">Planned</span>
+    </div>
+
+  </div>
+</section>
+
+<a href="index.html" class="back-link">Back to Archive</a>
+
+<footer>
+  <div class="f-name">Harnoor Archive</div>
+  <div class="f-copy">© <script>document.write(new Date().getFullYear())</script> · Independent Research · Canada</div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>

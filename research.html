@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Research — Harnoor Archive</title>
-<meta name="description" content="Independent research and case studies on luxury consumer psychology, HNW behavior, and brand strategy by Harnoor.">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<title>Desire & Distinction — Harnoor Archive</title>
+<meta name="description" content="Independent research and case studies on luxury consumer psychology, HNW behavior, and brand strategy by Harnoor Jhinzer.">
+<meta name="author" content="Harnoor Archive">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#0A0908;
@@ -49,22 +50,45 @@ nav{
 .page-header{
   padding:180px 72px 80px;
   border-bottom:1px solid var(--line);
+  position:relative;overflow:hidden;
+}
+.page-header-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 80% 40%,rgba(184,147,90,0.06) 0%,transparent 65%);
+}
+.page-header-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(184,147,90,0.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(184,147,90,0.07) 1px,transparent 1px);
+  background-size:70px 70px;
+  mask-image:radial-gradient(ellipse at center,black 10%,transparent 75%);
 }
 .s-label{
   font-size:0.55rem;letter-spacing:0.45em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:56px;
+  color:var(--gold);margin-bottom:20px;
   display:flex;align-items:center;gap:18px;
+  position:relative;z-index:2;
+  opacity:0;animation:up 1s ease 0.2s forwards;
 }
 .s-label::before{content:'';width:32px;height:1px;background:var(--gold);}
 .s-heading{
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(2rem,4vw,3.5rem);
-  font-weight:300;line-height:1.15;margin-bottom:28px;
+  font-size:clamp(2.8rem,6vw,5.5rem);
+  font-weight:300;line-height:0.95;margin-bottom:0;
+  position:relative;z-index:2;
+  opacity:0;animation:up 1s ease 0.1s forwards;
 }
 .s-heading em{font-style:italic;color:var(--gold2);}
 .page-intro{
-  font-size:0.88rem;color:rgba(240,235,225,0.55);
-  line-height:1.95;max-width:620px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1rem,1.6vw,1.2rem);
+  font-style:italic;font-weight:300;
+  color:rgba(240,235,225,0.5);
+  line-height:1.75;max-width:620px;
+  margin-top:32px;
+  position:relative;z-index:2;
+  opacity:0;animation:up 1s ease 0.4s forwards;
 }
 
 /* RESEARCH LIST */
@@ -77,8 +101,17 @@ nav{
   border-bottom:1px solid var(--line);
   text-decoration:none;color:var(--bone);
   transition:padding-left 0.3s;
+  position:relative;
 }
-.research-item:hover{padding-left:12px;}
+.research-item::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,var(--gold),transparent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.5s;
+}
+a.research-item:hover::before{transform:scaleX(1);}
+a.research-item:hover{padding-left:12px;}
 .ri-number{
   font-family:'Cormorant Garamond',serif;
   font-size:3rem;font-weight:300;
@@ -94,10 +127,14 @@ nav{
   font-size:1.4rem;font-weight:400;line-height:1.3;
   transition:color 0.3s;
 }
-.research-item:hover .ri-title{color:var(--gold2);}
+a.research-item:hover .ri-title{color:var(--gold2);}
 .ri-desc{
   font-size:0.78rem;color:rgba(240,235,225,0.45);
   line-height:1.85;max-width:600px;
+}
+.ri-meta{
+  font-size:0.6rem;color:rgba(240,235,225,0.25);
+  letter-spacing:0.08em;line-height:1.6;
 }
 .ri-status{
   font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;
@@ -113,7 +150,7 @@ nav{
 .back-link{
   display:inline-flex;align-items:center;gap:12px;
   padding:60px 72px;
-  font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;
+  font-size:0.55rem;letter-spacing:0.28em;text-transform:uppercase;
   color:var(--gold);text-decoration:none;transition:gap 0.3s;
 }
 .back-link:hover{gap:20px;}
@@ -124,12 +161,11 @@ footer{
   padding:44px 72px;border-top:1px solid var(--line);
   display:flex;justify-content:space-between;align-items:center;
 }
-.f-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:0.9rem;letter-spacing:0.2em;color:var(--gold);font-weight:300;
-}
+.f-name{font-family:'Cormorant Garamond',serif;font-size:0.9rem;letter-spacing:0.2em;color:var(--gold);font-weight:300;}
 .f-copy{font-size:0.58rem;letter-spacing:0.15em;color:rgba(240,235,225,0.2);}
 
+/* ANIMATIONS */
+@keyframes up{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity 0.9s ease,transform 0.9s ease;}
 .reveal.on{opacity:1;transform:translateY(0);}
 
@@ -151,149 +187,143 @@ footer{
   <a href="index.html" class="nav-name">Harnoor Archive</a>
   <ul class="nav-links">
     <li><a href="index.html#about">About</a></li>
-    <li><a href="index.html#research">Research</a></li>
-    <li><a href="index.html#thinking">Thinking</a></li>
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="philosophy.html">Philosophy</a></li>
+    <li><a href="wealth.html">Wealth</a></li>
+    <li><a href="cultural.html">Cultural</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
 </nav>
 
 <div class="page-header">
-  <div class="s-label reveal">Research Archive</div>
-  <h1 class="s-heading reveal">All <em>case studies</em></h1>
-  <p class="page-intro reveal">
-    Independent research analyzing luxury brands and HNW consumer behavior through a behavioral psychology lens. Each piece is grounded in academic research and applied to real brands, real consumers, and real purchasing decisions.
+  <div class="page-header-bg"></div>
+  <div class="page-header-grid"></div>
+  <div class="s-label">Desire &amp; Distinction</div>
+  <h1 class="s-heading">All <em>case studies</em></h1>
+  <p class="page-intro">
+    Original research applying behavioral science to real brands, real environments, and real consumer moments. Each piece follows the psychology underneath a purchasing decision until something true surfaces — about identity, desire, and what people are actually buying when they spend.
   </p>
 </div>
 
 <div class="research-list">
 
-  <!--
-    =============================================
-    HOW TO ADD A NEW CASE STUDY:
-
-    1. Put your PDF in the docs/ folder
-    2. Copy a PUBLISHED block below
-    3. Change the number, title, description, and PDF filename in the href
-    4. If it's not published yet, use a NOT YET PUBLISHED block instead
-
-    PUBLISHED case study template:
-
-    <a href="docs/YOUR-FILE-NAME.pdf" class="research-item reveal">
-      <div class="ri-number">XX</div>
-      <div class="ri-content">
-        <span class="ri-tag">Case Study · Published</span>
-        <h2 class="ri-title">YOUR TITLE HERE</h2>
-        <p class="ri-desc">YOUR DESCRIPTION HERE</p>
-      </div>
-      <span class="ri-status">Read</span>
-    </a>
-
-    NOT YET PUBLISHED template:
-
-    <div class="research-item reveal">
-      <div class="ri-number">XX</div>
-      <div class="ri-content">
-        <span class="ri-tag">Case Study · Planned</span>
-        <h2 class="ri-title">YOUR TITLE HERE</h2>
-        <p class="ri-desc">YOUR DESCRIPTION HERE</p>
-      </div>
-      <span class="ri-status soon">Coming soon</span>
-    </div>
-    =============================================
-  -->
-
-  <!-- ========== 01 ========== -->
   <a href="docs/What Louis Vuitton Taught Me About Belonging.pdf" class="research-item reveal" target="_blank">
     <div class="ri-number">01</div>
     <div class="ri-content">
       <span class="ri-tag">Case Study · Published</span>
       <h2 class="ri-title">What Louis Vuitton Taught Me About Belonging</h2>
       <p class="ri-desc">A personal and academic analysis of luxury consumption psychology — why the product is almost beside the point, what the space is really selling, and why three people in the same room can feel completely different things.</p>
+      <p class="ri-meta">Belonging · Identity · Luxury Retail · Consumer Psychology</p>
     </div>
     <span class="ri-status">Read</span>
   </a>
 
-  <!-- ========== 02 ========== -->
   <a href="docs/Dressed As Someone Else.pdf" class="research-item reveal" target="_blank">
     <div class="ri-number">02</div>
     <div class="ri-content">
       <span class="ri-tag">Case Study · Published</span>
       <h2 class="ri-title">Dressed As Someone Else</h2>
       <p class="ri-desc">Can clothing construct a temporary identity that redirects real consumer behavior? A first-person experiment in Toronto testing enclothed cognition, identity extension, and front-stage performance.</p>
+      <p class="ri-meta">Enclothed Cognition · Identity · Consumer Behavior · Field Experiment</p>
     </div>
     <span class="ri-status">Read</span>
   </a>
 
-  <!-- ========== 03 ========== -->
- <a href="docs/A Room That Knows You..pdf" class="research-item reveal" target="_blank">
+  <a href="docs/A Room That Knows You..pdf" class="research-item reveal" target="_blank">
     <div class="ri-number">03</div>
     <div class="ri-content">
       <span class="ri-tag">Case Study · Published</span>
       <h2 class="ri-title">A Room That Knows You</h2>
       <p class="ri-desc">Luxury doesn't begin with the room. It begins the moment you cross the threshold — fifteen seconds before your mind catches up. A study in sensory sequencing, atmospheric design, and how the right environment constructs a version of you that already belongs.</p>
+      <p class="ri-meta">Sensory Design · Atmospheric Psychology · Luxury Hospitality · Kimpton</p>
     </div>
     <span class="ri-status">Read</span>
   </a>
-  <!-- ========== 04 ========== -->
+
   <a href="docs/The Customer Is Always Right.pdf" class="research-item reveal" target="_blank">
     <div class="ri-number">04</div>
     <div class="ri-content">
       <span class="ri-tag">Case Study · Published</span>
       <h2 class="ri-title">The Customer Is Always Right</h2>
-      <p class="ri-desc">Not all luxury consumers are the same — and the brands that treat them like they are lose all of them.</p>
+      <p class="ri-desc">Not all luxury consumers are the same — and the brands that treat them like they are lose all of them. A study in HNW segmentation, why the standard luxury audience model fails, and what it actually takes to serve the top tier correctly.</p>
+      <p class="ri-meta">HNW Segmentation · Brand Strategy · UHNW Behavior · Luxury Service</p>
     </div>
     <span class="ri-status">Read</span>
   </a>
 
-  <!-- ========== 05 ========== -->
-  <!-- EMPTY SLOT — copy a template from above and fill it in when ready -->
-<div class="research-item reveal">
+  <div class="research-item reveal">
     <div class="ri-number">05</div>
     <div class="ri-content">
       <span class="ri-tag">Case Study · In Development</span>
       <h2 class="ri-title">The Price Is The Product</h2>
-      <p class="ri-desc">An original framework for understanding how the same consumer activates completely different purchasing motivations depending on environment, life stage, occasion, and social context.</p>
+      <p class="ri-desc">How price itself functions as the primary signal — not of value, but of belonging, exclusion, and identity. Why some luxury consumers need the number to be impossible, and what that reveals about the psychology of aspirational consumption at its most concentrated.</p>
+      <p class="ri-meta">Pricing Psychology · Exclusion · Status Signaling · Luxury Economics</p>
     </div>
     <span class="ri-status soon">Coming Soon</span>
   </div>
 
-  <!-- ========== 06 ========== -->
+  <div class="research-item reveal">
+    <div class="ri-number">06</div>
+    <div class="ri-content">
+      <span class="ri-tag">Case Study · Planned</span>
+      <h2 class="ri-title">The Invisible Salesperson</h2>
+      <p class="ri-desc">The sales associate who knows your name, your size, and your last three purchases isn't just providing service — they're providing identity confirmation. A study in how SA loyalty functions as a psychological anchor in luxury retail, and what brands lose when they ignore it.</p>
+      <p class="ri-meta">Retail Psychology · SA Loyalty · Luxury Service · HNW Relationships</p>
+    </div>
+    <span class="ri-status soon">Planned</span>
+  </div>
 
-  <!-- ========== 07 ========== -->
+  <div class="research-item reveal">
+    <div class="ri-number">07</div>
+    <div class="ri-content">
+      <span class="ri-tag">Case Study · Planned</span>
+      <h2 class="ri-title">Time as Exclusivity</h2>
+      <p class="ri-desc">The Hermès waitlist. The private appointment. The early access reserved for established clients. How the deliberate rationing of time becomes the most powerful luxury signal of all — and why the brands that understand this stop selling products entirely.</p>
+      <p class="ri-meta">Scarcity · Time · Hermès · Exclusivity · Luxury Strategy</p>
+    </div>
+    <span class="ri-status soon">Planned</span>
+  </div>
 
-  <!-- ========== 08 ========== -->
+  <div class="research-item reveal">
+    <div class="ri-number">08</div>
+    <div class="ri-content">
+      <span class="ri-tag">Case Study · Planned</span>
+      <h2 class="ri-title">When the Object Stops Being the Point</h2>
+      <p class="ri-desc">At a certain level of wealth, the object becomes irrelevant. What the ultra-wealthy are actually purchasing — access, recognition, membership in a room — and how luxury brands at the highest tier have learned to sell everything except the product.</p>
+      <p class="ri-meta">UHNW · Experiential Luxury · Brand Philosophy · Consumer Psychology</p>
+    </div>
+    <span class="ri-status soon">Planned</span>
+  </div>
 
-  <!-- ========== 09 ========== -->
+  <div class="research-item reveal">
+    <div class="ri-number">09</div>
+    <div class="ri-content">
+      <span class="ri-tag">Case Study · Planned</span>
+      <h2 class="ri-title">Brand Purpose vs Brand Value</h2>
+      <p class="ri-desc">When luxury brands take political or social positions, they're making a bet on which consumers they can afford to lose. A study in how the most valuable luxury houses navigate purpose — and why the ones that get it wrong always lose the same customers first.</p>
+      <p class="ri-meta">Brand Strategy · Purpose · Luxury Identity · Consumer Loyalty</p>
+    </div>
+    <span class="ri-status soon">Planned</span>
+  </div>
 
-  <!-- ========== 10 ========== -->
-
-  <!-- ========== 11 ========== -->
-
-  <!-- ========== 12 ========== -->
-
-  <!-- ========== 13 ========== -->
-
-  <!-- ========== 14 ========== -->
-
-  <!-- ========== 15 ========== -->
-
-  <!-- ========== 16 ========== -->
-
-  <!-- ========== 17 ========== -->
-
-  <!-- ========== 18 ========== -->
-
-  <!-- ========== 19 ========== -->
-
-  <!-- ========== 20 ========== -->
+  <div class="research-item reveal">
+    <div class="ri-number">10</div>
+    <div class="ri-content">
+      <span class="ri-tag">Case Study · Planned</span>
+      <h2 class="ri-title">The Rebrand Problem</h2>
+      <p class="ri-desc">What happens to a luxury brand's existing customers when it attempts to reinvent itself. The psychological cost of repositioning — why loyal clients feel abandoned, why new clients are skeptical, and why most luxury rebrands quietly fail the people who built the brand's equity.</p>
+      <p class="ri-meta">Rebranding · Brand Equity · Consumer Psychology · Luxury Strategy</p>
+    </div>
+    <span class="ri-status soon">Planned</span>
+  </div>
 
 </div>
 
-<a href="index.html" class="back-link">Back to Home</a>
+<a href="index.html" class="back-link">Back to Archive</a>
 
 <footer>
   <div class="f-name">Harnoor Archive</div>
-  <div class="f-copy">© <script>document.write(new Date().getFullYear())</script> · Luxury Consumer Psychology · Canada</div>
+  <div class="f-copy">&copy; <script>document.write(new Date().getFullYear())</script> &middot; Independent Research &middot; Canada</div>
 </footer>
 
 <script>
