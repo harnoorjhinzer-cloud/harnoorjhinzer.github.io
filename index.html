@@ -266,6 +266,73 @@ footer{
 .reveal{opacity:0;transform:translateY(22px);transition:opacity 0.9s ease,transform 0.9s ease;}
 .reveal.on{opacity:1;transform:translateY(0);}
 
+/* CREDENTIAL MARQUEE */
+.credential-band{
+  padding:60px 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  position:relative;
+  overflow:hidden;
+}
+.credential-band::before,
+.credential-band::after{
+  content:'';
+  position:absolute;
+  top:0;bottom:0;
+  width:120px;
+  z-index:2;
+  pointer-events:none;
+}
+.credential-band::before{
+  left:0;
+  background:linear-gradient(to right,var(--ink),transparent);
+}
+.credential-band::after{
+  right:0;
+  background:linear-gradient(to left,var(--ink),transparent);
+}
+.credential-label{
+  font-size:0.52rem;letter-spacing:0.45em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:32px;
+  padding:0 90px;
+  display:flex;align-items:center;gap:18px;
+}
+.credential-label::before{content:'';width:32px;height:1px;background:var(--gold);}
+.credential-track{
+  display:flex;
+  gap:80px;
+  width:max-content;
+  animation:marquee 50s linear infinite;
+}
+.credential-band:hover .credential-track{animation-play-state:paused;}
+.credential-item{
+  display:flex;flex-direction:column;
+  gap:6px;
+  white-space:nowrap;
+  text-decoration:none;
+  color:inherit;
+  transition:opacity 0.3s;
+  flex-shrink:0;
+}
+.credential-item:hover{opacity:0.7;}
+.credential-inst{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;
+  font-weight:400;
+  color:var(--bone);
+  letter-spacing:0.02em;
+}
+.credential-program{
+  font-size:0.62rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(184,147,90,0.6);
+}
+@keyframes marquee{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+
 /* RESPONSIVE */
 @media(max-width:900px){
   nav{padding:24px 28px;}
@@ -275,6 +342,13 @@ footer{
   .about-grid{grid-template-columns:1fr;gap:48px;}
   .card-grid{grid-template-columns:1fr;}
   .section-header{flex-direction:column;align-items:flex-start;gap:20px;}
+  .credential-band{padding:44px 0;}
+  .credential-label{padding:0 28px;margin-bottom:24px;}
+  .credential-track{gap:48px;animation-duration:40s;}
+  .credential-inst{font-size:1.05rem;}
+  .credential-program{font-size:0.58rem;}
+  .credential-band::before,
+  .credential-band::after{width:50px;}
   footer{padding:32px 28px;flex-direction:column;gap:12px;text-align:center;}
 }
 </style>
@@ -326,7 +400,7 @@ footer{
         Luxury is my baseline — the lens I see through. From there, the work moves where the question demands: into political economy, into cultural history, into the legal architecture of dynastic wealth, into the psychology of a single consumer in a single room, into fiction when fiction is what the moment needs. The case studies diagnose. The frameworks systematize. The cultural work traces lineage. The essays go bigger. Everything passes through the same lens.
       </p>
       <p class="about-body">
-        Trained at SDA Bocconi (Fashion &amp; Luxury), London Business School (Brand Management), Copenhagen Business School (Consumer Neuroscience), and Duke (Behavioral Finance). Based in Canada. Eyes on New York, London, Florida, and everywhere the interesting conversations about wealth and desire are happening.
+        Based in Canada. Eyes on New York, London, Florida, and everywhere the interesting conversations about wealth and desire are happening.
       </p>
     </div>
     <div class="details reveal">
@@ -349,6 +423,79 @@ footer{
     </div>
   </div>
 </section>
+
+<!-- CREDENTIAL MARQUEE -->
+<div class="credential-band reveal">
+  <div class="credential-label">Trained At</div>
+  <div class="credential-track">
+    <a href="certificates/bocconi.pdf" target="_blank" rel="noopener" class="credential-item">
+      <div class="credential-inst">SDA Bocconi</div>
+      <div class="credential-program">Management of Fashion &amp; Luxury Companies</div>
+    </a>
+    <a href="certificates/Brand Management_Aligning Business, Brand and Behaviour.pdf" target="_blank" rel="noopener" class="credential-item">
+      <div class="credential-inst">London Business School</div>
+      <div class="credential-program">Brand Management</div>
+    </a>
+    <a href="certificates/An Introduction to Consumer Neuroscience & Neuromarketing.pdf" target="_blank" rel="noopener" class="credential-item">
+      <div class="credential-inst">Copenhagen Business School</div>
+      <div class="credential-program">Consumer Neuroscience &amp; Neuromarketing</div>
+    </a>
+    <a href="certificates/Behavioral Finance.pdf" target="_blank" rel="noopener" class="credential-item">
+      <div class="credential-inst">Duke University</div>
+      <div class="credential-program">Behavioral Finance</div>
+    </a>
+    <a href="certificates/Google Digital Marketing and E-Commerce.pdf" target="_blank" rel="noopener" class="credential-item">
+      <div class="credential-inst">Google</div>
+      <div class="credential-program">Digital Marketing &amp; E-commerce</div>
+    </a>
+    <a href="certificates/Introduction to Merchandising.pdf" target="_blank" rel="noopener" class="credential-item">
+      <div class="credential-inst">Coursera</div>
+      <div class="credential-program">Introduction to Merchandising</div>
+    </a>
+    <a href="certificates/hubspot.png" target="_blank" rel="noopener" class="credential-item">
+      <div class="credential-inst">HubSpot Academy</div>
+      <div class="credential-program">SEO Certified</div>
+    </a>
+    <a href="certificates/Operation Aquarius.pdf" target="_blank" rel="noopener" class="credential-item">
+      <div class="credential-inst">NSS</div>
+      <div class="credential-program">Space Settlement Design · Honourable Mention</div>
+    </a>
+
+    <!-- duplicate for seamless loop -->
+    <a href="certificates/bocconi.pdf" target="_blank" rel="noopener" class="credential-item" aria-hidden="true">
+      <div class="credential-inst">SDA Bocconi</div>
+      <div class="credential-program">Management of Fashion &amp; Luxury Companies</div>
+    </a>
+    <a href="certificates/Brand Management_Aligning Business, Brand and Behaviour.pdf" target="_blank" rel="noopener" class="credential-item" aria-hidden="true">
+      <div class="credential-inst">London Business School</div>
+      <div class="credential-program">Brand Management</div>
+    </a>
+    <a href="certificates/An Introduction to Consumer Neuroscience & Neuromarketing.pdf" target="_blank" rel="noopener" class="credential-item" aria-hidden="true">
+      <div class="credential-inst">Copenhagen Business School</div>
+      <div class="credential-program">Consumer Neuroscience &amp; Neuromarketing</div>
+    </a>
+    <a href="certificates/Behavioral Finance.pdf" target="_blank" rel="noopener" class="credential-item" aria-hidden="true">
+      <div class="credential-inst">Duke University</div>
+      <div class="credential-program">Behavioral Finance</div>
+    </a>
+    <a href="certificates/Google Digital Marketing and E-Commerce.pdf" target="_blank" rel="noopener" class="credential-item" aria-hidden="true">
+      <div class="credential-inst">Google</div>
+      <div class="credential-program">Digital Marketing &amp; E-commerce</div>
+    </a>
+    <a href="certificates/Introduction to Merchandising.pdf" target="_blank" rel="noopener" class="credential-item" aria-hidden="true">
+      <div class="credential-inst">Coursera</div>
+      <div class="credential-program">Introduction to Merchandising</div>
+    </a>
+    <a href="certificates/hubspot.png" target="_blank" rel="noopener" class="credential-item" aria-hidden="true">
+      <div class="credential-inst">HubSpot Academy</div>
+      <div class="credential-program">SEO Certified</div>
+    </a>
+    <a href="certificates/Operation Aquarius.pdf" target="_blank" rel="noopener" class="credential-item" aria-hidden="true">
+      <div class="credential-inst">NSS</div>
+      <div class="credential-program">Space Settlement Design · Honourable Mention</div>
+    </a>
+  </div>
+</div>
 
 <!-- DESIRE & DISTINCTION -->
 <section id="work">
