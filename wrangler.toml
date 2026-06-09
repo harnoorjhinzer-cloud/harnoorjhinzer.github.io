@@ -1,0 +1,20 @@
+# Cloudflare Worker — harnoor-site
+# Static assets are served by the ASSETS binding.
+# POST /api/diagnose is handled by _worker.js before assets are consulted.
+#
+# To add the API key:
+#   Dashboard → Workers & Pages → harnoor-site → Settings → Variables and Secrets
+#   Add a Secret named ANTHROPIC_API_KEY (type: Secret)
+#
+# To deploy manually (optional — or just push to GitHub if CI is set up):
+#   npx wrangler deploy
+
+name = "harnoor-site"
+main = "_worker.js"
+compatibility_date = "2025-01-01"
+
+[assets]
+directory = "./"
+binding = "ASSETS"
+html_handling = "auto-trailing-slash"
+not_found_handling = "404-page"
