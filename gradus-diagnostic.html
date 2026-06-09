@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Gradus Diagnostic — Harnoor Archive</title>
+<meta name="description" content="Score any luxury brand against the Gradus Framework — seven axes of structural inaccessibility, live analysis, shareable readout.">
+<meta name="author" content="Harnoor Archive">
+<meta property="og:title" content="The Gradus Diagnostic — Harnoor Archive">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0908;
+  --ink-2:#141210;
+  --bone:#F0EBE1;
+  --bone-dim:rgba(240,235,225,0.55);
+  --bone-faint:rgba(240,235,225,0.28);
+  --gold:#B8935A;
+  --gold-2:#D4B483;
+  --gold-dim:rgba(184,147,90,0.55);
+  --line:rgba(184,147,90,0.22);
+  --line-faint:rgba(184,147,90,0.1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--ink);
+  color:var(--bone);
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:32px 72px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(to bottom,rgba(10,9,8,0.98),transparent);
+}
+.nav-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;letter-spacing:0.2em;
+  color:var(--gold);font-weight:300;
+  text-decoration:none;
+}
+.nav-links{display:flex;gap:44px;list-style:none;}
+.nav-links a{
+  font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--bone-faint);text-decoration:none;transition:color 0.3s;
+}
+.nav-links a:hover{color:var(--gold);}
+
+/* PAGE HEADER */
+.page-header{
+  padding:180px 90px 80px;
+  border-bottom:1px solid var(--line);
+  position:relative;overflow:hidden;
+}
+.page-header-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 80% 40%,rgba(184,147,90,0.06) 0%,transparent 65%);
+}
+.page-header-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(184,147,90,0.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(184,147,90,0.07) 1px,transparent 1px);
+  background-size:70px 70px;
+  mask-image:radial-gradient(ellipse at center,black 10%,transparent 75%);
+}
+.page-label{
+  font-size:0.55rem;letter-spacing:0.45em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;
+  display:flex;align-items:center;gap:18px;
+  position:relative;z-index:2;
+  opacity:0;animation:up 1s ease 0.2s forwards;
+}
+.page-label::before{content:'';width:32px;height:1px;background:var(--gold);}
+.page-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,6vw,5.5rem);
+  font-weight:300;line-height:0.95;
+  position:relative;z-index:2;
+  opacity:0;animation:up 1s ease 0.1s forwards;
+}
+.page-title em{font-style:italic;color:var(--gold-2);}
+.page-intro{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1rem,1.6vw,1.2rem);
+  font-style:italic;font-weight:300;
+  color:rgba(240,235,225,0.5);
+  line-height:1.75;max-width:560px;
+  margin-top:32px;
+  position:relative;z-index:2;
+  opacity:0;animation:up 1s ease 0.4s forwards;
+}
+
+/* TOOL SECTION */
+.tool-section{
+  padding:80px 90px 100px;
+  max-width:1100px;
+}
+
+/* INPUT AREA */
+.input-area{
+  margin-bottom:24px;
+}
+.input-row{
+  display:flex;gap:0;
+  border:1px solid var(--line);
+  max-width:620px;
+}
+.input-row:focus-within{border-color:var(--gold);}
+#brand-input{
+  flex:1;
+  background:transparent;
+  border:none;
+  outline:none;
+  padding:18px 24px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;
+  color:var(--bone);
+  letter-spacing:0.02em;
+}
+#brand-input::placeholder{color:var(--bone-faint);}
+#run-btn{
+  background:transparent;
+  border:none;
+  border-left:1px solid var(--line);
+  padding:18px 28px;
+  font-family:'Jost',sans-serif;
+  font-size:0.55rem;
+  letter-spacing:0.35em;
+  text-transform:uppercase;
+  color:var(--gold);
+  cursor:pointer;
+  transition:background 0.25s,color 0.25s;
+  white-space:nowrap;
+}
+#run-btn:hover{background:var(--gold);color:var(--ink);}
+#run-btn:disabled{opacity:0.4;cursor:not-allowed;}
+
+/* EXAMPLE CHIPS */
+.example-chips{
+  display:flex;gap:20px;
+  margin-top:16px;
+}
+.chip{
+  background:none;border:none;cursor:pointer;
+  font-family:'Jost',sans-serif;
+  font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--bone-faint);
+  padding:0;
+  transition:color 0.25s;
+  position:relative;
+}
+.chip::after{
+  content:'';position:absolute;left:0;bottom:-2px;
+  width:0;height:1px;background:var(--gold);
+  transition:width 0.3s;
+}
+.chip:hover{color:var(--gold);}
+.chip:hover::after{width:100%;}
+.chips-label{
+  font-size:0.5rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:rgba(240,235,225,0.18);
+  align-self:center;
+  margin-right:4px;
+}
+
+/* LOADING STATE */
+#loading-state{
+  padding:60px 0;
+  text-align:center;
+}
+.loading-text{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1.2rem;
+  color:var(--bone-dim);
+  letter-spacing:0.04em;
+  margin-bottom:24px;
+}
+.loading-dots{display:flex;gap:10px;justify-content:center;}
+.loading-dots span{
+  width:5px;height:5px;
+  background:var(--gold);
+  border-radius:50%;
+  animation:dot-pulse 1.5s ease-in-out infinite;
+}
+.loading-dots span:nth-child(2){animation-delay:0.25s;}
+.loading-dots span:nth-child(3){animation-delay:0.5s;}
+@keyframes dot-pulse{
+  0%,80%,100%{opacity:0.15;transform:scale(0.7);}
+  40%{opacity:1;transform:scale(1);}
+}
+
+/* ERROR STATE */
+#error-state{
+  padding:24px 0;
+  max-width:620px;
+}
+.error-msg{
+  font-size:0.78rem;
+  color:rgba(184,147,90,0.6);
+  letter-spacing:0.05em;
+  border-left:1px solid rgba(184,147,90,0.3);
+  padding-left:16px;
+  line-height:1.7;
+}
+
+/* RESULT */
+#result{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 0.8s ease,transform 0.8s ease;
+  margin-top:64px;
+  padding-top:64px;
+  border-top:1px solid var(--line);
+}
+#result.visible{opacity:1;transform:translateY(0);}
+
+/* RESULT BRAND */
+.result-brand{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.6rem,3vw,2.4rem);
+  font-weight:300;
+  letter-spacing:0.04em;
+  color:var(--bone-faint);
+  margin-bottom:40px;
+}
+.result-brand em{font-style:normal;color:var(--bone);}
+
+/* INDEPENDENCE SCORE */
+.score-block{
+  display:flex;
+  align-items:flex-end;
+  gap:20px;
+  margin-bottom:48px;
+  padding-bottom:48px;
+  border-bottom:1px solid var(--line);
+}
+.score-label{
+  font-size:0.52rem;letter-spacing:0.45em;text-transform:uppercase;
+  color:var(--gold);
+  padding-bottom:10px;
+}
+.score-numeral{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(4rem,8vw,7rem);
+  font-weight:300;
+  color:var(--gold);
+  line-height:1;
+}
+.score-denom{
+  font-size:0.4em;
+  color:var(--gold-dim);
+  margin-left:4px;
+}
+
+/* VERDICT */
+.verdict-quote{
+  border-left:2px solid var(--gold);
+  padding-left:28px;
+  margin-bottom:48px;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:clamp(1.15rem,2vw,1.5rem);
+  line-height:1.55;
+  color:var(--gold-2);
+  max-width:760px;
+}
+
+/* AXES */
+.axes-list{
+  display:flex;flex-direction:column;
+  margin-bottom:48px;
+}
+.axis-row{
+  padding:28px 0;
+  border-bottom:1px solid var(--line-faint);
+}
+.axis-header{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:10px;
+  gap:20px;
+}
+.axis-names{display:flex;align-items:baseline;gap:12px;}
+.axis-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;
+  font-weight:400;
+  color:var(--bone);
+  letter-spacing:0.03em;
+}
+.axis-descriptor{
+  font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--bone-faint);
+}
+.axis-meta{display:flex;align-items:center;gap:14px;flex-shrink:0;}
+.axis-type-badge{
+  font-size:0.48rem;letter-spacing:0.35em;text-transform:uppercase;
+  padding:3px 8px;border:1px solid;
+}
+.type-structural{color:var(--gold);border-color:rgba(184,147,90,0.35);}
+.type-performative{color:rgba(184,147,90,0.52);border-color:rgba(184,147,90,0.22);}
+.type-absent{color:rgba(240,235,225,0.22);border-color:rgba(240,235,225,0.1);}
+.axis-score-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;
+  font-weight:300;
+  line-height:1;
+}
+.axis-structural .axis-score-num{color:var(--gold);}
+.axis-performative .axis-score-num{color:rgba(184,147,90,0.52);}
+.axis-absent .axis-score-num{color:rgba(240,235,225,0.22);}
+
+/* BAR TRACK */
+.axis-track{
+  width:100%;height:3px;
+  background:var(--line-faint);
+  margin-bottom:12px;
+  overflow:hidden;
+}
+.axis-fill{
+  height:100%;width:0;
+  transition:none;
+}
+.fill-structural{background:var(--gold);}
+.fill-performative{background:rgba(184,147,90,0.35);}
+.fill-absent{background:rgba(240,235,225,0.06);}
+
+.axis-assessment{
+  font-size:0.82rem;
+  color:var(--bone-dim);
+  line-height:1.85;
+  max-width:760px;
+}
+
+/* SUMMARY */
+.result-summary{
+  font-size:0.88rem;
+  color:var(--bone-faint);
+  line-height:1.95;
+  max-width:680px;
+  padding:32px 0 48px;
+  border-top:1px solid var(--line-faint);
+  font-style:italic;
+}
+
+/* SHARE CONTROLS */
+.share-row{
+  display:flex;gap:16px;
+  flex-wrap:wrap;
+}
+.share-btn{
+  background:transparent;
+  border:1px solid var(--line);
+  padding:12px 24px;
+  font-family:'Jost',sans-serif;
+  font-size:0.52rem;letter-spacing:0.35em;text-transform:uppercase;
+  color:var(--bone-faint);
+  cursor:pointer;
+  transition:border-color 0.25s,color 0.25s;
+}
+.share-btn:hover{border-color:var(--gold);color:var(--gold);}
+.share-btn.copied{color:var(--gold);border-color:var(--gold);}
+
+/* BACK LINK */
+.back-link{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:60px 90px;
+  font-size:0.55rem;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;transition:gap 0.3s;
+}
+.back-link:hover{gap:20px;}
+.back-link::before{content:'←';}
+
+/* FOOTER */
+footer{
+  padding:44px 72px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.f-name{font-family:'Cormorant Garamond',serif;font-size:0.9rem;letter-spacing:0.2em;color:var(--gold);font-weight:300;}
+.f-copy{font-size:0.58rem;letter-spacing:0.15em;color:rgba(240,235,225,0.2);}
+
+/* SHARE CARD (off-screen, for image capture) */
+#share-card{
+  position:absolute;
+  left:-9999px;
+  top:0;
+  width:640px;
+}
+
+/* UTILITY */
+.hidden{display:none!important;}
+@keyframes up{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:24px 28px;}
+  .nav-links{display:none;}
+  .page-header{padding:140px 28px 60px;}
+  .tool-section{padding:60px 28px 80px;}
+  .input-row{max-width:100%;}
+  .score-block{flex-direction:column;align-items:flex-start;gap:8px;}
+  .back-link{padding:48px 28px;}
+  footer{padding:32px 28px;flex-direction:column;gap:12px;text-align:center;}
+  .axis-header{flex-direction:column;gap:10px;}
+  .axis-meta{align-self:flex-end;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">Harnoor Archive</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="research.html">Desire &amp; Distinction</a></li>
+    <li><a href="philosophy.html">Frameworks</a></li>
+    <li><a href="wealth.html">Power &amp; Access</a></li>
+    <li><a href="cultural.html">The Roots Underneath</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-grid"></div>
+  <div class="page-label">Interactive Tool · The Gradus Framework</div>
+  <h1 class="page-title">The Gradus<br><em>Diagnostic</em></h1>
+  <p class="page-intro">
+    Type a luxury brand. The framework scores it across seven axes of structural inaccessibility and returns a live readout — what's genuinely defended, what's merely performed, and where the stack collapses.
+  </p>
+</div>
+
+<div class="tool-section">
+
+  <!-- INPUT -->
+  <div class="input-area">
+    <div class="input-row">
+      <input type="text" id="brand-input" placeholder="Enter a brand" autocomplete="off" spellcheck="false" />
+      <button id="run-btn">Run diagnostic</button>
+    </div>
+    <div class="example-chips">
+      <span class="chips-label">Try:</span>
+      <button class="chip" data-brand="Hermès">Hermès</button>
+      <button class="chip" data-brand="Bottega Veneta">Bottega Veneta</button>
+      <button class="chip" data-brand="Gucci">Gucci</button>
+    </div>
+  </div>
+
+  <!-- LOADING -->
+  <div id="loading-state" class="hidden">
+    <p class="loading-text">Assessing against seven axes…</p>
+    <div class="loading-dots">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <!-- ERROR -->
+  <div id="error-state" class="hidden">
+    <p class="error-msg" id="error-msg"></p>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result" class="hidden">
+
+    <div class="result-brand">
+      Diagnostic: <em id="result-brand-name"></em>
+    </div>
+
+    <div class="score-block">
+      <div class="score-label">Independence Score</div>
+      <div class="score-numeral">
+        <span id="score-counter">0</span><span class="score-denom">/10</span>
+      </div>
+    </div>
+
+    <blockquote class="verdict-quote" id="verdict-text"></blockquote>
+
+    <div class="axes-list" id="axes-list"></div>
+
+    <p class="result-summary" id="result-summary"></p>
+
+    <div class="share-row">
+      <button class="share-btn" id="download-btn">Download as image</button>
+      <button class="share-btn" id="copy-btn">Copy result</button>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- SHARE CARD (off-screen for image capture) -->
+<div id="share-card"></div>
+
+<a href="philosophy.html" class="back-link">Back to Frameworks</a>
+
+<footer>
+  <div class="f-name">Harnoor Archive</div>
+  <div class="f-copy">&copy; <script>document.write(new Date().getFullYear())</script> &middot; The Gradus Diagnostic &middot; Canada</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+const DESCRIPTORS = {
+  Pecunia:  'The Economic',
+  Nexus:    'The Relational',
+  Habitus:  'The Cultural',
+  Mores:    'The Behavioral',
+  Tempus:   'The Temporal',
+  Locus:    'The Geographic',
+  Arcanum:  'The Informational',
+};
+
+// DOM
+const brandInput   = document.getElementById('brand-input');
+const runBtn       = document.getElementById('run-btn');
+const loadingState = document.getElementById('loading-state');
+const errorState   = document.getElementById('error-state');
+const errorMsg     = document.getElementById('error-msg');
+const resultDiv    = document.getElementById('result');
+const axesList     = document.getElementById('axes-list');
+const scoreCounter = document.getElementById('score-counter');
+const verdictEl    = document.getElementById('verdict-text');
+const summaryEl    = document.getElementById('result-summary');
+const resultBrand  = document.getElementById('result-brand-name');
+const downloadBtn  = document.getElementById('download-btn');
+const copyBtn      = document.getElementById('copy-btn');
+
+let currentResult = null;
+
+// Example chips
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    brandInput.value = chip.dataset.brand;
+    runDiagnostic();
+  });
+});
+
+runBtn.addEventListener('click', runDiagnostic);
+brandInput.addEventListener('keydown', e => { if (e.key === 'Enter') runDiagnostic(); });
+
+// ─── Run ────────────────────────────────────────────────────────────────────
+
+async function runDiagnostic() {
+  const brand = brandInput.value.trim();
+  if (!brand) { brandInput.focus(); return; }
+
+  setLoading(true);
+
+  try {
+    const res = await fetch('/api/diagnose', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ brand }),
+    });
+
+    const raw = await res.text();
+    let data;
+    try {
+      const cleaned = raw
+        .replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/i, '').trim();
+      data = JSON.parse(cleaned);
+    } catch {
+      throw new Error('The diagnostic returned an unexpected format. Please try again.');
+    }
+    if (data.error) throw new Error(data.error);
+
+    currentResult = data;
+    showResult(data);
+  } catch (err) {
+    showError(err.message || 'Something went wrong. Please try again.');
+  } finally {
+    setLoading(false);
+  }
+}
+
+function setLoading(on) {
+  runBtn.disabled = on;
+  if (on) {
+    loadingState.classList.remove('hidden');
+    errorState.classList.add('hidden');
+    // Fade out any existing result without removing it from layout
+    resultDiv.classList.remove('visible');
+    setTimeout(() => { if (runBtn.disabled) resultDiv.classList.add('hidden'); }, 300);
+  } else {
+    loadingState.classList.add('hidden');
+  }
+}
+
+function showError(msg) {
+  errorMsg.textContent = msg;
+  errorState.classList.remove('hidden');
+}
+
+// ─── Render result ───────────────────────────────────────────────────────────
+
+function showResult(data) {
+  errorState.classList.add('hidden');
+
+  resultBrand.textContent = data.brand;
+  verdictEl.textContent   = data.verdict;
+  summaryEl.textContent   = data.summary;
+  scoreCounter.textContent = '0';
+
+  axesList.innerHTML = '';
+  data.axes.forEach(ax => axesList.appendChild(buildAxisRow(ax)));
+
+  // Show at opacity 0, then transition in
+  resultDiv.classList.remove('hidden');
+  resultDiv.classList.remove('visible');
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      resultDiv.classList.add('visible');
+
+      // Count up the independence score
+      animateCount(0, data.overall_score, 1000, v => { scoreCounter.textContent = v; });
+
+      // Staggered bar fills
+      axesList.querySelectorAll('.axis-fill').forEach((fill, i) => {
+        const target = parseFloat(fill.dataset.target);
+        setTimeout(() => animateBar(fill, target, 1000), i * 90);
+      });
+    });
+  });
+
+  // Scroll result into view smoothly
+  setTimeout(() => {
+    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 200);
+}
+
+function buildAxisRow(ax) {
+  const row = document.createElement('div');
+  row.className = `axis-row axis-${ax.type}`;
+
+  const descriptor = DESCRIPTORS[ax.name] || '';
+
+  row.innerHTML = `
+    <div class="axis-header">
+      <div class="axis-names">
+        <span class="axis-name">${ax.name}</span>
+        <span class="axis-descriptor">${descriptor}</span>
+      </div>
+      <div class="axis-meta">
+        <span class="axis-type-badge type-${ax.type}">${ax.type}</span>
+        <span class="axis-score-num">${ax.score}</span>
+      </div>
+    </div>
+    <div class="axis-track">
+      <div class="axis-fill fill-${ax.type}" data-target="${ax.score * 10}" style="width:0%"></div>
+    </div>
+    <p class="axis-assessment">${ax.assessment}</p>
+  `;
+  return row;
+}
+
+// ─── Animations ─────────────────────────────────────────────────────────────
+
+function animateCount(from, to, duration, cb) {
+  const start = performance.now();
+  (function tick(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    cb(Math.round(from + (to - from) * ease));
+    if (p < 1) requestAnimationFrame(tick);
+  })(performance.now());
+}
+
+function animateBar(fill, targetPct, duration) {
+  const start = performance.now();
+  (function tick(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    fill.style.width = (ease * targetPct) + '%';
+    if (p < 1) requestAnimationFrame(tick);
+  })(performance.now());
+}
+
+// ─── Share: download as image ────────────────────────────────────────────────
+
+downloadBtn.addEventListener('click', async () => {
+  if (!currentResult || !window.html2canvas) return;
+
+  const card = document.getElementById('share-card');
+  buildShareCard(currentResult, card);
+
+  // Move on-screen but invisible for capture
+  const prev = { position: card.style.position, left: card.style.left, top: card.style.top, opacity: card.style.opacity, pointerEvents: card.style.pointerEvents };
+  card.style.cssText += ';position:fixed;left:0;top:0;opacity:0;pointer-events:none;z-index:-1;';
+
+  const origText = downloadBtn.textContent;
+  downloadBtn.textContent = 'Generating…';
+  downloadBtn.disabled = true;
+
+  try {
+    const canvas = await html2canvas(card, {
+      backgroundColor: '#0A0908',
+      scale: 2,
+      logging: false,
+      useCORS: true,
+    });
+    const link = document.createElement('a');
+    link.download = `gradus-${currentResult.brand.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  } catch {
+    // Fallback: prompt copy text
+    alert('Image export unavailable — use "Copy result" instead.');
+  } finally {
+    card.style.position  = prev.position  || 'absolute';
+    card.style.left      = '-9999px';
+    card.style.top       = '0';
+    card.style.opacity   = '1';
+    card.style.pointerEvents = '';
+    card.style.zIndex    = '';
+    downloadBtn.textContent = origText;
+    downloadBtn.disabled = false;
+  }
+});
+
+// ─── Share: copy text ────────────────────────────────────────────────────────
+
+copyBtn.addEventListener('click', async () => {
+  if (!currentResult) return;
+  const text = buildCopyText(currentResult);
+  try {
+    await navigator.clipboard.writeText(text);
+    copyBtn.textContent = 'Copied';
+    copyBtn.classList.add('copied');
+    setTimeout(() => { copyBtn.textContent = 'Copy result'; copyBtn.classList.remove('copied'); }, 2200);
+  } catch {
+    prompt('Copy this result:', text);
+  }
+});
+
+function buildCopyText(d) {
+  const lines = [
+    `THE GRADUS DIAGNOSTIC — ${d.brand.toUpperCase()}`,
+    `harnoorarchive.com`,
+    '',
+    `Independence Score: ${d.overall_score}/10`,
+    '',
+    `"${d.verdict}"`,
+    '',
+    '— Seven Axes —',
+    '',
+  ];
+  d.axes.forEach(ax => {
+    lines.push(`${ax.name} (${DESCRIPTORS[ax.name]}) — ${ax.score}/10 · ${ax.type}`);
+    lines.push(ax.assessment);
+    lines.push('');
+  });
+  lines.push('— Summary —');
+  lines.push(d.summary);
+  lines.push('');
+  lines.push('harnoorarchive.com / The Gradus Diagnostic');
+  return lines.join('\n');
+}
+
+// ─── Share card (for image) ──────────────────────────────────────────────────
+
+function buildShareCard(d, card) {
+  const TC = {
+    structural:  '#B8935A',
+    performative:'rgba(184,147,90,0.55)',
+    absent:      'rgba(240,235,225,0.22)',
+  };
+  const FC = {
+    structural:  '#B8935A',
+    performative:'rgba(184,147,90,0.32)',
+    absent:      'rgba(240,235,225,0.05)',
+  };
+
+  const axRows = d.axes.map(ax => `
+    <div style="margin-bottom:13px;">
+      <table style="width:100%;border-collapse:collapse;margin-bottom:5px;font-family:Arial,Helvetica,sans-serif;">
+        <tr>
+          <td style="font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:#B8935A;padding:0;vertical-align:middle;">
+            ${ax.name}
+          </td>
+          <td style="text-align:right;padding:0;vertical-align:middle;">
+            <span style="font-size:7px;letter-spacing:0.22em;text-transform:uppercase;color:${TC[ax.type]};border:1px solid ${TC[ax.type]};padding:2px 6px;margin-right:10px;">${ax.type}</span>
+            <span style="font-family:Georgia,'Times New Roman',serif;font-size:18px;color:#F0EBE1;line-height:1;">${ax.score}</span>
+          </td>
+        </tr>
+      </table>
+      <div style="width:100%;height:2px;background:rgba(184,147,90,0.1);">
+        <div style="width:${ax.score * 10}%;height:2px;background:${FC[ax.type]};"></div>
+      </div>
+    </div>
+  `).join('');
+
+  card.style.cssText = 'width:640px;background:#0A0908;padding:52px;font-family:Georgia,"Times New Roman",serif;color:#F0EBE1;position:absolute;left:-9999px;top:0;';
+
+  card.innerHTML = `
+    <div style="font-family:Arial,Helvetica,sans-serif;font-size:8px;letter-spacing:0.42em;text-transform:uppercase;color:#B8935A;margin-bottom:40px;">
+      HARNOOR ARCHIVE &nbsp;·&nbsp; THE GRADUS DIAGNOSTIC
+    </div>
+
+    <div style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:400;color:#F0EBE1;letter-spacing:0.03em;margin-bottom:32px;">
+      ${d.brand}
+    </div>
+
+    <table style="width:100%;border-collapse:collapse;border-top:1px solid rgba(184,147,90,0.2);padding-top:0;margin-bottom:32px;">
+      <tr>
+        <td style="padding-top:20px;font-family:Arial,Helvetica,sans-serif;font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(184,147,90,0.55);vertical-align:bottom;">
+          Independence Score
+        </td>
+        <td style="padding-top:20px;text-align:right;vertical-align:bottom;">
+          <span style="font-family:Georgia,'Times New Roman',serif;font-size:52px;color:#B8935A;line-height:1;">${d.overall_score}</span><span style="font-family:Georgia,'Times New Roman',serif;font-size:22px;color:rgba(184,147,90,0.4);">/10</span>
+        </td>
+      </tr>
+    </table>
+
+    <div style="border-left:2px solid #B8935A;padding-left:18px;margin-bottom:32px;">
+      <p style="font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:12.5px;line-height:1.65;color:#D4B483;">${d.verdict}</p>
+    </div>
+
+    <div style="margin-bottom:32px;">${axRows}</div>
+
+    <table style="width:100%;border-collapse:collapse;border-top:1px solid rgba(184,147,90,0.12);">
+      <tr>
+        <td style="padding-top:18px;font-family:Arial,Helvetica,sans-serif;font-size:7px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(240,235,225,0.15);">
+          HARNOORARCHIVE.COM
+        </td>
+        <td style="padding-top:18px;text-align:right;font-family:Arial,Helvetica,sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(184,147,90,0.28);">
+          GRADUS DIAGNOSTIC
+        </td>
+      </tr>
+    </table>
+  `;
+}
+</script>
+
+</body>
+</html>

@@ -350,7 +350,37 @@ footer{
   .credential-band::before,
   .credential-band::after{width:50px;}
   footer{padding:32px 28px;flex-direction:column;gap:12px;text-align:center;}
+  .diagnostic-feature{padding:28px;}
 }
+
+/* DIAGNOSTIC FEATURE STRIP */
+.diagnostic-feature{
+  margin-top:2px;
+  border:1px solid var(--line);
+  padding:36px 40px;
+  display:flex;align-items:center;justify-content:space-between;gap:32px;
+  transition:border-color 0.3s,background 0.3s;
+  text-decoration:none;color:inherit;
+}
+.diagnostic-feature:hover{border-color:rgba(184,147,90,0.35);background:rgba(184,147,90,0.03);}
+.df-left{display:flex;flex-direction:column;gap:6px;}
+.df-tag{font-size:0.5rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);}
+.df-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-weight:300;
+  color:rgba(240,235,225,0.6);
+  line-height:1.5;
+  max-width:560px;
+}
+.df-link{
+  font-size:0.52rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--gold);white-space:nowrap;
+  display:flex;align-items:center;gap:10px;
+  flex-shrink:0;
+  transition:gap 0.3s;
+}
+.diagnostic-feature:hover .df-link{gap:18px;}
+.df-link::after{content:'→';}
 </style>
 </head>
 <body>
@@ -555,6 +585,13 @@ footer{
       <span class="card-action">Read</span>
     </a>
   </div>
+  <a href="gradus-diagnostic.html" class="diagnostic-feature reveal">
+    <div class="df-left">
+      <span class="df-tag">Interactive Tool</span>
+      <span class="df-text">Score any luxury brand against the Gradus Framework — seven axes, live analysis, shareable readout.</span>
+    </div>
+    <span class="df-link">Run the diagnostic</span>
+  </a>
 </section>
 
 <!-- POWER & ACCESS -->
