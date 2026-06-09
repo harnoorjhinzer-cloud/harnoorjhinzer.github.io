@@ -496,7 +496,6 @@ footer{
 </div>
 
 <!-- SHARE CARD (off-screen for image capture) -->
-<div id="share-card"></div>
 
 <a href="philosophy.html" class="back-link">Back to Frameworks</a>
 
@@ -505,7 +504,6 @@ footer{
   <div class="f-copy">&copy; <script>document.write(new Date().getFullYear())</script> &middot; The Gradus Diagnostic &middot; Canada</div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
 const DESCRIPTORS = {
   Pecunia:  'The Economic',
@@ -685,41 +683,24 @@ function animateBar(fill, targetPct, duration) {
 
 // ─── Share: download as image ────────────────────────────────────────────────
 
-downloadBtn.addEventListener('click', async () => {
-  if (!currentResult || !window.html2canvas) return;
-
-  const card = document.getElementById('share-card');
-  buildShareCard(currentResult, card);
-
-  // Move on-screen but invisible for capture
-  const prev = { position: card.style.position, left: card.style.left, top: card.style.top, opacity: card.style.opacity, pointerEvents: card.style.pointerEvents };
-  card.style.cssText += ';position:fixed;left:0;top:0;opacity:0;pointer-events:none;z-index:-1;';
+downloadBtn.addEventListener('click', () => {
+  if (!currentResult) return;
 
   const origText = downloadBtn.textContent;
   downloadBtn.textContent = 'Generating…';
   downloadBtn.disabled = true;
 
   try {
-    const canvas = await html2canvas(card, {
-      backgroundColor: '#0A0908',
-      scale: 2,
-      logging: false,
-      useCORS: true,
-    });
+    const canvas = generateShareCanvas(currentResult);
     const link = document.createElement('a');
     link.download = `gradus-${currentResult.brand.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.png`;
     link.href = canvas.toDataURL('image/png');
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
   } catch {
-    // Fallback: prompt copy text
     alert('Image export unavailable — use "Copy result" instead.');
   } finally {
-    card.style.position  = prev.position  || 'absolute';
-    card.style.left      = '-9999px';
-    card.style.top       = '0';
-    card.style.opacity   = '1';
-    card.style.pointerEvents = '';
-    card.style.zIndex    = '';
     downloadBtn.textContent = origText;
     downloadBtn.disabled = false;
   }
@@ -764,78 +745,161 @@ function buildCopyText(d) {
   return lines.join('\n');
 }
 
-// ─── Share card (for image) ──────────────────────────────────────────────────
+// ─── Share canvas (pure Canvas 2D — no html2canvas dependency) ───────────────
 
-function buildShareCard(d, card) {
-  const TC = {
-    structural:  '#B8935A',
-    performative:'rgba(184,147,90,0.55)',
-    absent:      'rgba(240,235,225,0.22)',
-  };
-  const FC = {
-    structural:  '#B8935A',
-    performative:'rgba(184,147,90,0.32)',
-    absent:      'rgba(240,235,225,0.05)',
-  };
+function generateShareCanvas(d) {
+  const S    = 2;       // retina scale
+  const PW   = 640;     // logical px wide
+  const PAD  = 52;
+  const INN  = PW - PAD * 2;
+  const SERIF = 'Georgia, serif';
+  const SANS  = 'Arial, sans-serif';
+  const INK   = '#0A0908';
+  const BONE  = '#F0EBE1';
+  const GOLD  = '#B8935A';
 
-  const axRows = d.axes.map(ax => `
-    <div style="margin-bottom:13px;">
-      <table style="width:100%;border-collapse:collapse;margin-bottom:5px;font-family:Arial,Helvetica,sans-serif;">
-        <tr>
-          <td style="font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:#B8935A;padding:0;vertical-align:middle;">
-            ${ax.name}
-          </td>
-          <td style="text-align:right;padding:0;vertical-align:middle;">
-            <span style="font-size:7px;letter-spacing:0.22em;text-transform:uppercase;color:${TC[ax.type]};border:1px solid ${TC[ax.type]};padding:2px 6px;margin-right:10px;">${ax.type}</span>
-            <span style="font-family:Georgia,'Times New Roman',serif;font-size:18px;color:#F0EBE1;line-height:1;">${ax.score}</span>
-          </td>
-        </tr>
-      </table>
-      <div style="width:100%;height:2px;background:rgba(184,147,90,0.1);">
-        <div style="width:${ax.score * 10}%;height:2px;background:${FC[ax.type]};"></div>
-      </div>
-    </div>
-  `).join('');
+  const TYPE_C = { structural: GOLD, performative: 'rgba(184,147,90,0.6)', absent: 'rgba(240,235,225,0.3)' };
+  const BAR_C  = { structural: GOLD, performative: 'rgba(184,147,90,0.35)', absent: 'rgba(240,235,225,0.06)' };
 
-  card.style.cssText = 'width:640px;background:#0A0908;padding:52px;font-family:Georgia,"Times New Roman",serif;color:#F0EBE1;position:absolute;left:-9999px;top:0;';
+  // ── text-wrap helper ──
+  function wrapText(ctx, text, maxW) {
+    const words = text.split(' ');
+    const lines = [];
+    let cur = '';
+    for (const w of words) {
+      const test = cur ? cur + ' ' + w : w;
+      if (ctx.measureText(test).width > maxW && cur) { lines.push(cur); cur = w; }
+      else cur = test;
+    }
+    if (cur) lines.push(cur);
+    return lines;
+  }
 
-  card.innerHTML = `
-    <div style="font-family:Arial,Helvetica,sans-serif;font-size:8px;letter-spacing:0.42em;text-transform:uppercase;color:#B8935A;margin-bottom:40px;">
-      HARNOOR ARCHIVE &nbsp;·&nbsp; THE GRADUS DIAGNOSTIC
-    </div>
+  // ── measure pass (temp canvas) ──
+  const tmp = document.createElement('canvas');
+  tmp.width = PW * S; tmp.height = 10;
+  const tc = tmp.getContext('2d');
+  tc.scale(S, S);
+  const VERDICT_FS = 12.5, VERDICT_LH = 21;
+  tc.font = `italic ${VERDICT_FS}px ${SERIF}`;
+  const verdictLines = wrapText(tc, d.verdict, INN - 22);
+  const verdictH = verdictLines.length * VERDICT_LH;
 
-    <div style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:400;color:#F0EBE1;letter-spacing:0.03em;margin-bottom:32px;">
-      ${d.brand}
-    </div>
+  // ── layout ──
+  const AXIS_ROW = 30;
+  let H = PAD + 10 + 36 + 36 + 38 + 32   // header + brand + divider-row + score
+    + 18 + verdictH + 18 + 32             // verdict block
+    + d.axes.length * AXIS_ROW            // axes
+    + 18 + 1 + 18 + PAD;                  // footer
 
-    <table style="width:100%;border-collapse:collapse;border-top:1px solid rgba(184,147,90,0.2);padding-top:0;margin-bottom:32px;">
-      <tr>
-        <td style="padding-top:20px;font-family:Arial,Helvetica,sans-serif;font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(184,147,90,0.55);vertical-align:bottom;">
-          Independence Score
-        </td>
-        <td style="padding-top:20px;text-align:right;vertical-align:bottom;">
-          <span style="font-family:Georgia,'Times New Roman',serif;font-size:52px;color:#B8935A;line-height:1;">${d.overall_score}</span><span style="font-family:Georgia,'Times New Roman',serif;font-size:22px;color:rgba(184,147,90,0.4);">/10</span>
-        </td>
-      </tr>
-    </table>
+  const canvas = document.createElement('canvas');
+  canvas.width = PW * S; canvas.height = H * S;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(S, S);
 
-    <div style="border-left:2px solid #B8935A;padding-left:18px;margin-bottom:32px;">
-      <p style="font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:12.5px;line-height:1.65;color:#D4B483;">${d.verdict}</p>
-    </div>
+  // background
+  ctx.fillStyle = INK;
+  ctx.fillRect(0, 0, PW, H);
 
-    <div style="margin-bottom:32px;">${axRows}</div>
+  let y = PAD;
 
-    <table style="width:100%;border-collapse:collapse;border-top:1px solid rgba(184,147,90,0.12);">
-      <tr>
-        <td style="padding-top:18px;font-family:Arial,Helvetica,sans-serif;font-size:7px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(240,235,225,0.15);">
-          HARNOORARCHIVE.COM
-        </td>
-        <td style="padding-top:18px;text-align:right;font-family:Arial,Helvetica,sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(184,147,90,0.28);">
-          GRADUS DIAGNOSTIC
-        </td>
-      </tr>
-    </table>
-  `;
+  // header label
+  ctx.font = `400 7.5px ${SANS}`;
+  ctx.fillStyle = GOLD;
+  ctx.textAlign = 'left';
+  if (ctx.letterSpacing !== undefined) ctx.letterSpacing = '3px';
+  ctx.fillText('HARNOOR ARCHIVE  ·  THE GRADUS DIAGNOSTIC', PAD, y + 8);
+  if (ctx.letterSpacing !== undefined) ctx.letterSpacing = '0px';
+  y += 10 + 36;
+
+  // brand name
+  ctx.font = `400 34px ${SERIF}`;
+  ctx.fillStyle = BONE;
+  ctx.fillText(d.brand, PAD, y);
+  y += 38 + 32;
+
+  // divider
+  ctx.fillStyle = 'rgba(184,147,90,0.22)';
+  ctx.fillRect(PAD, y, INN, 1);
+  y += 1 + 18;
+
+  // score label (left) + number (right)
+  ctx.font = `400 7.5px ${SANS}`;
+  ctx.fillStyle = 'rgba(184,147,90,0.55)';
+  if (ctx.letterSpacing !== undefined) ctx.letterSpacing = '3px';
+  ctx.fillText('INDEPENDENCE SCORE', PAD, y + 10);
+  if (ctx.letterSpacing !== undefined) ctx.letterSpacing = '0px';
+
+  ctx.textAlign = 'right';
+  ctx.font = `400 50px ${SERIF}`;
+  ctx.fillStyle = GOLD;
+  ctx.fillText(String(d.overall_score), PAD + INN - 22, y + 52);
+  ctx.font = `400 22px ${SERIF}`;
+  ctx.fillStyle = 'rgba(184,147,90,0.4)';
+  ctx.fillText('/10', PAD + INN, y + 52);
+  ctx.textAlign = 'left';
+  y += 38 + 32;
+
+  // verdict block — gold left border + italic text
+  const verdictTop = y;
+  ctx.font = `italic ${VERDICT_FS}px ${SERIF}`;
+  ctx.fillStyle = '#D4B483';
+  let vy = y + 18;
+  for (const line of verdictLines) {
+    ctx.fillText(line, PAD + 20, vy);
+    vy += VERDICT_LH;
+  }
+  const verdictBlockH = 18 + verdictH + 18;
+  ctx.fillStyle = GOLD;
+  ctx.fillRect(PAD, verdictTop, 2, verdictBlockH);
+  y += verdictBlockH + 32;
+
+  // axes
+  for (const ax of d.axes) {
+    // name
+    ctx.font = `400 7.5px ${SANS}`;
+    ctx.fillStyle = GOLD;
+    if (ctx.letterSpacing !== undefined) ctx.letterSpacing = '2px';
+    ctx.fillText(ax.name.toUpperCase(), PAD, y + 9);
+    if (ctx.letterSpacing !== undefined) ctx.letterSpacing = '0px';
+
+    // type + score (right)
+    ctx.textAlign = 'right';
+    ctx.font = `400 6.5px ${SANS}`;
+    ctx.fillStyle = TYPE_C[ax.type];
+    ctx.fillText(ax.type.toUpperCase(), PAD + INN - 22, y + 9);
+    ctx.font = `400 16px ${SERIF}`;
+    ctx.fillStyle = BONE;
+    ctx.fillText(String(ax.score), PAD + INN, y + 11);
+    ctx.textAlign = 'left';
+    y += 14;
+
+    // bar bg + fill
+    ctx.fillStyle = 'rgba(184,147,90,0.1)';
+    ctx.fillRect(PAD, y, INN, 2);
+    ctx.fillStyle = BAR_C[ax.type];
+    ctx.fillRect(PAD, y, INN * ax.score / 10, 2);
+    y += 2 + 14;
+  }
+
+  y += 16;
+
+  // footer
+  ctx.fillStyle = 'rgba(184,147,90,0.12)';
+  ctx.fillRect(PAD, y, INN, 1);
+  y += 1 + 18;
+
+  ctx.font = `400 7px ${SANS}`;
+  ctx.fillStyle = 'rgba(240,235,225,0.2)';
+  if (ctx.letterSpacing !== undefined) ctx.letterSpacing = '2px';
+  ctx.fillText('HARNOORARCHIVE.COM', PAD, y);
+  ctx.textAlign = 'right';
+  ctx.fillStyle = 'rgba(184,147,90,0.35)';
+  ctx.fillText('GRADUS DIAGNOSTIC', PAD + INN, y);
+  ctx.textAlign = 'left';
+  if (ctx.letterSpacing !== undefined) ctx.letterSpacing = '0px';
+
+  return canvas;
 }
 </script>
 
