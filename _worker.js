@@ -2,11 +2,13 @@
  * Harnoor Archive — Cloudflare Worker
  *
  * Routes:
- *   POST /api/diagnose  → Gradus Diagnostic (calls Anthropic API server-side)
- *   *                   → ASSETS binding   (serves static HTML/CSS/JS/files)
+ *   POST /api/diagnose    → Gradus Diagnostic (calls Anthropic API server-side)
+ *   POST /api/subscribe   → Email capture (calls Brevo API server-side)
+ *   *                     → ASSETS binding (serves static HTML/CSS/JS/files)
  *
- * Environment secret required:
+ * Environment secrets required:
  *   ANTHROPIC_API_KEY  — set in Workers dashboard → Settings → Variables and Secrets
+ *   BREVO_API_KEY      — set in Workers dashboard → Settings → Variables and Secrets
  */
 
 const SYSTEM_PROMPT = `You are the diagnostic engine for the Gradus Framework, an original model for luxury brand defensibility developed by Harnoor Jhinzer. Given a brand name, assess it across seven axes and return a structured readout.
@@ -47,7 +49,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // ── API route ────────────────────────────────────────────────────────────
+    // ── /api/diagnose ────────────────────────────────────────────────────────
     if (url.pathname === '/api/diagnose') {
       if (request.method === 'OPTIONS') {
         return new Response(null, { status: 204, headers: CORS });
@@ -58,10 +60,23 @@ export default {
       return handleDiagnose(request, env);
     }
 
+    // ── /api/subscribe ───────────────────────────────────────────────────────
+    if (url.pathname === '/api/subscribe') {
+      if (request.method === 'OPTIONS') {
+        return new Response(null, { status: 204, headers: CORS });
+      }
+      if (request.method !== 'POST') {
+        return json({ error: 'Method not allowed.' }, 405);
+      }
+      return handleSubscribe(request, env);
+    }
+
     // ── Static assets (all other routes) ────────────────────────────────────
     return env.ASSETS.fetch(request);
   },
 };
+
+// ── Gradus Diagnostic ────────────────────────────────────────────────────────
 
 async function handleDiagnose(request, env) {
   const apiKey = env.ANTHROPIC_API_KEY;
@@ -120,6 +135,78 @@ async function handleDiagnose(request, env) {
     headers: { 'Content-Type': 'application/json', ...CORS },
   });
 }
+
+// ── Email Subscription ───────────────────────────────────────────────────────
+
+async function handleSubscribe(request, env) {
+  const apiKey = env.BREVO_API_KEY;
+  if (!apiKey) {
+    return json({ error: 'Subscription service not configured.' }, 500);
+  }
+
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ error: 'Invalid request body.' }, 400);
+  }
+
+  const email = (body.email || '').trim().toLowerCase();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return json({ error: 'Please enter a valid email address.' }, 400);
+  }
+
+  // Add contact to Brevo
+  try {
+    const contactRes = await fetch('https://api.brevo.com/v3/contacts', {
+      method: 'POST',
+      headers: {
+        'api-key': apiKey,
+        'content-type': 'application/json',
+        'accept': 'application/json',
+      },
+      body: JSON.stringify({ email, updateEnabled: true }),
+    });
+
+    if (!contactRes.ok) {
+      const errData = await contactRes.json().catch(() => ({}));
+      // Treat duplicate contact as success (shouldn't happen with updateEnabled, but guard anyway)
+      const isDuplicate = contactRes.status === 400 &&
+        (errData.code === 'duplicate_parameter' || (errData.message || '').toLowerCase().includes('already'));
+      if (!isDuplicate) {
+        return json({ error: 'Subscription failed. Please try again.' }, 500);
+      }
+    }
+  } catch {
+    return json({ error: 'Subscription failed. Please try again.' }, 502);
+  }
+
+  // Send welcome transactional email
+  // Fire-and-forget: don't fail the request if this errors
+  try {
+    await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'api-key': apiKey,
+        'content-type': 'application/json',
+        'accept': 'application/json',
+      },
+      body: JSON.stringify({
+        sender: { name: 'Harnoor', email: 'connect@harnoorarchive.com' },
+        to: [{ email }],
+        subject: "You're in.",
+        htmlContent: `<!DOCTYPE html><html><body style="margin:0;padding:48px 40px;background:#0A0908;font-family:Georgia,'Times New Roman',serif;"><p style="font-size:16px;line-height:1.8;color:#F0EBE1;margin:0 0 24px;">You'll hear from me when there's something worth reading. That's the only promise.</p><p style="font-size:16px;line-height:1.8;color:#F0EBE1;margin:0;">— Harnoor<br><a href="https://harnoorarchive.com" style="color:#B8935A;text-decoration:none;">harnoorarchive.com</a></p></body></html>`,
+        textContent: "You'll hear from me when there's something worth reading. That's the only promise.\n\n— Harnoor\nharnoorarchive.com",
+      }),
+    });
+  } catch {
+    // Email send failed silently — contact was still added
+  }
+
+  return json({ ok: true });
+}
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
 
 function json(body, status = 200) {
   return new Response(JSON.stringify(body), {

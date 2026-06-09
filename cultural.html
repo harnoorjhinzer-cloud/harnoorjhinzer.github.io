@@ -191,6 +191,51 @@ footer{
 .reveal{opacity:0;transform:translateY(22px);transition:opacity 0.9s ease,transform 0.9s ease;}
 .reveal.on{opacity:1;transform:translateY(0);}
 
+/* EMAIL CAPTURE */
+.email-capture-section{
+  padding:80px 90px;
+  border-top:1px solid var(--line);
+}
+.ec-inner{max-width:480px;}
+.ec-copy{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.4rem,2.5vw,2rem);
+  font-weight:300;font-style:italic;
+  color:var(--bone);
+  margin-bottom:28px;
+  line-height:1.3;
+}
+.ec-form{
+  display:flex;
+  border-bottom:1px solid var(--line);
+  transition:border-color 0.3s;
+}
+.ec-form:focus-within{border-color:var(--gold);}
+.ec-input{
+  flex:1;
+  background:transparent;border:none;outline:none;
+  font-family:'Jost',sans-serif;font-size:0.82rem;font-weight:300;
+  letter-spacing:0.05em;
+  color:var(--bone);
+  padding:12px 0;
+}
+.ec-input::placeholder{color:rgba(240,235,225,0.3);}
+.ec-btn{
+  background:transparent;border:none;cursor:pointer;
+  font-size:1.1rem;color:var(--gold);
+  padding:12px 0 12px 16px;
+  transition:transform 0.2s,color 0.2s;
+}
+.ec-btn:hover{transform:translateX(4px);color:var(--gold2);}
+.ec-btn:disabled{opacity:0.4;cursor:default;transform:none;}
+.ec-msg{
+  margin-top:12px;
+  font-size:0.7rem;letter-spacing:0.1em;
+  color:rgba(240,235,225,0.4);
+  min-height:1rem;
+}
+.ec-msg.error{color:rgba(184,147,90,0.7);}
+
 /* RESPONSIVE */
 @media(max-width:900px){
   nav{padding:24px 28px;}
@@ -202,6 +247,7 @@ footer{
   .fi-action,.fi-soon{align-self:flex-start;}
   .back-link{padding:48px 28px;}
   footer{padding:32px 28px;flex-direction:column;gap:12px;text-align:center;}
+  .email-capture-section{padding:60px 28px;}
 }
 </style>
 </head>
@@ -216,6 +262,7 @@ footer{
     <li><a href="wealth.html">Power &amp; Access</a></li>
     <li><a href="cultural.html">The Roots Underneath</a></li>
     <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="search.html">Search</a></li>
   </ul>
 </nav>
 
@@ -273,6 +320,18 @@ footer{
   </div>
 </section>
 
+<!-- EMAIL CAPTURE -->
+<section class="email-capture-section">
+  <div class="ec-inner">
+    <p class="ec-copy">New work, when it's ready.</p>
+    <form class="ec-form" id="emailCaptureForm" novalidate>
+      <input class="ec-input" type="email" placeholder="Your email" required autocomplete="email">
+      <button class="ec-btn" type="submit" aria-label="Subscribe">→</button>
+    </form>
+    <p class="ec-msg" id="ecMsg"></p>
+  </div>
+</section>
+
 <a href="index.html" class="back-link">Back to Archive</a>
 
 <footer>
@@ -285,6 +344,39 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+const ecForm = document.getElementById('emailCaptureForm');
+const ecMsg = document.getElementById('ecMsg');
+if (ecForm) {
+  ecForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = ecForm.querySelector('input[type="email"]').value.trim();
+    const btn = ecForm.querySelector('button');
+    btn.disabled = true;
+    ecMsg.textContent = '';
+    ecMsg.className = 'ec-msg';
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        ecMsg.textContent = "You're in.";
+        ecForm.reset();
+      } else {
+        ecMsg.textContent = data.error || 'Something went wrong. Try again.';
+        ecMsg.className = 'ec-msg error';
+      }
+    } catch {
+      ecMsg.textContent = 'Network error. Try again.';
+      ecMsg.className = 'ec-msg error';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+}
 </script>
 
 </body>

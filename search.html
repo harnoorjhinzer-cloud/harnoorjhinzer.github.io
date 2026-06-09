@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search — Harnoor Archive</title>
+<meta name="description" content="Search the Harnoor Archive — case studies, essays, frameworks, and fiction on wealth, luxury, and power.">
+<meta name="author" content="Harnoor Archive">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0908;
+  --bone:#F0EBE1;
+  --gold:#B8935A;
+  --gold2:#9A6B2E;
+  --muted:rgba(240,235,225,0.45);
+  --line:rgba(184,147,90,0.18);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--ink);
+  color:var(--bone);
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:32px 72px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(to bottom,rgba(10,9,8,0.98),transparent);
+}
+.nav-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;letter-spacing:0.2em;
+  color:var(--gold);font-weight:300;
+  text-decoration:none;
+}
+.nav-links{display:flex;gap:44px;list-style:none;}
+.nav-links a{
+  font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color 0.3s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+
+/* PAGE HEADER */
+.page-header{
+  padding:180px 72px 80px;
+  border-bottom:1px solid var(--line);
+  position:relative;overflow:hidden;
+}
+.page-header-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 80% 40%,rgba(184,147,90,0.06) 0%,transparent 65%);
+}
+.page-header-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(184,147,90,0.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(184,147,90,0.07) 1px,transparent 1px);
+  background-size:70px 70px;
+  mask-image:radial-gradient(ellipse at center,black 10%,transparent 75%);
+}
+.page-label{
+  font-size:0.55rem;letter-spacing:0.45em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;
+  display:flex;align-items:center;gap:18px;
+  position:relative;z-index:2;
+}
+.page-label::before{content:'';width:32px;height:1px;background:var(--gold);}
+.page-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,6vw,5.5rem);
+  font-weight:300;line-height:0.95;
+  position:relative;z-index:2;
+  margin-bottom:40px;
+}
+.page-title em{font-style:italic;color:var(--gold2);}
+
+/* SEARCH INPUT */
+.search-wrap{
+  position:relative;z-index:2;
+  max-width:620px;
+}
+.search-input{
+  width:100%;
+  background:transparent;
+  border:none;
+  border-bottom:1px solid rgba(184,147,90,0.4);
+  outline:none;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.1rem,2vw,1.5rem);
+  font-weight:300;
+  color:var(--bone);
+  padding:12px 0;
+  transition:border-color 0.3s;
+}
+.search-input::placeholder{
+  color:rgba(240,235,225,0.22);
+  font-style:italic;
+}
+.search-input:focus{border-color:var(--gold);}
+
+/* RESULTS AREA */
+.search-body{
+  padding:0 72px 120px;
+}
+.results-meta{
+  padding:32px 0 0;
+  font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(240,235,225,0.3);
+  min-height:40px;
+}
+.results-list{
+  display:flex;flex-direction:column;
+}
+.result-item{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:40px;align-items:start;
+  padding:44px 0;
+  border-bottom:1px solid var(--line);
+  text-decoration:none;color:inherit;
+  transition:padding-left 0.3s;
+  position:relative;
+}
+.result-item::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,var(--gold),transparent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.5s;
+}
+a.result-item:hover::before{transform:scaleX(1);}
+a.result-item:hover{padding-left:10px;}
+.ri-body{display:flex;flex-direction:column;gap:10px;}
+.ri-collection{
+  font-size:0.52rem;letter-spacing:0.35em;text-transform:uppercase;
+  color:var(--gold);
+}
+.ri-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;font-weight:400;line-height:1.3;
+  transition:color 0.3s;
+}
+a.result-item:hover .ri-title{color:var(--gold2);}
+.ri-desc{
+  font-size:0.78rem;color:rgba(240,235,225,0.42);
+  line-height:1.85;max-width:580px;
+}
+.ri-tags{
+  font-size:0.58rem;color:rgba(240,235,225,0.25);
+  letter-spacing:0.08em;line-height:1.6;
+}
+.ri-action{
+  font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);white-space:nowrap;
+  display:flex;align-items:center;gap:10px;
+  transition:gap 0.3s;
+  align-self:center;
+}
+a.result-item:hover .ri-action{gap:18px;}
+.ri-action::after{content:'→';}
+.ri-soon{
+  font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(184,147,90,0.3);
+  align-self:center;white-space:nowrap;
+}
+.ri-match{background:rgba(184,147,90,0.12);border-radius:2px;padding:0 2px;}
+
+/* EMPTY / DEFAULT STATE */
+.state-block{
+  padding:80px 0;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;font-style:italic;
+  color:rgba(240,235,225,0.25);
+  line-height:1.7;
+}
+
+/* BACK LINK */
+.back-link{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:60px 72px;
+  font-size:0.55rem;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;transition:gap 0.3s;
+}
+.back-link:hover{gap:20px;}
+.back-link::before{content:'←';}
+
+/* FOOTER */
+footer{
+  padding:44px 72px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.f-name{font-family:'Cormorant Garamond',serif;font-size:0.9rem;letter-spacing:0.2em;color:var(--gold);font-weight:300;}
+.f-copy{font-size:0.58rem;letter-spacing:0.15em;color:rgba(240,235,225,0.2);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:24px 28px;}
+  .nav-links{display:none;}
+  .page-header{padding:140px 28px 60px;}
+  .search-body{padding:0 28px 80px;}
+  .result-item{grid-template-columns:1fr;gap:12px;}
+  .ri-action,.ri-soon{align-self:flex-start;}
+  .back-link{padding:48px 28px;}
+  footer{padding:32px 28px;flex-direction:column;gap:12px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">Harnoor Archive</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="research.html">Desire &amp; Distinction</a></li>
+    <li><a href="philosophy.html">Frameworks</a></li>
+    <li><a href="wealth.html">Power &amp; Access</a></li>
+    <li><a href="cultural.html">The Roots Underneath</a></li>
+    <li><a href="search.html" class="active">Search</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-grid"></div>
+  <div class="page-label">Search</div>
+  <h1 class="page-title">Find what<br><em>you're looking for</em></h1>
+  <div class="search-wrap">
+    <input
+      class="search-input"
+      id="searchInput"
+      type="search"
+      placeholder="Luxury, identity, wealth, belonging…"
+      autocomplete="off"
+      spellcheck="false"
+      autofocus
+    >
+  </div>
+</div>
+
+<div class="search-body">
+  <div class="results-meta" id="resultsMeta"></div>
+  <div class="results-list" id="resultsList">
+    <div class="state-block" id="defaultState">
+      All case studies, essays, frameworks, and fiction — indexed and waiting.
+    </div>
+  </div>
+</div>
+
+<a href="index.html" class="back-link">Back to Archive</a>
+
+<footer>
+  <div class="f-name">Harnoor Archive</div>
+  <div class="f-copy">© <script>document.write(new Date().getFullYear())</script> · Independent Research · Canada</div>
+</footer>
+
+<script>
+const input = document.getElementById('searchInput');
+const resultsList = document.getElementById('resultsList');
+const resultsMeta = document.getElementById('resultsMeta');
+const defaultState = document.getElementById('defaultState');
+
+let index = [];
+
+fetch('search-index.json')
+  .then(r => r.json())
+  .then(data => { index = data; })
+  .catch(() => {});
+
+function highlight(text, query) {
+  if (!query) return escHtml(text);
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return escHtml(text).replace(new RegExp(`(${escaped})`, 'gi'), '<mark class="ri-match">$1</mark>');
+}
+
+function escHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function search(query) {
+  query = query.trim();
+
+  if (!query) {
+    resultsMeta.textContent = '';
+    resultsList.innerHTML = '';
+    resultsList.appendChild(defaultState);
+    defaultState.style.display = '';
+    return;
+  }
+
+  defaultState.style.display = 'none';
+  const q = query.toLowerCase();
+  const results = index.filter(item => {
+    const haystack = [
+      item.title,
+      item.collection,
+      item.type,
+      item.description,
+      ...(item.tags || []),
+    ].join(' ').toLowerCase();
+    return q.split(/\s+/).every(word => haystack.includes(word));
+  });
+
+  resultsMeta.textContent = results.length
+    ? `${results.length} result${results.length === 1 ? '' : 's'}`
+    : '';
+
+  if (!results.length) {
+    resultsList.innerHTML = `<div class="state-block">Nothing matching "<em>${escHtml(query)}</em>" — try a different term.</div>`;
+    return;
+  }
+
+  resultsList.innerHTML = results.map(item => {
+    const isLink = item.url && item.status === 'published';
+    const tag = item.type;
+    const action = item.status === 'in_progress'
+      ? `<span class="ri-soon">In Progress</span>`
+      : `<span class="ri-action">Open</span>`;
+
+    const inner = `
+      <div class="ri-body">
+        <span class="ri-collection">${highlight(item.collection, query)} · ${highlight(tag, query)}</span>
+        <h2 class="ri-title">${highlight(item.title, query)}</h2>
+        <p class="ri-desc">${highlight(item.description, query)}</p>
+        <p class="ri-tags">${item.tags.map(t => highlight(t, query)).join(' · ')}</p>
+      </div>
+      ${action}
+    `;
+
+    if (isLink) {
+      const target = item.url.endsWith('.pdf') ? ' target="_blank"' : '';
+      return `<a href="${item.url}"${target} class="result-item">${inner}</a>`;
+    } else {
+      return `<div class="result-item">${inner}</div>`;
+    }
+  }).join('');
+}
+
+input.addEventListener('input', () => search(input.value));
+
+// Support ?q= in URL
+const params = new URLSearchParams(location.search);
+const preQuery = params.get('q');
+if (preQuery) {
+  input.value = preQuery;
+  search(preQuery);
+}
+</script>
+
+</body>
+</html>
