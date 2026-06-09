@@ -165,7 +165,7 @@ async function handleSubscribe(request, env) {
         'content-type': 'application/json',
         'accept': 'application/json',
       },
-      body: JSON.stringify({ email, updateEnabled: true }),
+      body: JSON.stringify({ email, listIds: [6], updateEnabled: true }),
     });
 
     if (!contactRes.ok) {

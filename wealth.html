@@ -193,17 +193,23 @@ footer{
 
 /* EMAIL CAPTURE */
 .email-capture-section{
-  padding:80px 90px;
+  padding:40px 72px;
   border-top:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  gap:60px;
 }
-.ec-inner{max-width:480px;}
 .ec-copy{
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.4rem,2.5vw,2rem);
+  font-size:1.05rem;
   font-weight:300;font-style:italic;
-  color:var(--bone);
-  margin-bottom:28px;
-  line-height:1.3;
+  color:rgba(240,235,225,0.55);
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.ec-right{
+  flex:1;
+  max-width:380px;
 }
 .ec-form{
   display:flex;
@@ -214,23 +220,23 @@ footer{
 .ec-input{
   flex:1;
   background:transparent;border:none;outline:none;
-  font-family:'Jost',sans-serif;font-size:0.82rem;font-weight:300;
+  font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:300;
   letter-spacing:0.05em;
   color:var(--bone);
-  padding:12px 0;
+  padding:10px 0;
 }
-.ec-input::placeholder{color:rgba(240,235,225,0.3);}
+.ec-input::placeholder{color:rgba(240,235,225,0.25);}
 .ec-btn{
   background:transparent;border:none;cursor:pointer;
-  font-size:1.1rem;color:var(--gold);
-  padding:12px 0 12px 16px;
+  font-size:1rem;color:var(--gold);
+  padding:10px 0 10px 14px;
   transition:transform 0.2s,color 0.2s;
 }
 .ec-btn:hover{transform:translateX(4px);color:var(--gold2);}
 .ec-btn:disabled{opacity:0.4;cursor:default;transform:none;}
 .ec-msg{
-  margin-top:12px;
-  font-size:0.7rem;letter-spacing:0.1em;
+  margin-top:8px;
+  font-size:0.65rem;letter-spacing:0.1em;
   color:rgba(240,235,225,0.4);
   min-height:1rem;
 }
@@ -247,7 +253,9 @@ footer{
   .fi-action,.fi-soon{align-self:flex-start;}
   .back-link{padding:48px 28px;}
   footer{padding:32px 28px;flex-direction:column;gap:12px;text-align:center;}
-  .email-capture-section{padding:60px 28px;}
+  .email-capture-section{flex-direction:column;align-items:flex-start;gap:20px;padding:36px 28px;}
+  .ec-copy{white-space:normal;}
+  .ec-right{width:100%;max-width:none;}
 }
 </style>
 </head>
@@ -343,10 +351,12 @@ footer{
   </div>
 </section>
 
+<a href="index.html" class="back-link">Back to Archive</a>
+
 <!-- EMAIL CAPTURE -->
 <section class="email-capture-section">
-  <div class="ec-inner">
-    <p class="ec-copy">New work, when it's ready.</p>
+  <p class="ec-copy">New work, when it's ready.</p>
+  <div class="ec-right">
     <form class="ec-form" id="emailCaptureForm" novalidate>
       <input class="ec-input" type="email" placeholder="Your email" required autocomplete="email">
       <button class="ec-btn" type="submit" aria-label="Subscribe">→</button>
@@ -354,8 +364,6 @@ footer{
     <p class="ec-msg" id="ecMsg"></p>
   </div>
 </section>
-
-<a href="index.html" class="back-link">Back to Archive</a>
 
 <footer>
   <div class="f-name">Harnoor Archive</div>
