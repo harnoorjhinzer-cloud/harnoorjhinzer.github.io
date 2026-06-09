@@ -181,28 +181,6 @@ async function handleSubscribe(request, env) {
     return json({ error: 'Subscription failed. Please try again.' }, 502);
   }
 
-  // Send welcome transactional email
-  // Fire-and-forget: don't fail the request if this errors
-  try {
-    await fetch('https://api.brevo.com/v3/smtp/email', {
-      method: 'POST',
-      headers: {
-        'api-key': apiKey,
-        'content-type': 'application/json',
-        'accept': 'application/json',
-      },
-      body: JSON.stringify({
-        sender: { name: 'Harnoor', email: 'connect@harnoorarchive.com' },
-        to: [{ email }],
-        subject: "You're in.",
-        htmlContent: `<!DOCTYPE html><html><body style="margin:0;padding:48px 40px;background:#0A0908;font-family:Georgia,'Times New Roman',serif;"><p style="font-size:16px;line-height:1.8;color:#F0EBE1;margin:0 0 24px;">You'll hear from me when there's something worth reading. That's the only promise.</p><p style="font-size:16px;line-height:1.8;color:#F0EBE1;margin:0;">— Harnoor<br><a href="https://harnoorarchive.com" style="color:#B8935A;text-decoration:none;">harnoorarchive.com</a></p></body></html>`,
-        textContent: "You'll hear from me when there's something worth reading. That's the only promise.\n\n— Harnoor\nharnoorarchive.com",
-      }),
-    });
-  } catch {
-    // Email send failed silently — contact was still added
-  }
-
   return json({ ok: true });
 }
 
