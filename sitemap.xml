@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Main Pages -->
+  <url>
+    <loc>https://harnoorarchive.com/</loc>
+    <priority>1.0</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://harnoorarchive.com/research.html</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://harnoorarchive.com/philosophy.html</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://harnoorarchive.com/wealth.html</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://harnoorarchive.com/cultural.html</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://harnoorarchive.com/gradus-diagnostic.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://harnoorarchive.com/storybook.html</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Case Studies -->
+  <url>
+    <loc>https://harnoorarchive.com/docs/What%20Louis%20Vuitton%20Taught%20Me%20About%20Belonging.pdf</loc>
+    <priority>0.8</priority>
+    <changefreq>never</changefreq>
+  </url>
+  <url>
+    <loc>https://harnoorarchive.com/docs/Dressed%20As%20Someone%20Else.pdf</loc>
+    <priority>0.8</priority>
+    <changefreq>never</changefreq>
+  </url>
+  <url>
+    <loc>https://harnoorarchive.com/docs/A%20Room%20That%20Knows%20You..pdf</loc>
+    <priority>0.8</priority>
+    <changefreq>never</changefreq>
+  </url>
+  <url>
+    <loc>https://harnoorarchive.com/docs/The%20Customer%20Is%20Always%20Right.pdf</loc>
+    <priority>0.8</priority>
+    <changefreq>never</changefreq>
+  </url>
+  <url>
+    <loc>https://harnoorarchive.com/docs/The%20Price%20Is%20The%20Product.pdf</loc>
+    <priority>0.8</priority>
+    <changefreq>never</changefreq>
+  </url>
+
+  <!-- Frameworks -->
+  <url>
+    <loc>https://harnoorarchive.com/docs/motive_context_framework.pdf</loc>
+    <priority>0.8</priority>
+    <changefreq>never</changefreq>
+  </url>
+  <url>
+    <loc>https://harnoorarchive.com/docs/gradus_framework.pdf</loc>
+    <priority>0.8</priority>
+    <changefreq>never</changefreq>
+  </url>
+
+  <!-- Essays -->
+  <url>
+    <loc>https://harnoorarchive.com/docs/new-york-capital-ecosystem-full.pdf</loc>
+    <priority>0.8</priority>
+    <changefreq>never</changefreq>
+  </url>
+  <url>
+    <loc>https://harnoorarchive.com/docs/witch.pdf</loc>
+    <priority>0.7</priority>
+    <changefreq>never</changefreq>
+  </url>
+  <url>
+    <loc>https://harnoorarchive.com/docs/Operation%20Aquarius.pdf</loc>
+    <priority>0.7</priority>
+    <changefreq>never</changefreq>
+  </url>
+
+</urlset>
