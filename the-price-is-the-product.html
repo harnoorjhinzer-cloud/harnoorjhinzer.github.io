@@ -50,6 +50,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:32px 72px;display:fl
 .cover-bg{position:absolute;inset:0;background-image:url("images/photos/price-stilllife.jpg");background-size:cover;background-position:center;}
 .cover-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(95deg,rgba(10,9,8,0.92) 0%,rgba(10,9,8,0.62) 46%,rgba(10,9,8,0.12) 100%);}
 .cover-inner{position:relative;z-index:2;max-width:880px;}
+.cover-back{display:inline-flex;align-items:center;gap:9px;font-family:'Jost',sans-serif;font-size:0.56rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--accent,var(--gold));text-decoration:none;margin-bottom:26px;opacity:0;animation:up 1s ease .05s forwards;transition:gap .3s;}
+.cover-back::before{content:'\2190';font-size:0.85rem;}
+.cover-back:hover{gap:16px;}
 .cover-label{font-size:0.55rem;letter-spacing:0.42em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:16px;margin-bottom:22px;opacity:0;animation:up 1s ease .1s forwards;}
 .cover-label::before{content:'';width:30px;height:1px;background:var(--accent);}
 .cover-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5.2vw,4.2rem);font-weight:400;line-height:1.04;opacity:0;animation:up 1.05s ease .2s forwards;}
@@ -193,6 +196,7 @@ footer{padding:44px 72px;border-top:1px solid var(--line);display:flex;justify-c
 <header class="cover">
   <div class="cover-bg"></div>
   <div class="cover-inner">
+    <a href="reading.html" class="cover-back" onclick="if(history.length>1){history.back();return false;}">Back</a>
     <div class="cover-label">Case Study · Desire & Distinction</div>
     <h1 class="cover-title">The Price Is<br><em>The Product</em></h1>
     <div class="cover-meta">Published <span>May 2026</span> &nbsp;·&nbsp; <span>13 min</span> read</div>
