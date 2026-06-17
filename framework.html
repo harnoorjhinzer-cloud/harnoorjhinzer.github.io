@@ -4,6 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Motive × Context — A Framework for Luxury Consumer Psychology</title>
+<meta name="description" content="Motive × Context — Harnoor Jhinzer's original framework for luxury consumer psychology: why someone buys is inseparable from where they are, who is watching, and what is at stake.">
+<link rel="canonical" href="https://harnoorarchive.com/framework.html">
+<meta property="og:site_name" content="Harnoor Archive">
+<meta property="og:title" content="Motive × Context — A Framework for Luxury Consumer Psychology">
+<meta property="og:description" content="Motive × Context — Harnoor Jhinzer's original framework for luxury consumer psychology: why someone buys is inseparable from where they are, who is watching, and what is at stake.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://harnoorarchive.com/framework.html">
+<meta property="og:image" content="https://harnoorarchive.com/images/og/motive-context-framework.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Motive × Context — A Framework for Luxury Consumer Psychology">
+<meta name="twitter:description" content="Motive × Context — Harnoor Jhinzer's original framework for luxury consumer psychology: why someone buys is inseparable from where they are, who is watching, and what is at stake.">
+<meta name="twitter:image" content="https://harnoorarchive.com/images/og/motive-context-framework.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -509,6 +526,16 @@ body{
 </style>
 </head>
 <body>
+<!-- texture overlay (added for depth) -->
+<div class="tex-vignette" aria-hidden="true"></div>
+<div class="tex-grain" aria-hidden="true"></div>
+<style>
+.tex-vignette{position:fixed;inset:0;pointer-events:none;z-index:9997;background:radial-gradient(ellipse 130% 108% at 50% 32%,transparent 50%,rgba(0,0,0,0.55) 100%);}
+.tex-grain{position:fixed;inset:-60%;width:220%;height:220%;pointer-events:none;z-index:9998;opacity:0.045;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27160%27%20height%3D%27160%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.9%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27/%3E%3CfeColorMatrix%20type%3D%27saturate%27%20values%3D%270%27/%3E%3C/filter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27/%3E%3C/svg%3E");background-repeat:repeat;animation:texshift 5.2s steps(6) infinite;}
+@keyframes texshift{0%{transform:translate(0,0)}16%{transform:translate(-3%,2%)}33%{transform:translate(2%,-3%)}50%{transform:translate(-2%,1%)}66%{transform:translate(3%,2%)}83%{transform:translate(-1%,-2%)}100%{transform:translate(0,0)}}
+@media(prefers-reduced-motion:reduce){.tex-grain{animation:none}}
+</style>
+
 
 <div class="toc">
   <a href="index.html" class="toc-title">Motive × Context</a>
@@ -902,7 +929,7 @@ body{
 <!-- FOOTER RETURN -->
 <footer class="site-footer">
   <div class="f-name"><a href="index.html">Harnoor Archive</a></div>
-  <div class="f-copy">© <script>document.write(new Date().getFullYear())</script> · Luxury Consumer Psychology · Canada</div>
+  <div class="f-copy">© 2025–2026 · Luxury Consumer Psychology · Canada</div>
 </footer>
 
 </body>

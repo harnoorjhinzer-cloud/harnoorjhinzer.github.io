@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Index — Harnoor Archive</title>
+<meta name="description" content="The whole Harnoor Archive in one place — every case study, framework, essay, and story, browsable by collection and reading length.">
+<meta name="author" content="Harnoor Archive">
+<link rel="canonical" href="https://harnoorarchive.com/reading.html">
+<meta property="og:site_name" content="Harnoor Archive">
+<meta property="og:title" content="The Index — Harnoor Archive">
+<meta property="og:description" content="The whole archive in one place — every case study, framework, essay, and story, browsable by collection and reading length.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://harnoorarchive.com/reading.html">
+<meta property="og:image" content="https://harnoorarchive.com/images/og/default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Index — Harnoor Archive">
+<meta name="twitter:description" content="The whole archive in one place — every case study, framework, essay, and story.">
+<meta name="twitter:image" content="https://harnoorarchive.com/images/og/default.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#0A0908; --bone:#F0EBE1; --gold:#B8935A; --gold2:#9A6B2E;
+  --muted:rgba(240,235,225,0.45); --line:rgba(184,147,90,0.18);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--ink);color:var(--bone);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:32px 72px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(10,9,8,0.98),transparent);}
+.nav-name{font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:0.2em;color:var(--gold);font-weight:300;text-decoration:none;}
+.nav-links{display:flex;gap:44px;list-style:none;}
+.nav-links a{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.3s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-links a.nav-search{display:inline-flex;align-items:center;padding:1px 0;}
+.nav-links a.nav-search svg{width:14px;height:14px;display:block;}
+
+/* HEADER */
+.page-header{padding:170px 72px 50px;position:relative;overflow:hidden;}
+.page-header-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 80% 40%,rgba(184,147,90,0.06) 0%,transparent 65%);}
+.page-label{font-size:0.55rem;letter-spacing:0.45em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:18px;position:relative;z-index:2;}
+.page-label::before{content:'';width:32px;height:1px;background:var(--gold);}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,6vw,5rem);font-weight:300;line-height:0.98;position:relative;z-index:2;}
+.page-title em{font-style:italic;color:var(--gold2);}
+.page-intro{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,1.6vw,1.2rem);font-style:italic;font-weight:300;color:rgba(240,235,225,0.6);line-height:1.7;max-width:600px;margin-top:28px;position:relative;z-index:2;}
+
+/* CONTROLS */
+.controls{
+  position:sticky;top:0;z-index:50;
+  padding:26px 72px;
+  display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:rgba(10,9,8,0.86);backdrop-filter:blur(8px);
+}
+.filter-input{
+  flex:1;min-width:180px;
+  background:transparent;border:none;outline:none;
+  font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;
+  color:var(--bone);
+}
+.filter-input::placeholder{color:rgba(240,235,225,0.3);}
+.chips{display:flex;gap:10px;flex-wrap:wrap;}
+.chip{
+  font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(240,235,225,0.5);
+  border:1px solid var(--line);border-radius:2px;
+  padding:8px 14px;cursor:pointer;background:transparent;
+  transition:color .25s,border-color .25s,background .25s;
+  white-space:nowrap;
+}
+.chip:hover{color:var(--bone);}
+.chip.active{color:var(--ink);background:var(--gold);border-color:var(--gold);}
+.sortwrap{display:flex;align-items:center;gap:10px;}
+.sortwrap label{font-size:0.52rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(240,235,225,0.35);}
+.sortwrap select{
+  background:transparent;border:none;border-bottom:1px solid var(--line);
+  color:var(--bone);font-family:'Jost',sans-serif;font-size:0.62rem;
+  letter-spacing:0.12em;text-transform:uppercase;padding:4px 18px 4px 2px;
+  outline:none;cursor:pointer;
+  appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='6'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%23B8935A'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right center;
+}
+.sortwrap select option{background:#15110d;color:var(--bone);}
+.count{font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,235,225,0.3);white-space:nowrap;}
+
+/* LIST */
+.idx{padding:10px 72px 90px;}
+.idx-item{
+  display:grid;grid-template-columns:1fr auto;gap:40px;align-items:baseline;
+  padding:34px 0;border-bottom:1px solid var(--line);
+  text-decoration:none;color:inherit;position:relative;
+  transition:padding-left .35s ease;
+}
+.idx-item::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(to right,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform .5s;}
+a.idx-item:hover::before{transform:scaleX(1);}
+a.idx-item:hover{padding-left:12px;}
+.idx-main{display:flex;flex-direction:column;gap:9px;max-width:760px;}
+.idx-coll{font-size:0.52rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);}
+.idx-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;line-height:1.25;color:var(--bone);transition:color .3s;}
+a.idx-item:hover .idx-title{color:var(--gold2);}
+.idx-hook{font-size:0.9rem;color:rgba(240,235,225,0.62);line-height:1.75;}
+.idx-meta{display:flex;align-items:center;gap:14px;font-size:0.56rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,235,225,0.34);margin-top:3px;}
+.idx-meta .dot{width:3px;height:3px;border-radius:50%;background:rgba(184,147,90,0.5);}
+.idx-right{display:flex;align-items:center;gap:12px;white-space:nowrap;align-self:center;}
+.idx-action{font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px;transition:gap .3s;}
+a.idx-item:hover .idx-action{gap:16px;}
+.idx-action::after{content:'→';}
+.idx-soon{font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(184,147,90,0.4);}
+.idx-item.is-soon{cursor:default;}
+.idx-empty{padding:80px 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:rgba(240,235,225,0.3);}
+
+/* EMAIL */
+.email-capture-section{padding:48px 72px;border-top:1px solid var(--line);display:flex;align-items:center;gap:60px;}
+.ec-copy{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;color:rgba(240,235,225,0.7);flex-shrink:0;max-width:360px;line-height:1.5;}
+.ec-copy em{font-style:italic;color:var(--gold);}
+.ec-copy .ec-sub{display:block;font-family:'Jost',sans-serif;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,235,225,0.35);margin-top:10px;}
+.ec-right{flex:1;max-width:380px;}
+.ec-form{display:flex;border-bottom:1px solid var(--line);transition:border-color 0.3s;}
+.ec-form:focus-within{border-color:var(--gold);}
+.ec-input{flex:1;background:transparent;border:none;outline:none;font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:300;letter-spacing:0.05em;color:var(--bone);padding:10px 0;}
+.ec-input::placeholder{color:rgba(240,235,225,0.25);}
+.ec-btn{background:transparent;border:none;cursor:pointer;font-size:1rem;color:var(--gold);padding:10px 0 10px 14px;transition:transform 0.2s,color 0.2s;}
+.ec-btn:hover{transform:translateX(4px);color:var(--gold2);}
+.ec-btn:disabled{opacity:0.4;cursor:default;transform:none;}
+.ec-msg{margin-top:8px;font-size:0.65rem;letter-spacing:0.1em;color:rgba(240,235,225,0.4);min-height:1rem;}
+
+footer{padding:44px 72px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;}
+.f-name{font-family:'Cormorant Garamond',serif;font-size:0.9rem;letter-spacing:0.2em;color:var(--gold);font-weight:300;}
+.f-copy{font-size:0.58rem;letter-spacing:0.15em;color:rgba(240,235,225,0.2);}
+
+@media(max-width:900px){
+  nav{padding:24px 28px;} .nav-links{display:none;}
+  .page-header{padding:130px 28px 40px;}
+  .controls{padding:20px 28px;gap:18px;}
+  .idx{padding:6px 28px 70px;}
+  .idx-item{grid-template-columns:1fr;gap:14px;}
+  .idx-right{align-self:flex-start;}
+  .email-capture-section{flex-direction:column;align-items:flex-start;gap:20px;padding:36px 28px;}
+  footer{padding:32px 28px;flex-direction:column;gap:12px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">Harnoor Archive</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="research.html">Desire</a></li>
+    <li><a href="philosophy.html">Frameworks</a></li>
+    <li><a href="wealth.html">Power</a></li>
+    <li><a href="cultural.html">Roots</a></li>
+    <li><a href="search.html" class="nav-search" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg></a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-label">The Index</div>
+  <h1 class="page-title">Everything,<br><em>in one place</em></h1>
+  <p class="page-intro">The whole archive on a single page. Filter by collection, sort by length, open anything. Press <strong style="font-style:normal;color:var(--gold);font-weight:400;">⌘K</strong> anywhere to jump.</p>
+</div>
+
+<div class="controls">
+  <input class="filter-input" id="filterInput" type="text" placeholder="Filter the archive…" autocomplete="off" spellcheck="false" aria-label="Filter">
+  <div class="chips" id="chips"></div>
+  <div class="sortwrap">
+    <label for="sortSel">Sort</label>
+    <select id="sortSel">
+      <option value="collection">Collection</option>
+      <option value="short">Shortest</option>
+      <option value="long">Longest</option>
+      <option value="az">A–Z</option>
+    </select>
+  </div>
+  <div class="count" id="count"></div>
+</div>
+
+<div class="idx" id="idx"></div>
+
+<!-- EMAIL CAPTURE -->
+<section class="email-capture-section">
+  <p class="ec-copy">The next <em>edition</em>, when it's ready.<span class="ec-sub">Sent when something's finished. No schedule, no list.</span></p>
+  <div class="ec-right">
+    <form class="ec-form" id="emailCaptureForm" novalidate>
+      <input class="ec-input" type="email" placeholder="Your email" required autocomplete="email">
+      <button class="ec-btn" type="submit" aria-label="Notify me">→</button>
+    </form>
+    <p class="ec-msg" id="ecMsg"></p>
+  </div>
+</section>
+
+<footer>
+  <div class="f-name">Harnoor Archive</div>
+  <div class="f-copy">© 2025–2026 · Independent Research · Canada</div>
+</footer>
+
+<script>
+const COLLECTIONS = ["All","Desire & Distinction","Frameworks","Power & Access","The Roots Underneath"];
+let DATA = [], activeColl = "All", sortMode = "collection", query = "";
+
+const collOrder = {"Desire & Distinction":0,"Frameworks":1,"Power & Access":2,"The Roots Underneath":3,"Colophon":4};
+
+function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+
+function render(){
+  const idx = document.getElementById("idx");
+  let items = DATA.filter(e => e.collection !== "Colophon");
+  if(activeColl !== "All") items = items.filter(e => e.collection === activeColl);
+  if(query){
+    const q = query.toLowerCase();
+    items = items.filter(e => (e.title+" "+e.description+" "+(e.tags||[]).join(" ")+" "+e.collection+" "+e.type).toLowerCase().includes(q));
+  }
+  items.sort((a,b)=>{
+    if(sortMode==="az") return a.title.localeCompare(b.title);
+    if(sortMode==="short") return (a.minutes??999)-(b.minutes??999);
+    if(sortMode==="long") return (b.minutes??-1)-(a.minutes??-1);
+    // collection
+    const c=(collOrder[a.collection]??9)-(collOrder[b.collection]??9);
+    if(c) return c;
+    return (b.minutes??0)-(a.minutes??0);
+  });
+
+  document.getElementById("count").textContent = items.length + (items.length===1?" piece":" pieces");
+
+  if(!items.length){ idx.innerHTML = '<div class="idx-empty">Nothing matches that yet.</div>'; return; }
+
+  idx.innerHTML = items.map(e=>{
+    const soon = !e.url || e.status==="in_progress";
+    const metaBits = [e.type];
+    if(e.minutes) metaBits.push(e.minutes+" min");
+    if(e.year) metaBits.push(e.year);
+    const meta = metaBits.map(esc).join('<span class="dot"></span>');
+    const right = soon
+      ? '<span class="idx-soon">Forthcoming</span>'
+      : '<span class="idx-action">'+(e.url.endsWith(".pdf")?"PDF":"Read")+'</span>';
+    const inner =
+      '<div class="idx-main">'+
+        '<div class="idx-coll">'+esc(e.collection)+'</div>'+
+        '<div class="idx-title">'+esc(e.title)+'</div>'+
+        '<div class="idx-hook">'+esc(e.description)+'</div>'+
+        '<div class="idx-meta">'+meta+'</div>'+
+      '</div>'+
+      '<div class="idx-right">'+right+'</div>';
+    if(soon) return '<div class="idx-item is-soon">'+inner+'</div>';
+    const tgt = e.url.endsWith(".pdf") ? ' target="_blank" rel="noopener"' : '';
+    return '<a class="idx-item" href="'+e.url+'"'+tgt+'>'+inner+'</a>';
+  }).join("");
+}
+
+function buildChips(){
+  const c = document.getElementById("chips");
+  c.innerHTML = COLLECTIONS.map(name=>{
+    const short = {"All":"All","Desire & Distinction":"Desire","Frameworks":"Frameworks","Power & Access":"Power","The Roots Underneath":"Roots"}[name];
+    return '<button class="chip'+(name===activeColl?' active':'')+'" data-coll="'+esc(name)+'">'+short+'</button>';
+  }).join("");
+  c.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{
+    activeColl=b.dataset.coll; buildChips(); render();
+  }));
+}
+
+fetch("search-index.json").then(r=>r.json()).then(d=>{
+  DATA=d; buildChips(); render();
+});
+
+document.getElementById("filterInput").addEventListener("input",e=>{query=e.target.value.trim();render();});
+document.getElementById("sortSel").addEventListener("change",e=>{sortMode=e.target.value;render();});
+
+// email capture
+const ecForm=document.getElementById('emailCaptureForm'), ecMsg=document.getElementById('ecMsg');
+if(ecForm){ecForm.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const email=ecForm.querySelector('input[type="email"]').value.trim();
+  const btn=ecForm.querySelector('button'); btn.disabled=true; ecMsg.textContent=''; ecMsg.className='ec-msg';
+  try{
+    const res=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});
+    const data=await res.json();
+    if(res.ok){ecMsg.textContent="Done — you'll get the next edition.";ecForm.reset();}
+    else{ecMsg.textContent=data.error||'Something went wrong. Try again.';ecMsg.className='ec-msg error';}
+  }catch{ecMsg.textContent='Network error. Try again.';ecMsg.className='ec-msg error';}
+  finally{btn.disabled=false;}
+});}
+</script>
+
+<!-- command palette (⌘K) -->
+<div class="cmdk" id="cmdk" aria-hidden="true">
+  <div class="cmdk-backdrop" data-cmdk-close></div>
+  <div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Search the archive">
+    <div class="cmdk-top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+      <input id="cmdkInput" class="cmdk-input" type="text" placeholder="Search the archive…" autocomplete="off" spellcheck="false" aria-label="Search the archive">
+      <kbd class="cmdk-esck">ESC</kbd>
+    </div>
+    <div class="cmdk-results" id="cmdkResults"></div>
+    <div class="cmdk-foot"><span>↑ ↓ &nbsp;navigate</span><span>↵ &nbsp;open</span><span>esc &nbsp;close</span></div>
+  </div>
+</div>
+<style>
+.cmdk{position:fixed;inset:0;z-index:10060;display:none;font-family:'Jost',sans-serif;}
+.cmdk.open{display:block;}
+.cmdk-backdrop{position:absolute;inset:0;background:rgba(6,5,4,0.72);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);}
+.cmdk-panel{position:relative;max-width:620px;margin:11vh auto 0;background:#100c0a;border:1px solid rgba(184,147,90,0.25);box-shadow:0 30px 90px rgba(0,0,0,0.65);overflow:hidden;animation:cmdkin .18s ease;}
+@keyframes cmdkin{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+.cmdk-top{display:flex;align-items:center;gap:14px;padding:19px 22px;border-bottom:1px solid rgba(184,147,90,0.16);}
+.cmdk-top svg{width:16px;height:16px;color:#B8935A;flex-shrink:0;}
+.cmdk-input{flex:1;background:transparent;border:none;outline:none;color:#F0EBE1;font-family:'Cormorant Garamond',serif;font-size:1.35rem;}
+.cmdk-input::placeholder{color:rgba(240,235,225,0.3);}
+.cmdk-esck{font-family:'Jost',sans-serif;font-size:0.5rem;letter-spacing:0.2em;color:rgba(240,235,225,0.4);border:1px solid rgba(184,147,90,0.28);padding:3px 6px;border-radius:3px;}
+.cmdk-results{max-height:52vh;overflow-y:auto;}
+.cmdk-row{display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding:14px 22px;cursor:pointer;border-bottom:1px solid rgba(184,147,90,0.06);text-decoration:none;color:inherit;}
+.cmdk-row:last-child{border-bottom:none;}
+.cmdk-row.sel{background:rgba(184,147,90,0.11);}
+.cmdk-row .t{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:#F0EBE1;line-height:1.3;}
+.cmdk-row .c{font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:#B8935A;white-space:nowrap;}
+.cmdk-row.soon{opacity:0.45;cursor:default;}
+.cmdk-empty{padding:30px 22px;font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(240,235,225,0.3);}
+.cmdk-foot{display:flex;gap:24px;padding:12px 22px;border-top:1px solid rgba(184,147,90,0.16);font-size:0.5rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,235,225,0.3);}
+@media(max-width:600px){.cmdk-panel{margin:5vh 14px 0;}.cmdk-foot{display:none;}}
+</style>
+<script>
+(function(){
+  var el=document.getElementById('cmdk'); if(!el) return;
+  var input=document.getElementById('cmdkInput'), results=document.getElementById('cmdkResults');
+  var DATA=null, items=[], sel=0, loaded=false;
+  function load(cb){ if(loaded){cb&&cb();return;} fetch('search-index.json').then(function(r){return r.json();}).then(function(d){DATA=d;loaded=true;cb&&cb();}).catch(function(){DATA=[];loaded=true;cb&&cb();}); }
+  function open(){ el.classList.add('open'); el.setAttribute('aria-hidden','false'); document.documentElement.style.overflow='hidden'; load(function(){filter('');}); setTimeout(function(){input.focus();input.select();},20); }
+  function close(){ el.classList.remove('open'); el.setAttribute('aria-hidden','true'); document.documentElement.style.overflow=''; input.value=''; }
+  function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function filter(q){
+    q=(q||'').toLowerCase().trim();
+    var list=(DATA||[]).filter(function(e){return e.collection!=='Colophon'||q;});
+    if(q) list=(DATA||[]).filter(function(e){return (e.title+' '+e.description+' '+(e.tags||[]).join(' ')+' '+e.collection+' '+e.type).toLowerCase().indexOf(q)>-1;});
+    list.sort(function(a,b){var as=(!a.url||a.status==='in_progress')?1:0,bs=(!b.url||b.status==='in_progress')?1:0;return as-bs;});
+    items=list.slice(0,8); sel=0; draw();
+  }
+  function draw(){
+    if(!items.length){results.innerHTML='<div class="cmdk-empty">Nothing matches that.</div>';return;}
+    results.innerHTML=items.map(function(e,i){
+      var soon=(!e.url||e.status==='in_progress');
+      var tag=soon?'Forthcoming':(e.url.slice(-4)==='.pdf'?'PDF':(e.collection||'').split(' ')[0]);
+      var cls='cmdk-row'+(i===sel?' sel':'')+(soon?' soon':'');
+      var label='<span class="t">'+esc(e.title)+'</span><span class="c">'+esc(tag)+'</span>';
+      if(soon) return '<div class="'+cls+'" data-i="'+i+'">'+label+'</div>';
+      return '<a class="'+cls+'" data-i="'+i+'" href="'+e.url+'"'+(e.url.slice(-4)==='.pdf'?' target="_blank" rel="noopener"':'')+'>'+label+'</a>';
+    }).join('');
+    Array.prototype.forEach.call(results.querySelectorAll('.cmdk-row'),function(r){ r.addEventListener('mousemove',function(){sel=+r.dataset.i;mark();}); });
+  }
+  function mark(){ Array.prototype.forEach.call(results.children,function(c,i){ if(c.classList) c.classList.toggle('sel',i===sel); }); var s=results.children[sel]; if(s&&s.scrollIntoView) s.scrollIntoView({block:'nearest'}); }
+  function go(){ var e=items[sel]; if(!e||!e.url||e.status==='in_progress') return; if(e.url.slice(-4)==='.pdf') window.open(e.url,'_blank'); else window.location.href=e.url; }
+  input.addEventListener('input',function(){filter(input.value);});
+  input.addEventListener('keydown',function(ev){
+    if(ev.key==='ArrowDown'){ev.preventDefault();sel=Math.min(sel+1,items.length-1);mark();}
+    else if(ev.key==='ArrowUp'){ev.preventDefault();sel=Math.max(sel-1,0);mark();}
+    else if(ev.key==='Enter'){ev.preventDefault();go();}
+    else if(ev.key==='Escape'){ev.preventDefault();close();}
+  });
+  el.addEventListener('click',function(ev){ if(ev.target.hasAttribute('data-cmdk-close')) close(); });
+  document.addEventListener('keydown',function(ev){
+    if((ev.metaKey||ev.ctrlKey)&&(ev.key==='k'||ev.key==='K')){ev.preventDefault(); el.classList.contains('open')?close():open();}
+    else if(ev.key==='Escape'&&el.classList.contains('open')){close();}
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('a.nav-search'),function(a){ a.addEventListener('click',function(ev){ev.preventDefault();open();}); });
+})();
+</script>
+
+</body>
+</html>

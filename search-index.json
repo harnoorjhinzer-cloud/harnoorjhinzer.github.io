@@ -5,9 +5,16 @@
     "collection": "Desire & Distinction",
     "type": "Case Study",
     "description": "A personal and academic analysis of luxury consumption psychology — why the product is almost beside the point, what the space is really selling, and why three people in the same room can feel completely different things.",
-    "tags": ["Belonging", "Identity", "Luxury Retail", "Consumer Psychology"],
-    "url": "docs/What Louis Vuitton Taught Me About Belonging.pdf",
-    "status": "published"
+    "tags": [
+      "Belonging",
+      "Identity",
+      "Luxury Retail",
+      "Consumer Psychology"
+    ],
+    "url": "lv-belonging.html",
+    "status": "published",
+    "minutes": 12,
+    "year": "April 2026"
   },
   {
     "id": "research-02",
@@ -15,9 +22,16 @@
     "collection": "Desire & Distinction",
     "type": "Case Study",
     "description": "Can clothing construct a temporary identity that redirects real consumer behavior? A first-person experiment in Toronto testing enclothed cognition, identity extension, and front-stage performance.",
-    "tags": ["Enclothed Cognition", "Identity", "Consumer Behavior", "Field Experiment"],
-    "url": "docs/Dressed As Someone Else.pdf",
-    "status": "published"
+    "tags": [
+      "Enclothed Cognition",
+      "Identity",
+      "Consumer Behavior",
+      "Field Experiment"
+    ],
+    "url": "dressed-as-someone-else.html",
+    "status": "published",
+    "minutes": 16,
+    "year": "April 2026"
   },
   {
     "id": "research-03",
@@ -25,9 +39,16 @@
     "collection": "Desire & Distinction",
     "type": "Case Study",
     "description": "Luxury doesn't begin with the room. It begins the moment you cross the threshold — fifteen seconds before your mind catches up. A study in sensory sequencing, atmospheric design, and how the right environment constructs a version of you that already belongs.",
-    "tags": ["Sensory Design", "Atmospheric Psychology", "Luxury Hospitality", "Kimpton"],
-    "url": "docs/A Room That Knows You..pdf",
-    "status": "published"
+    "tags": [
+      "Sensory Design",
+      "Atmospheric Psychology",
+      "Luxury Hospitality",
+      "Kimpton"
+    ],
+    "url": "a-room-that-knows-you.html",
+    "status": "published",
+    "minutes": 12,
+    "year": "April 2026"
   },
   {
     "id": "research-04",
@@ -35,9 +56,16 @@
     "collection": "Desire & Distinction",
     "type": "Case Study",
     "description": "Not all luxury consumers are the same — and the brands that treat them like they are lose all of them. A study in HNW segmentation, why the standard luxury audience model fails, and what it actually takes to serve the top tier correctly.",
-    "tags": ["HNW Segmentation", "Brand Strategy", "UHNW Behavior", "Luxury Service"],
-    "url": "docs/The Customer Is Always Right.pdf",
-    "status": "published"
+    "tags": [
+      "HNW Segmentation",
+      "Brand Strategy",
+      "UHNW Behavior",
+      "Luxury Service"
+    ],
+    "url": "the-customer-is-always-right.html",
+    "status": "published",
+    "minutes": 17,
+    "year": "April 2026"
   },
   {
     "id": "research-05",
@@ -45,9 +73,16 @@
     "collection": "Desire & Distinction",
     "type": "Case Study",
     "description": "How price itself functions as the primary signal — not of value, but of belonging, exclusion, and identity. Why some luxury consumers need the number to be impossible, and what that reveals about the psychology of aspirational consumption at its most concentrated.",
-    "tags": ["Pricing Psychology", "Exclusion", "Status Signaling", "Luxury Economics"],
-    "url": "docs/The Price Is The Product.pdf",
-    "status": "published"
+    "tags": [
+      "Pricing Psychology",
+      "Exclusion",
+      "Status Signaling",
+      "Luxury Economics"
+    ],
+    "url": "the-price-is-the-product.html",
+    "status": "published",
+    "minutes": 13,
+    "year": "May 2026"
   },
   {
     "id": "philosophy-01",
@@ -55,9 +90,15 @@
     "collection": "Frameworks",
     "type": "Analytical Framework",
     "description": "The same luxury consumer behaves completely differently in different moments — not because they're inconsistent, but because context determines which version of self is active. A three-layer framework for understanding why standard audience archetypes always underperform in luxury brand strategy.",
-    "tags": ["Consumer Psychology", "Luxury Strategy", "Identity"],
-    "url": "docs/motive_context_framework.pdf",
-    "status": "published"
+    "tags": [
+      "Consumer Psychology",
+      "Luxury Strategy",
+      "Identity"
+    ],
+    "url": "motive-context.html",
+    "status": "published",
+    "minutes": 17,
+    "year": "April 2026"
   },
   {
     "id": "philosophy-02",
@@ -65,9 +106,15 @@
     "collection": "Frameworks",
     "type": "Analytical Framework",
     "description": "A diagnostic and integration tool for structural brand inaccessibility. Maps luxury brand defensibility across seven independent filter axes — each taxing a different resource — and stress-tests how resistant each is to being collapsed by a single pressure. Includes entropy analysis, counter-stack defense, and cultivation protocol.",
-    "tags": ["Luxury Brand Architecture", "Filter Theory", "UHNW Strategy"],
-    "url": "docs/gradus_framework.pdf",
-    "status": "published"
+    "tags": [
+      "Luxury Brand Architecture",
+      "Filter Theory",
+      "UHNW Strategy"
+    ],
+    "url": "gradus.html",
+    "status": "published",
+    "minutes": 18,
+    "year": "April 2026"
   },
   {
     "id": "philosophy-03",
@@ -75,9 +122,15 @@
     "collection": "Frameworks",
     "type": "Interactive Tool",
     "description": "Run any luxury brand through the Gradus Framework in real time. Scores across all seven axes, labels each filter as structural, performative, or absent, and returns a shareable readout.",
-    "tags": ["Interactive", "Seven Axes", "Independence Score"],
+    "tags": [
+      "Interactive",
+      "Seven Axes",
+      "Independence Score"
+    ],
     "url": "gradus-diagnostic.html",
-    "status": "published"
+    "status": "published",
+    "minutes": null,
+    "year": "April 2026"
   },
   {
     "id": "wealth-01",
@@ -85,29 +138,16 @@
     "collection": "Power & Access",
     "type": "Essay",
     "description": "On inequality as mechanism, network logic, and the limits of democratic governance over mobile capital. Why the city's global power and its extreme inequality are not separate phenomena but expressions of the same operating logic — and why the historical record contains exactly three previous addresses and no examples of permanent residence.",
-    "tags": ["Political Economy", "Global Cities", "Inequality", "Governance"],
-    "url": "docs/new-york-capital-ecosystem-full.pdf",
-    "status": "published"
-  },
-  {
-    "id": "wealth-02",
-    "title": "The Family Office",
-    "collection": "Power & Access",
-    "type": "Essay",
-    "description": "How ultra-high-net-worth families structure, protect, and perpetuate capital across generations — and what the architecture of a family office reveals about the psychology of the people who build them. The single-family office as both financial instrument and identity project.",
-    "tags": ["Family Office", "UHNW", "Generational Wealth"],
-    "url": null,
-    "status": "in_progress"
-  },
-  {
-    "id": "wealth-03",
-    "title": "Why Old European Money Distrusts Growth",
-    "collection": "Power & Access",
-    "type": "Essay",
-    "description": "The fundamental difference between dynastic wealth preservation and American accumulation thinking — and why it changes everything about how those clients behave. Preservation over expansion. Continuity over disruption. The psychology of wealth that measures itself in centuries.",
-    "tags": ["Old Money", "Dynastic Wealth", "European vs American Wealth"],
-    "url": null,
-    "status": "in_progress"
+    "tags": [
+      "Political Economy",
+      "Global Cities",
+      "Inequality",
+      "Governance"
+    ],
+    "url": "ny-capital-ecosystem.html",
+    "status": "published",
+    "minutes": 52,
+    "year": "June 2026"
   },
   {
     "id": "cultural-01",
@@ -115,19 +155,17 @@
     "collection": "The Roots Underneath",
     "type": "Historical Fiction",
     "description": "Salem wasn't about witchcraft. It was about women who had autonomous knowledge, operated outside male-controlled systems, and refused to disappear quietly. A fictional memoir from inside 1692 — and what it reveals about how power has always punished people who don't belong.",
-    "tags": ["Salem", "1692", "Power", "Female Autonomy", "Historical Fiction"],
-    "url": "docs/witch.pdf",
-    "status": "published"
-  },
-  {
-    "id": "cultural-02",
-    "title": "Operation Aquarius",
-    "collection": "The Roots Underneath",
-    "type": "Speculative Fiction",
-    "description": "A full speculative world-building project — a detailed fictional account of a space settlement designed to house 3,000 people escaping an AI takeover on Earth. Co-written and co-led as team lead, covering engineering, governance, healthcare, fashion, agriculture, and culture. Received an honourable mention in the NSS Space Settlement Design Contest.",
-    "tags": ["Speculative Fiction", "World-Building", "NSS", "Space Settlement", "Co-authored"],
-    "url": "docs/Operation Aquarius.pdf",
-    "status": "published"
+    "tags": [
+      "Salem",
+      "1692",
+      "Power",
+      "Female Autonomy",
+      "Historical Fiction"
+    ],
+    "url": "the-witches-they-didnt-burn.html",
+    "status": "published",
+    "minutes": 16,
+    "year": "March 2026"
   },
   {
     "id": "cultural-03",
@@ -135,8 +173,54 @@
     "collection": "The Roots Underneath",
     "type": "Fiction",
     "description": "Three stories set in the private libraries, grand hotels, and quiet drawing rooms where old money lives. A hand-typeset edition — because some things are better read slowly, on paper.",
-    "tags": ["Fiction", "Atmosphere", "Private Edition"],
+    "tags": [
+      "Fiction",
+      "Atmosphere",
+      "Private Edition"
+    ],
     "url": "storybook.html",
-    "status": "published"
+    "status": "published",
+    "minutes": null,
+    "year": "2026"
+  },
+  {
+    "id": "about-01",
+    "title": "About — Harnoor Jhinzer",
+    "collection": "Colophon",
+    "type": "Page",
+    "description": "Who writes the archive — University of Waterloo, Psychology & Business (expected 2028), fieldwork, training at Inside LVMH, Bocconi, LBS, and Duke, and the research agenda: luxury, wealth structures, legal architecture.",
+    "tags": [
+      "about",
+      "author",
+      "bio",
+      "colophon",
+      "Harnoor Jhinzer",
+      "University of Waterloo",
+      "CV",
+      "contact"
+    ],
+    "url": "about.html",
+    "status": "published",
+    "minutes": null,
+    "year": "2026"
+  },
+  {
+    "id": "frameworks-aesthetic-01",
+    "title": "Gilded Romanticism",
+    "collection": "Frameworks",
+    "type": "Aesthetic Framework",
+    "description": "An original aesthetic framework built on a single refusal — the refusal to choose between ambition and softness, the empire and the rose garden. Six pillars defining a sensibility that holds the corporate and the romantic in the same frame.",
+    "tags": [
+      "aesthetic",
+      "identity",
+      "life philosophy",
+      "gilded romanticism",
+      "framework",
+      "taste"
+    ],
+    "url": "gilded-romanticism.html",
+    "status": "published",
+    "minutes": 6,
+    "year": "2026"
   }
 ]

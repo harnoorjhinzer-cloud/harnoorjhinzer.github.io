@@ -3,280 +3,177 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Frameworks — Harnoor Archive</title>
-<link rel="canonical" href="https://harnoorarchive.com/philosophy.html">
+<title>Motive × Context — Harnoor Archive</title>
+<meta name="description" content="Why does the same consumer who walks past a flagship every morning for six months finally walk in on an ordinary Tuesday? Motive × Context is an original…">
+<meta name="author" content="Harnoor Archive">
+<link rel="canonical" href="https://harnoorarchive.com/motive-context.html">
 <meta property="og:site_name" content="Harnoor Archive">
-<meta property="og:title" content="Frameworks — Harnoor Archive">
-<meta property="og:description" content="Original frameworks by Harnoor Jhinzer — structured attempts to systematize what keeps appearing in the study of luxury, wealth, identity, and desire.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://harnoorarchive.com/philosophy.html">
-<meta property="og:image" content="https://harnoorarchive.com/images/og/default.png">
+<meta property="og:title" content="Motive × Context — Harnoor Archive">
+<meta property="og:description" content="Why does the same consumer who walks past a flagship every morning for six months finally walk in on an ordinary Tuesday? Motive × Context is an original…">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://harnoorarchive.com/motive-context.html">
+<meta property="og:image" content="https://harnoorarchive.com/images/og/motive-context-framework.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Frameworks — Harnoor Archive">
-<meta name="twitter:description" content="Original frameworks by Harnoor Jhinzer — structured attempts to systematize what keeps appearing in the study of luxury, wealth, identity, and desire.">
-<meta name="twitter:image" content="https://harnoorarchive.com/images/og/default.png">
+<meta name="twitter:title" content="Motive × Context — Harnoor Archive">
+<meta name="twitter:description" content="Why does the same consumer who walks past a flagship every morning for six months finally walk in on an ordinary Tuesday? Motive × Context is an original…">
+<meta name="twitter:image" content="https://harnoorarchive.com/images/og/motive-context-framework.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.png" type="image/png" sizes="48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="description" content="Original frameworks by Harnoor Jhinzer — structured attempts to systematize what keeps appearing in the study of luxury, wealth, identity, and desire.">
-<meta name="author" content="Harnoor Archive">
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
 <style>
 :root{
   --ink:#0A0908;
   --bone:#F0EBE1;
   --gold:#B8935A;
-  --gold2: #9A6B2E;
+  --gold2:#9A6B2E;
   --muted:rgba(240,235,225,0.45);
   --line:rgba(184,147,90,0.18);
+  --accent:#7d9471;
+  --accent-soft:rgba(125,148,113,0.16);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{
-  background:var(--ink);
-  color:var(--bone);
-  font-family:'Jost',sans-serif;
-  font-weight:300;
-  overflow-x:hidden;
-}
-
-/* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:32px 72px;
-  display:flex;justify-content:space-between;align-items:center;
-  background:linear-gradient(to bottom,rgba(10,9,8,0.98),transparent);
-}
-.nav-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1rem;letter-spacing:0.2em;
-  color:var(--gold);font-weight:300;
-  text-decoration:none;
-}
+body{background:var(--ink);color:var(--bone);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:32px 72px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(10,9,8,0.98),transparent);}
+.nav-name{font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:0.2em;color:var(--gold);font-weight:300;text-decoration:none;}
 .nav-links{display:flex;gap:44px;list-style:none;}
-.nav-links a{
-  font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;
-  color:var(--muted);text-decoration:none;transition:color 0.3s;
-}
+.nav-links a{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.3s;}
 .nav-links a:hover{color:var(--gold);}
 
-/* PAGE HEADER */
-.page-header{
-  padding:180px 90px 80px;
-  border-bottom:1px solid var(--line);
-  position:relative;overflow:hidden;
-}
-.page-header-bg{
-  position:absolute;inset:0;
-  background-image:url("images/photos/letter-seal.jpg");
-  background-size:cover;background-position:center;
-}
-.page-header-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(95deg,rgba(10,9,8,0.92) 0%,rgba(10,9,8,0.6) 46%,rgba(10,9,8,0.15) 100%);}
-.page-header-grid{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(184,147,90,0.07) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(184,147,90,0.07) 1px,transparent 1px);
-  background-size:70px 70px;
-  mask-image:radial-gradient(ellipse at center,black 10%,transparent 75%);
-}
-.page-label{
-  font-size:0.55rem;letter-spacing:0.45em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:20px;
-  display:flex;align-items:center;gap:18px;
-  position:relative;z-index:2;
-  opacity:0;animation:up 1s ease 0.2s forwards;
-}
-.page-label::before{content:'';width:32px;height:1px;background:var(--gold);}
-.page-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(2.8rem,6vw,5.5rem);
-  font-weight:300;line-height:0.95;
-  position:relative;z-index:2;
-  opacity:0;animation:up 1s ease 0.1s forwards;
-}
-.page-title em{font-style:italic;color:var(--gold2);}
-.page-intro{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1rem,1.6vw,1.2rem);
-  font-style:italic;font-weight:300;
-  color:rgba(240,235,225,0.5);
-  line-height:1.75;max-width:580px;
-  margin-top:32px;
-  position:relative;z-index:2;
-  opacity:0;animation:up 1s ease 0.4s forwards;
-}
+/* COVER (compact header) */
+.cover{position:relative;overflow:hidden;padding:158px 90px 60px;border-bottom:1px solid var(--line);}
+.cover-bg{position:absolute;inset:0;background-image:url("images/photos/boutique-night.jpg");background-size:cover;background-position:center;}
+.cover-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(95deg,rgba(10,9,8,0.95) 0%,rgba(10,9,8,0.84) 42%,rgba(10,9,8,0.42) 100%);}
+.cover-inner{position:relative;z-index:2;max-width:880px;}
+.cover-label{font-size:0.55rem;letter-spacing:0.42em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:16px;margin-bottom:22px;opacity:0;animation:up 1s ease .1s forwards;}
+.cover-label::before{content:'';width:30px;height:1px;background:var(--accent);}
+.cover-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5.2vw,4.2rem);font-weight:400;line-height:1.04;opacity:0;animation:up 1.05s ease .2s forwards;}
+.cover-title em{font-style:italic;color:var(--accent);}
+.cover-meta{margin-top:24px;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,235,225,0.4);opacity:0;animation:up 1s ease .35s forwards;}
+.cover-meta span{color:rgba(240,235,225,0.62);}
+.cover-actions{margin-top:40px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;opacity:0;animation:up 1s ease .5s forwards;}
+.cover-cta{display:inline-flex;align-items:center;gap:12px;font-family:'Jost',sans-serif;font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:16px 30px;text-decoration:none;transition:background .3s,transform .3s;}
+.cover-cta span{transition:transform .3s;}
+.cover-cta:hover{background:var(--bone);}
+.cover-cta:hover span{transform:translateX(4px);}
+.cover-alt{font-family:'Jost',sans-serif;font-size:0.58rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.12);padding-bottom:3px;transition:border-color .3s;}
+.cover-alt:hover{border-color:var(--accent);}
 
-/* SECTION BASE */
-section{padding:100px 90px;border-top:1px solid var(--line);}
-.s-label{
-  font-size:0.55rem;letter-spacing:0.45em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:16px;
-  display:flex;align-items:center;gap:18px;
-}
+/* SECTIONS */
+section{padding:96px 90px;border-top:1px solid var(--line);}
+.s-label{font-size:0.55rem;letter-spacing:0.45em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:18px;}
 .s-label::before{content:'';width:32px;height:1px;background:var(--gold);}
-.s-heading{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.8rem,3.5vw,2.8rem);
-  font-weight:300;line-height:1.15;margin-bottom:12px;
-}
-.s-heading em{font-style:italic;color:var(--gold2);}
-.s-desc{
-  font-size:0.82rem;color:rgba(240,235,225,0.6);
-  line-height:1.9;max-width:560px;margin-bottom:52px;
+.abstract{
+  font-family:'Jost',sans-serif;
+  font-size:1.02rem;font-weight:300;
+  color:rgba(240,235,225,0.74);
+  line-height:1.95;max-width:680px;
 }
 
-/* FRAMEWORK LIST */
-.framework-list{display:flex;flex-direction:column;gap:2px;}
-.framework-item{
-  display:grid;
-  grid-template-columns:80px 1fr auto;
-  gap:48px;align-items:start;
-  padding:48px 0;
-  border-bottom:1px solid var(--line);
-  text-decoration:none;color:inherit;
-  transition:padding-left 0.3s;
-  position:relative;
-}
-.framework-item::before{
-  content:'';
-  position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(to right,var(--gold),transparent);
-  transform:scaleX(0);transform-origin:left;
-  transition:transform 0.5s;
-}
-a.framework-item:hover::before{transform:scaleX(1);}
-a.framework-item:hover{padding-left:8px;}
-.fi-num{
+/* PULL QUOTES */
+.quotes{display:flex;flex-direction:column;gap:46px;max-width:840px;}
+.pq{
   font-family:'Cormorant Garamond',serif;
-  font-size:3rem;font-weight:300;
-  color:rgba(184,147,90,0.12);line-height:1;
-  padding-top:4px;
+  font-size:clamp(1.2rem,2vw,1.55rem);
+  font-style:italic;font-weight:400;
+  line-height:1.5;color:rgba(240,235,225,0.88);
+  padding-left:30px;border-left:1px solid var(--accent);
 }
-.fi-body{display:flex;flex-direction:column;gap:12px;}
-.fi-tag{font-size:0.52rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);}
-.fi-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.5rem;font-weight:400;line-height:1.25;
-  transition:color 0.3s;
-}
-a.framework-item:hover .fi-title{color:var(--gold2);}
-.fi-desc{font-size:0.78rem;color:rgba(240,235,225,0.6);line-height:1.9;max-width:580px;}
-.fi-meta{
-  font-size:0.62rem;color:rgba(240,235,225,0.28);
-  letter-spacing:0.08em;line-height:1.6;
-  margin-top:4px;
-}
-.fi-action{
-  font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--gold);white-space:nowrap;
-  display:flex;align-items:center;gap:10px;
-  transition:gap 0.3s;
-  align-self:center;
-}
-a.framework-item:hover .fi-action{gap:18px;}
-.fi-action::after{content:'→';}
-.fi-soon{
-  font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;
-  color:rgba(184,147,90,0.28);
-  align-self:center;white-space:nowrap;
+.pq small{
+  display:block;margin-top:16px;
+  font-family:'Jost',sans-serif;font-style:normal;
+  font-size:0.56rem;letter-spacing:0.35em;text-transform:uppercase;
+  color:rgba(240,235,225,0.35);
 }
 
-/* BACK LINK */
-.back-link{
-  display:inline-flex;align-items:center;gap:12px;
-  padding:60px 90px;
-  font-size:0.55rem;letter-spacing:0.28em;text-transform:uppercase;
-  color:var(--gold);text-decoration:none;transition:gap 0.3s;
+/* CTA */
+.cta-wrap{text-align:center;}
+.cta{
+  display:inline-block;
+  font-family:'Jost',sans-serif;
+  font-size:0.68rem;letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--ink);background:var(--gold);
+  padding:22px 54px;text-decoration:none;
+  transition:background 0.3s,transform 0.3s;
 }
-.back-link:hover{gap:20px;}
-.back-link::before{content:'←';}
+.cta:hover{background:var(--bone);transform:translateY(-2px);}
+.cta-note{
+  margin-top:18px;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:0.95rem;color:rgba(240,235,225,0.4);
+}
+.cta-alt{
+  display:inline-block;margin-top:26px;
+  font-family:'Jost',sans-serif;
+  font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--accent);text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,0.12);padding-bottom:4px;
+  transition:border-color 0.3s,color 0.3s;
+}
+.cta-alt:hover{border-color:var(--accent);}
 
-/* FOOTER */
-footer{
-  padding:44px 72px;border-top:1px solid var(--line);
-  display:flex;justify-content:space-between;align-items:center;
-}
+footer{padding:44px 72px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;}
 .f-name{font-family:'Cormorant Garamond',serif;font-size:0.9rem;letter-spacing:0.2em;color:var(--gold);font-weight:300;}
 .f-copy{font-size:0.58rem;letter-spacing:0.15em;color:rgba(240,235,225,0.2);}
-
-/* ANIMATIONS */
+.email-capture-section{padding:40px 72px;border-top:1px solid var(--line);display:flex;align-items:center;gap:60px;}
+.ec-copy{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:300;font-style:italic;color:rgba(240,235,225,0.55);white-space:nowrap;flex-shrink:0;}
+.ec-right{flex:1;max-width:380px;}
+.ec-form{display:flex;border-bottom:1px solid var(--line);transition:border-color 0.3s;}
+.ec-form:focus-within{border-color:var(--gold);}
+.ec-input{flex:1;background:transparent;border:none;outline:none;font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:300;letter-spacing:0.05em;color:var(--bone);padding:10px 0;}
+.ec-input::placeholder{color:rgba(240,235,225,0.25);}
+.ec-btn{background:transparent;border:none;cursor:pointer;font-size:1rem;color:var(--gold);padding:10px 0 10px 14px;transition:transform 0.2s,color 0.2s;}
+.ec-btn:hover{transform:translateX(4px);color:var(--gold2);}
+.ec-btn:disabled{opacity:0.4;cursor:default;transform:none;}
+.ec-msg{margin-top:8px;font-size:0.65rem;letter-spacing:0.1em;color:rgba(240,235,225,0.4);min-height:1rem;}
 @keyframes up{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity 0.9s ease,transform 0.9s ease;}
 .reveal.on{opacity:1;transform:translateY(0);}
-
-/* EMAIL CAPTURE */
-.email-capture-section{
-  padding:40px 72px;
-  border-top:1px solid var(--line);
-  display:flex;
-  align-items:center;
-  gap:60px;
-}
-.ec-copy{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.05rem;
-  font-weight:300;font-style:italic;
-  color:rgba(240,235,225,0.55);
-  white-space:nowrap;
-  flex-shrink:0;
-}
-.ec-right{
-  flex:1;
-  max-width:380px;
-}
-.ec-form{
-  display:flex;
-  border-bottom:1px solid var(--line);
-  transition:border-color 0.3s;
-}
-.ec-form:focus-within{border-color:var(--gold);}
-.ec-input{
-  flex:1;
-  background:transparent;border:none;outline:none;
-  font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:300;
-  letter-spacing:0.05em;
-  color:var(--bone);
-  padding:10px 0;
-}
-.ec-input::placeholder{color:rgba(240,235,225,0.25);}
-.ec-btn{
-  background:transparent;border:none;cursor:pointer;
-  font-size:1rem;color:var(--gold);
-  padding:10px 0 10px 14px;
-  transition:transform 0.2s,color 0.2s;
-}
-.ec-btn:hover{transform:translateX(4px);color:var(--gold2);}
-.ec-btn:disabled{opacity:0.4;cursor:default;transform:none;}
-.ec-msg{
-  margin-top:8px;
-  font-size:0.65rem;letter-spacing:0.1em;
-  color:rgba(240,235,225,0.4);
-  min-height:1rem;
-}
-.ec-msg.error{color:rgba(184,147,90,0.7);}
-
-/* RESPONSIVE */
 @media(max-width:900px){
   nav{padding:24px 28px;}
   .nav-links{display:none;}
-  .page-header{padding:140px 28px 60px;}
-  section{padding:72px 28px;}
-  .framework-item{grid-template-columns:1fr;gap:16px;}
-  .fi-num{font-size:2rem;}
-  .fi-action,.fi-soon{align-self:flex-start;}
-  .back-link{padding:48px 28px;}
-  footer{padding:32px 28px;flex-direction:column;gap:12px;text-align:center;}
+  .cover{padding:120px 20px 60px;}
+  .plate-inner{padding:60px 26px 50px;}
+  section{padding:64px 28px;}
   .email-capture-section{flex-direction:column;align-items:flex-start;gap:20px;padding:36px 28px;}
-  .ec-copy{white-space:normal;}
-  .ec-right{width:100%;max-width:none;}
+  footer{padding:36px 28px;}
 }
 
 .nav-links a.nav-search{display:inline-flex;align-items:center;padding:1px 0;}
 .nav-links a.nav-search svg{width:14px;height:14px;display:block;}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Motive × Context",
+  "description": "Why does the same consumer who walks past a flagship every morning for six months finally walk in on an ordinary Tuesday? Motive × Context is an original…",
+  "url": "https://harnoorarchive.com/motive-context.html",
+  "mainEntityOfPage": "https://harnoorarchive.com/motive-context.html",
+  "image": "https://harnoorarchive.com/images/og/motive-context-framework.png",
+  "author": {
+    "@id": "https://harnoorarchive.com/#person",
+    "@type": "Person",
+    "name": "Harnoor Jhinzer",
+    "url": "https://harnoorarchive.com/about.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Harnoor Archive",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://harnoorarchive.com/favicon.png"
+    }
+  },
+  "datePublished": "2026-04",
+  "inLanguage": "en"
+}
+</script>
 </head>
 <body>
 <!-- texture overlay (added for depth) -->
@@ -288,7 +185,6 @@ footer{
 @keyframes texshift{0%{transform:translate(0,0)}16%{transform:translate(-3%,2%)}33%{transform:translate(2%,-3%)}50%{transform:translate(-2%,1%)}66%{transform:translate(3%,2%)}83%{transform:translate(-1%,-2%)}100%{transform:translate(0,0)}}
 @media(prefers-reduced-motion:reduce){.tex-grain{animation:none}}
 </style>
-
 
 <nav>
   <a href="index.html" class="nav-name">Harnoor Archive</a>
@@ -302,84 +198,36 @@ footer{
   </ul>
 </nav>
 
-<!-- PAGE HEADER -->
-<div class="page-header">
-  <div class="page-header-bg"></div>
-  <div class="page-header-grid"></div>
-  <div class="page-label">Frameworks</div>
-  <h1 class="page-title">Original ways<br><em>of seeing</em></h1>
-  <p class="page-intro">
-    These aren't observations. They're structured attempts to systematize what I keep noticing — original tools built to explain why standard readings of luxury, wealth, identity, and desire keep getting it wrong. Each one is published as a formal document.
-  </p>
-</div>
+<!-- COVER -->
+<header class="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-inner">
+    <div class="cover-label">Original Framework · Frameworks</div>
+    <h1 class="cover-title">Motive <em>×</em> Context</h1>
+    <div class="cover-meta">Published <span>April 2026</span> &nbsp;·&nbsp; <span>17 min</span> read</div>
+    <div class="cover-actions">
+      <a class="cover-cta" href="docs/motive-context-framework.pdf" target="_blank" rel="noopener">Read the full edition <span>→</span></a>
+      <a class="cover-alt" href="framework.html">Or read it as a slide presentation →</a>
+    </div>
+  </div>
+</header>
 
-<!-- ANALYTICAL FRAMEWORKS -->
+<!-- ABSTRACT -->
 <section>
-  <div class="s-label reveal">Analytical Frameworks</div>
-  <h2 class="s-heading reveal">Built to <em>explain behavior</em></h2>
-  <p class="s-desc reveal">Frameworks grounded in behavioral science and applied to luxury, identity, and consumer psychology. Each one started as an observation that existing models couldn't account for.</p>
+  <div class="s-label reveal">Abstract</div>
+  <p class="abstract reveal">Why does the same consumer who walks past a flagship every morning for six months finally walk in on an ordinary Tuesday? Motive × Context is an original framework for luxury consumer psychology built on a refusal: there is no stable 'luxury buyer.' There is a person, and a moment, and the intersection of the two. The framework maps the motives that drive luxury purchases against the contexts that activate them — who is watching, what is at stake, what the buyer is about to walk into — and shows how brands misread their customers when they design for a motive without designing for the context in which it fires. Enclothed cognition, sensory sequencing, and the difference between armor and costume all pass through the same intersection. The full edition includes the complete activator map and applied cases.</p>
+</section>
 
-  <div class="framework-list">
-
-    <a href="motive-context.html" class="framework-item reveal">
-      <div class="fi-num">I</div>
-      <div class="fi-body">
-        <span class="fi-tag">Analytical Framework · Published · April 2026 · 17 min</span>
-        <h3 class="fi-title">Motive × Context</h3>
-        <p class="fi-desc">The same luxury consumer behaves completely differently in different moments — not because they're inconsistent, but because context determines which version of self is active. A three-layer framework for understanding why standard audience archetypes always underperform in luxury brand strategy.</p>
-        <p class="fi-meta">Consumer Psychology · Luxury Strategy · Identity</p>
-      </div>
-      <span class="fi-action">Read</span>
-    </a>
-
-    <a href="gradus.html" class="framework-item reveal">
-      <div class="fi-num">II</div>
-      <div class="fi-body">
-        <span class="fi-tag">Analytical Framework · Original Tool · April 2026 · 18 min</span>
-        <h3 class="fi-title">The Gradus Framework</h3>
-        <p class="fi-desc">A diagnostic and integration tool for structural brand inaccessibility. Maps luxury brand defensibility across seven independent filter axes — each taxing a different resource — and stress-tests how resistant each is to being collapsed by a single pressure. Includes entropy analysis, counter-stack defense, and cultivation protocol.</p>
-        <p class="fi-meta">Luxury Brand Architecture · Filter Theory · UHNW Strategy</p>
-      </div>
-      <span class="fi-action">Read</span>
-    </a>
-
-    <a href="gradus-diagnostic.html" class="framework-item reveal" style="background:rgba(184,147,90,0.03);border-bottom:1px solid var(--line);">
-      <div class="fi-num" style="color:rgba(184,147,90,0.2);">↗</div>
-      <div class="fi-body">
-        <span class="fi-tag">Interactive Tool · Live</span>
-        <h3 class="fi-title">The Gradus Diagnostic</h3>
-        <p class="fi-desc">Now run a brand through it. Type any luxury house — the framework scores it across all seven axes in real time, labels each filter as structural, performative, or absent, and returns a shareable readout.</p>
-        <p class="fi-meta">Interactive · Seven Axes · Independence Score</p>
-      </div>
-      <span class="fi-action">Run</span>
-    </a>
-
+<!-- PULL QUOTES -->
+<section>
+  <div class="s-label reveal">From the Edition</div>
+  <div class="quotes">
+    <blockquote class="pq reveal">The same consumer is not the same consumer in different contexts. There is no stable 'luxury buyer.' There is a person, and a moment, and the intersection of the two.<small>Motive × Context</small></blockquote>
+    <blockquote class="pq reveal">The blazer did not give her skill. It gave her permission.<small>Motive × Context</small></blockquote>
   </div>
 </section>
 
-<!-- AESTHETIC FRAMEWORK -->
-<section>
-  <div class="s-label reveal">Aesthetic Framework</div>
-  <h2 class="s-heading reveal">A different <em>register</em></h2>
-  <p class="s-desc reveal">Not every framework explains a market. This one names a sensibility — the same systematizing instinct turned inward, on taste rather than behavior.</p>
 
-  <div class="framework-list">
-
-    <a href="gilded-romanticism.html" class="framework-item reveal">
-      <div class="fi-num">I</div>
-      <div class="fi-body">
-        <span class="fi-tag">Aesthetic Framework · 2026</span>
-        <h3 class="fi-title">Gilded Romanticism</h3>
-        <p class="fi-desc">An original aesthetic framework built on a single refusal — the refusal to choose between ambition and softness, the empire and the rose garden. Six pillars defining a sensibility that holds the corporate and the romantic in the same frame, without apology.</p>
-        <p class="fi-meta">Aesthetic · Identity · Life Philosophy</p>
-      </div>
-      <span class="fi-action">Read</span>
-    </a>
-
-  </div>
-</section>
-
-<a href="index.html" class="back-link">Back to Archive</a>
 
 <!-- EMAIL CAPTURE -->
 <section class="email-capture-section">

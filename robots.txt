@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Internal, not for indexing
+Disallow: /specimen.html
+
+Sitemap: https://harnoorarchive.com/sitemap.xml

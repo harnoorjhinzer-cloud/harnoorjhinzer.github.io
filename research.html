@@ -4,6 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Desire & Distinction — Harnoor Archive</title>
+<link rel="canonical" href="https://harnoorarchive.com/research.html">
+<meta property="og:site_name" content="Harnoor Archive">
+<meta property="og:title" content="Desire & Distinction — Harnoor Archive">
+<meta property="og:description" content="Case studies on the psychology and architecture of luxury consumption — how belonging gets built, how desire gets engineered, how exclusion gets staged.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://harnoorarchive.com/research.html">
+<meta property="og:image" content="https://harnoorarchive.com/images/og/default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Desire & Distinction — Harnoor Archive">
+<meta name="twitter:description" content="Case studies on the psychology and architecture of luxury consumption — how belonging gets built, how desire gets engineered, how exclusion gets staged.">
+<meta name="twitter:image" content="https://harnoorarchive.com/images/og/default.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="description" content="Case studies on the psychology and architecture of luxury consumption — how belonging gets built, how desire gets engineered, how exclusion gets staged.">
 <meta name="author" content="Harnoor Archive">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -54,8 +70,10 @@ nav{
 }
 .page-header-bg{
   position:absolute;inset:0;
-  background:radial-gradient(ellipse 60% 50% at 80% 40%,rgba(184,147,90,0.06) 0%,transparent 65%);
+  background-image:url("images/photos/archive-desk.jpg");
+  background-size:cover;background-position:center;
 }
+.page-header-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(95deg,rgba(10,9,8,0.95) 0%,rgba(10,9,8,0.84) 42%,rgba(10,9,8,0.42) 100%);}
 .page-header-grid{
   position:absolute;inset:0;
   background-image:
@@ -129,7 +147,7 @@ a.research-item:hover{padding-left:12px;}
 }
 a.research-item:hover .ri-title{color:var(--gold2);}
 .ri-desc{
-  font-size:0.78rem;color:rgba(240,235,225,0.45);
+  font-size:0.78rem;color:rgba(240,235,225,0.6);
   line-height:1.85;max-width:600px;
 }
 .ri-meta{
@@ -233,20 +251,32 @@ footer{
   .ec-copy{white-space:normal;}
   .ec-right{width:100%;max-width:none;}
 }
+
+.nav-links a.nav-search{display:inline-flex;align-items:center;padding:1px 0;}
+.nav-links a.nav-search svg{width:14px;height:14px;display:block;}
 </style>
 </head>
 <body>
+<!-- texture overlay (added for depth) -->
+<div class="tex-vignette" aria-hidden="true"></div>
+<div class="tex-grain" aria-hidden="true"></div>
+<style>
+.tex-vignette{position:fixed;inset:0;pointer-events:none;z-index:9997;background:radial-gradient(ellipse 130% 108% at 50% 32%,transparent 50%,rgba(0,0,0,0.55) 100%);}
+.tex-grain{position:fixed;inset:-60%;width:220%;height:220%;pointer-events:none;z-index:9998;opacity:0.045;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27160%27%20height%3D%27160%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.9%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27/%3E%3CfeColorMatrix%20type%3D%27saturate%27%20values%3D%270%27/%3E%3C/filter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27/%3E%3C/svg%3E");background-repeat:repeat;animation:texshift 5.2s steps(6) infinite;}
+@keyframes texshift{0%{transform:translate(0,0)}16%{transform:translate(-3%,2%)}33%{transform:translate(2%,-3%)}50%{transform:translate(-2%,1%)}66%{transform:translate(3%,2%)}83%{transform:translate(-1%,-2%)}100%{transform:translate(0,0)}}
+@media(prefers-reduced-motion:reduce){.tex-grain{animation:none}}
+</style>
+
 
 <nav>
   <a href="index.html" class="nav-name">Harnoor Archive</a>
   <ul class="nav-links">
-    <li><a href="index.html#about">About</a></li>
-    <li><a href="research.html">Desire &amp; Distinction</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="research.html">Desire</a></li>
     <li><a href="philosophy.html">Frameworks</a></li>
-    <li><a href="wealth.html">Power &amp; Access</a></li>
-    <li><a href="cultural.html">The Roots Underneath</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
-    <li><a href="search.html">Search</a></li>
+    <li><a href="wealth.html">Power</a></li>
+    <li><a href="cultural.html">Roots</a></li>
+    <li><a href="search.html" class="nav-search" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg></a></li>
   </ul>
 </nav>
 
@@ -262,10 +292,10 @@ footer{
 
 <div class="research-list">
 
-  <a href="docs/What Louis Vuitton Taught Me About Belonging.pdf" class="research-item reveal" target="_blank">
+  <a href="lv-belonging.html" class="research-item reveal">
     <div class="ri-number">01</div>
     <div class="ri-content">
-      <span class="ri-tag">Case Study · Published</span>
+      <span class="ri-tag">Case Study · Published · April 2026 · 12 min</span>
       <h2 class="ri-title">What Louis Vuitton Taught Me About Belonging</h2>
       <p class="ri-desc">A personal and academic analysis of luxury consumption psychology — why the product is almost beside the point, what the space is really selling, and why three people in the same room can feel completely different things.</p>
       <p class="ri-meta">Belonging · Identity · Luxury Retail · Consumer Psychology</p>
@@ -273,10 +303,10 @@ footer{
     <span class="ri-status">Read</span>
   </a>
 
-  <a href="docs/Dressed As Someone Else.pdf" class="research-item reveal" target="_blank">
+  <a href="dressed-as-someone-else.html" class="research-item reveal">
     <div class="ri-number">02</div>
     <div class="ri-content">
-      <span class="ri-tag">Case Study · Published</span>
+      <span class="ri-tag">Case Study · Published · April 2026 · 16 min</span>
       <h2 class="ri-title">Dressed As Someone Else</h2>
       <p class="ri-desc">Can clothing construct a temporary identity that redirects real consumer behavior? A first-person experiment in Toronto testing enclothed cognition, identity extension, and front-stage performance.</p>
       <p class="ri-meta">Enclothed Cognition · Identity · Consumer Behavior · Field Experiment</p>
@@ -284,10 +314,10 @@ footer{
     <span class="ri-status">Read</span>
   </a>
 
-  <a href="docs/A Room That Knows You..pdf" class="research-item reveal" target="_blank">
+  <a href="a-room-that-knows-you.html" class="research-item reveal">
     <div class="ri-number">03</div>
     <div class="ri-content">
-      <span class="ri-tag">Case Study · Published</span>
+      <span class="ri-tag">Case Study · Published · April 2026 · 12 min</span>
       <h2 class="ri-title">A Room That Knows You</h2>
       <p class="ri-desc">Luxury doesn't begin with the room. It begins the moment you cross the threshold — fifteen seconds before your mind catches up. A study in sensory sequencing, atmospheric design, and how the right environment constructs a version of you that already belongs.</p>
       <p class="ri-meta">Sensory Design · Atmospheric Psychology · Luxury Hospitality · Kimpton</p>
@@ -295,10 +325,10 @@ footer{
     <span class="ri-status">Read</span>
   </a>
 
-  <a href="docs/The Customer Is Always Right.pdf" class="research-item reveal" target="_blank">
+  <a href="the-customer-is-always-right.html" class="research-item reveal">
     <div class="ri-number">04</div>
     <div class="ri-content">
-      <span class="ri-tag">Case Study · Published</span>
+      <span class="ri-tag">Case Study · Published · April 2026 · 17 min</span>
       <h2 class="ri-title">The Customer Is Always Right</h2>
       <p class="ri-desc">Not all luxury consumers are the same — and the brands that treat them like they are lose all of them. A study in HNW segmentation, why the standard luxury audience model fails, and what it actually takes to serve the top tier correctly.</p>
       <p class="ri-meta">HNW Segmentation · Brand Strategy · UHNW Behavior · Luxury Service</p>
@@ -306,10 +336,10 @@ footer{
     <span class="ri-status">Read</span>
   </a>
 
-   <a href="docs/The Price Is The Product.pdf" class="research-item reveal" target="_blank">
+  <a href="the-price-is-the-product.html" class="research-item reveal">
     <div class="ri-number">05</div>
     <div class="ri-content">
-      <span class="ri-tag">Case Study · Published</span>
+      <span class="ri-tag">Case Study · Published · May 2026 · 13 min</span>
       <h2 class="ri-title">The Price Is The Product</h2>
       <p class="ri-desc">How price itself functions as the primary signal — not of value, but of belonging, exclusion, and identity. Why some luxury consumers need the number to be impossible, and what that reveals about the psychology of aspirational consumption at its most concentrated.</p>
       <p class="ri-meta">Pricing Psychology · Exclusion · Status Signaling · Luxury Economics</p>
@@ -323,11 +353,11 @@ footer{
 
 <!-- EMAIL CAPTURE -->
 <section class="email-capture-section">
-  <p class="ec-copy">New work, when it's ready.</p>
+  <p class="ec-copy">The next edition, when it's ready — no schedule, no list.</p>
   <div class="ec-right">
     <form class="ec-form" id="emailCaptureForm" novalidate>
       <input class="ec-input" type="email" placeholder="Your email" required autocomplete="email">
-      <button class="ec-btn" type="submit" aria-label="Subscribe">→</button>
+      <button class="ec-btn" type="submit" aria-label="Notify me">→</button>
     </form>
     <p class="ec-msg" id="ecMsg"></p>
   </div>
@@ -335,7 +365,7 @@ footer{
 
 <footer>
   <div class="f-name">Harnoor Archive</div>
-  <div class="f-copy">&copy; <script>document.write(new Date().getFullYear())</script> &middot; Independent Research &middot; Canada</div>
+  <div class="f-copy">&copy; 2025–2026 &middot; Independent Research &middot; Canada</div>
 </footer>
 
 <script>
@@ -362,7 +392,7 @@ if (ecForm) {
       });
       const data = await res.json();
       if (res.ok) {
-        ecMsg.textContent = "You're in.";
+        ecMsg.textContent = "Done — you'll get the next edition.";
         ecForm.reset();
       } else {
         ecMsg.textContent = data.error || 'Something went wrong. Try again.';
@@ -376,6 +406,87 @@ if (ecForm) {
     }
   });
 }
+</script>
+
+<!-- command palette (⌘K) -->
+<div class="cmdk" id="cmdk" aria-hidden="true">
+  <div class="cmdk-backdrop" data-cmdk-close></div>
+  <div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Search the archive">
+    <div class="cmdk-top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+      <input id="cmdkInput" class="cmdk-input" type="text" placeholder="Search the archive…" autocomplete="off" spellcheck="false" aria-label="Search the archive">
+      <kbd class="cmdk-esck">ESC</kbd>
+    </div>
+    <div class="cmdk-results" id="cmdkResults"></div>
+    <div class="cmdk-foot"><span>↑ ↓ &nbsp;navigate</span><span>↵ &nbsp;open</span><span>esc &nbsp;close</span></div>
+  </div>
+</div>
+<style>
+.cmdk{position:fixed;inset:0;z-index:10060;display:none;font-family:'Jost',sans-serif;}
+.cmdk.open{display:block;}
+.cmdk-backdrop{position:absolute;inset:0;background:rgba(6,5,4,0.72);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);}
+.cmdk-panel{position:relative;max-width:620px;margin:11vh auto 0;background:#100c0a;border:1px solid rgba(184,147,90,0.25);box-shadow:0 30px 90px rgba(0,0,0,0.65);overflow:hidden;animation:cmdkin .18s ease;}
+@keyframes cmdkin{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+.cmdk-top{display:flex;align-items:center;gap:14px;padding:19px 22px;border-bottom:1px solid rgba(184,147,90,0.16);}
+.cmdk-top svg{width:16px;height:16px;color:#B8935A;flex-shrink:0;}
+.cmdk-input{flex:1;background:transparent;border:none;outline:none;color:#F0EBE1;font-family:'Cormorant Garamond',serif;font-size:1.35rem;}
+.cmdk-input::placeholder{color:rgba(240,235,225,0.3);}
+.cmdk-esck{font-family:'Jost',sans-serif;font-size:0.5rem;letter-spacing:0.2em;color:rgba(240,235,225,0.4);border:1px solid rgba(184,147,90,0.28);padding:3px 6px;border-radius:3px;}
+.cmdk-results{max-height:52vh;overflow-y:auto;}
+.cmdk-row{display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding:14px 22px;cursor:pointer;border-bottom:1px solid rgba(184,147,90,0.06);text-decoration:none;color:inherit;}
+.cmdk-row:last-child{border-bottom:none;}
+.cmdk-row.sel{background:rgba(184,147,90,0.11);}
+.cmdk-row .t{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:#F0EBE1;line-height:1.3;}
+.cmdk-row .c{font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:#B8935A;white-space:nowrap;}
+.cmdk-row.soon{opacity:0.45;cursor:default;}
+.cmdk-empty{padding:30px 22px;font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(240,235,225,0.3);}
+.cmdk-foot{display:flex;gap:24px;padding:12px 22px;border-top:1px solid rgba(184,147,90,0.16);font-size:0.5rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,235,225,0.3);}
+@media(max-width:600px){.cmdk-panel{margin:5vh 14px 0;}.cmdk-foot{display:none;}}
+</style>
+<script>
+(function(){
+  var el=document.getElementById('cmdk'); if(!el) return;
+  var input=document.getElementById('cmdkInput'), results=document.getElementById('cmdkResults');
+  var DATA=null, items=[], sel=0, loaded=false;
+  function load(cb){ if(loaded){cb&&cb();return;} fetch('search-index.json').then(function(r){return r.json();}).then(function(d){DATA=d;loaded=true;cb&&cb();}).catch(function(){DATA=[];loaded=true;cb&&cb();}); }
+  function open(){ el.classList.add('open'); el.setAttribute('aria-hidden','false'); document.documentElement.style.overflow='hidden'; load(function(){filter('');}); setTimeout(function(){input.focus();input.select();},20); }
+  function close(){ el.classList.remove('open'); el.setAttribute('aria-hidden','true'); document.documentElement.style.overflow=''; input.value=''; }
+  function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function filter(q){
+    q=(q||'').toLowerCase().trim();
+    var list=(DATA||[]).filter(function(e){return e.collection!=='Colophon'||q;});
+    if(q) list=(DATA||[]).filter(function(e){return (e.title+' '+e.description+' '+(e.tags||[]).join(' ')+' '+e.collection+' '+e.type).toLowerCase().indexOf(q)>-1;});
+    list.sort(function(a,b){var as=(!a.url||a.status==='in_progress')?1:0,bs=(!b.url||b.status==='in_progress')?1:0;return as-bs;});
+    items=list.slice(0,8); sel=0; draw();
+  }
+  function draw(){
+    if(!items.length){results.innerHTML='<div class="cmdk-empty">Nothing matches that.</div>';return;}
+    results.innerHTML=items.map(function(e,i){
+      var soon=(!e.url||e.status==='in_progress');
+      var tag=soon?'Forthcoming':(e.url.slice(-4)==='.pdf'?'PDF':(e.collection||'').split(' ')[0]);
+      var cls='cmdk-row'+(i===sel?' sel':'')+(soon?' soon':'');
+      var label='<span class="t">'+esc(e.title)+'</span><span class="c">'+esc(tag)+'</span>';
+      if(soon) return '<div class="'+cls+'" data-i="'+i+'">'+label+'</div>';
+      return '<a class="'+cls+'" data-i="'+i+'" href="'+e.url+'"'+(e.url.slice(-4)==='.pdf'?' target="_blank" rel="noopener"':'')+'>'+label+'</a>';
+    }).join('');
+    Array.prototype.forEach.call(results.querySelectorAll('.cmdk-row'),function(r){ r.addEventListener('mousemove',function(){sel=+r.dataset.i;mark();}); });
+  }
+  function mark(){ Array.prototype.forEach.call(results.children,function(c,i){ if(c.classList) c.classList.toggle('sel',i===sel); }); var s=results.children[sel]; if(s&&s.scrollIntoView) s.scrollIntoView({block:'nearest'}); }
+  function go(){ var e=items[sel]; if(!e||!e.url||e.status==='in_progress') return; if(e.url.slice(-4)==='.pdf') window.open(e.url,'_blank'); else window.location.href=e.url; }
+  input.addEventListener('input',function(){filter(input.value);});
+  input.addEventListener('keydown',function(ev){
+    if(ev.key==='ArrowDown'){ev.preventDefault();sel=Math.min(sel+1,items.length-1);mark();}
+    else if(ev.key==='ArrowUp'){ev.preventDefault();sel=Math.max(sel-1,0);mark();}
+    else if(ev.key==='Enter'){ev.preventDefault();go();}
+    else if(ev.key==='Escape'){ev.preventDefault();close();}
+  });
+  el.addEventListener('click',function(ev){ if(ev.target.hasAttribute('data-cmdk-close')) close(); });
+  document.addEventListener('keydown',function(ev){
+    if((ev.metaKey||ev.ctrlKey)&&(ev.key==='k'||ev.key==='K')){ev.preventDefault(); el.classList.contains('open')?close():open();}
+    else if(ev.key==='Escape'&&el.classList.contains('open')){close();}
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('a.nav-search'),function(a){ a.addEventListener('click',function(ev){ev.preventDefault();open();}); });
+})();
 </script>
 
 </body>
