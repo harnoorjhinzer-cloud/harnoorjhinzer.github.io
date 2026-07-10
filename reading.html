@@ -148,6 +148,7 @@ footer{padding:44px 72px;border-top:1px solid var(--line);display:flex;justify-c
   footer{padding:32px 28px;flex-direction:column;gap:12px;text-align:center;}
 }
 </style>
+<link rel="stylesheet" href="fx.css">
 </head>
 <body>
 
@@ -365,12 +366,4 @@ if(ecForm){ecForm.addEventListener('submit',async e=>{
   });
   el.addEventListener('click',function(ev){ if(ev.target.hasAttribute('data-cmdk-close')) close(); });
   document.addEventListener('keydown',function(ev){
-    if((ev.metaKey||ev.ctrlKey)&&(ev.key==='k'||ev.key==='K')){ev.preventDefault(); el.classList.contains('open')?close():open();}
-    else if(ev.key==='Escape'&&el.classList.contains('open')){close();}
-  });
-  Array.prototype.forEach.call(document.querySelectorAll('a.nav-search'),function(a){ a.addEventListener('click',function(ev){ev.preventDefault();open();}); });
-})();
-</script>
-
-</body>
-</html>
+    if((ev.metaKey||ev.ctrlKey)&&(ev.key==='k'||ev.key==='K')){ev.preventDefault(); el.classList

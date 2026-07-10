@@ -528,6 +528,7 @@ body.intro-lock{overflow:hidden;}
   ]
 }
 </script>
+<link rel="stylesheet" href="fx.css">
 </head>
 <body>
 <div class="intro" id="intro" aria-hidden="true">
@@ -957,16 +958,4 @@ if (ecForm) {
     if(ev.key==='ArrowDown'){ev.preventDefault();sel=Math.min(sel+1,items.length-1);mark();}
     else if(ev.key==='ArrowUp'){ev.preventDefault();sel=Math.max(sel-1,0);mark();}
     else if(ev.key==='Enter'){ev.preventDefault();go();}
-    else if(ev.key==='Escape'){ev.preventDefault();close();}
-  });
-  el.addEventListener('click',function(ev){ if(ev.target.hasAttribute('data-cmdk-close')) close(); });
-  document.addEventListener('keydown',function(ev){
-    if((ev.metaKey||ev.ctrlKey)&&(ev.key==='k'||ev.key==='K')){ev.preventDefault(); el.classList.contains('open')?close():open();}
-    else if(ev.key==='Escape'&&el.classList.contains('open')){close();}
-  });
-  Array.prototype.forEach.call(document.querySelectorAll('a.nav-search'),function(a){ a.addEventListener('click',function(ev){ev.preventDefault();open();}); });
-})();
-</script>
-
-</body>
-</html>
+    else if(

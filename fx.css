@@ -1,0 +1,82 @@
+/* ============================================================
+   Harnoor Archive — interaction layer (fx)
+   Premium micro-interactions. Degrades gracefully; respects
+   prefers-reduced-motion and coarse/touch pointers.
+   ============================================================ */
+:root{ --fx-gold: var(--gold, #B8935A); }
+
+/* ---- scroll progress hairline ---- */
+#fx-progress{
+  position:fixed; top:0; left:0; height:2px; width:0; z-index:99999;
+  background:linear-gradient(90deg, rgba(184,147,90,0), var(--fx-gold) 55%, #EBCF95);
+  box-shadow:0 0 14px rgba(184,147,90,.55);
+  pointer-events:none;
+}
+
+/* ---- custom cursor (augments the native cursor) ---- */
+#fx-ring{
+  position:fixed; top:0; left:0; width:32px; height:32px; margin:-16px 0 0 -16px;
+  border:1px solid rgba(184,147,90,.5); border-radius:50%;
+  pointer-events:none; z-index:99998; mix-blend-mode:difference;
+  opacity:0;
+  transition:width .28s ease, height .28s ease, margin .28s ease,
+             border-color .28s ease, background .28s ease, opacity .35s ease;
+}
+#fx-ring.fx-on{ opacity:1; }
+#fx-ring.fx-hot{
+  width:56px; height:56px; margin:-28px 0 0 -28px;
+  border-color:rgba(184,147,90,.95); background:rgba(184,147,90,.07);
+}
+#fx-dot{
+  position:fixed; top:0; left:0; width:5px; height:5px; margin:-2.5px 0 0 -2.5px;
+  border-radius:50%; background:var(--fx-gold);
+  pointer-events:none; z-index:99998; opacity:0; transition:opacity .35s ease;
+}
+#fx-dot.fx-on{ opacity:1; }
+@media (hover:none),(pointer:coarse){ #fx-ring,#fx-dot{ display:none!important; } }
+
+/* ---- scroll reveal ---- */
+.fx-reveal{
+  opacity:0; transform:translateY(26px);
+  transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+  will-change:opacity,transform;
+}
+.fx-reveal.fx-in{ opacity:1; transform:none; }
+
+/* ---- cinematic cover motion (slow Ken Burns drift) ---- */
+.cover-bg, .page-header-bg{
+  will-change:transform;
+  animation:fx-kenburns 28s ease-in-out infinite alternate;
+}
+@keyframes fx-kenburns{ from{ transform:scale(1.002); } to{ transform:scale(1.075); } }
+
+/* ---- Index hover preview ---- */
+#fx-preview{
+  position:fixed; top:0; left:0; width:290px; height:176px; z-index:99997;
+  pointer-events:none; border:1px solid rgba(184,147,90,.35);
+  background-size:cover; background-position:center;
+  opacity:0; transform:translate(-50%,-50%) scale(.9) rotate(-2.5deg);
+  transition:opacity .35s ease, transform .4s cubic-bezier(.2,.7,.2,1);
+  box-shadow:0 34px 90px rgba(0,0,0,.62); filter:saturate(1.06);
+}
+#fx-preview.fx-show{ opacity:1; transform:translate(-50%,-50%) scale(1) rotate(-2.5deg); }
+#fx-preview::after{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(160deg, rgba(10,9,8,.04), rgba(10,9,8,.46));
+}
+
+/* ---- homepage hero cursor glow ---- */
+.fx-hero-glow{
+  position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:radial-gradient(240px circle at var(--mx,50%) var(--my,42%),
+            rgba(184,147,90,.12), transparent 62%);
+  opacity:0; transition:opacity .6s ease;
+}
+.fx-hero-glow.fx-on{ opacity:1; }
+
+/* ---- reduced motion: strip the movement, keep the structure ---- */
+@media (prefers-reduced-motion: reduce){
+  .cover-bg, .page-header-bg{ animation:none!important; }
+  .fx-reveal{ opacity:1!important; transform:none!important; transition:none!important; }
+  #fx-ring,#fx-dot,#fx-preview,.fx-hero-glow{ display:none!important; }
+}

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Luxury Buyer Profile — Harnoor Archive</title>
+<meta name="description" content="A short diagnostic that places you among the luxury buyer archetypes — Inheritor, Self-Made, Aspirant, Connoisseur, Custodian — from the case study 'The Customer Is Always Right.' Answer six questions for a scored readout.">
+<meta name="author" content="Harnoor Archive">
+<link rel="canonical" href="https://harnoorarchive.com/luxury-buyer-profile.html">
+<meta property="og:site_name" content="Harnoor Archive">
+<meta property="og:title" content="The Luxury Buyer Profile — Harnoor Archive">
+<meta property="og:description" content="Which luxury buyer are you? A six-question diagnostic with a scored, shareable readout.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://harnoorarchive.com/luxury-buyer-profile.html">
+<meta property="og:image" content="https://harnoorarchive.com/images/og/default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Luxury Buyer Profile — Harnoor Archive">
+<meta name="twitter:description" content="Which luxury buyer are you? A six-question diagnostic with a scored, shareable readout.">
+<meta name="twitter:image" content="https://harnoorarchive.com/images/og/default.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0908; --ink-2:#141210; --bone:#F0EBE1;
+  --bone-dim:rgba(240,235,225,0.55); --bone-faint:rgba(240,235,225,0.28);
+  --gold:#B8935A; --gold-2:#D4B483; --gold-dim:rgba(184,147,90,0.55);
+  --line:rgba(184,147,90,0.22); --line-faint:rgba(184,147,90,0.1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--ink);color:var(--bone);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:32px 72px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(10,9,8,0.98),transparent);}
+.nav-name{font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:0.2em;color:var(--gold);font-weight:300;text-decoration:none;}
+.nav-links{display:flex;gap:40px;list-style:none;}
+.nav-links a{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--bone-faint);text-decoration:none;transition:color 0.3s;}
+.nav-links a:hover{color:var(--gold);}
+
+/* HEADER */
+.page-header{padding:180px 90px 70px;border-bottom:1px solid var(--line);position:relative;overflow:hidden;}
+.page-header-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 80% 40%,rgba(184,147,90,0.06) 0%,transparent 65%);}
+.page-header-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(184,147,90,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(184,147,90,0.07) 1px,transparent 1px);background-size:70px 70px;mask-image:radial-gradient(ellipse at center,black 10%,transparent 75%);}
+.page-label{font-size:0.55rem;letter-spacing:0.45em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:18px;position:relative;z-index:2;}
+.page-label::before{content:'';width:32px;height:1px;background:var(--gold);}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:300;line-height:0.95;position:relative;z-index:2;}
+.page-title em{font-style:italic;color:var(--gold-2);}
+.page-intro{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,1.6vw,1.2rem);font-style:italic;font-weight:300;color:rgba(240,235,225,0.5);line-height:1.75;max-width:600px;margin-top:30px;position:relative;z-index:2;}
+
+/* TOOL */
+.tool-section{padding:70px 90px 110px;max-width:920px;}
+
+/* QUIZ */
+.quiz-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:34px;gap:24px;}
+.q-progress-num{font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);}
+.q-progress-track{flex:1;height:1px;background:var(--line-faint);position:relative;}
+.q-progress-fill{position:absolute;left:0;top:0;height:100%;background:var(--gold);width:0;transition:width .5s ease;}
+.q-back{font-size:0.55rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--bone-faint);background:none;border:none;cursor:pointer;transition:color .3s;opacity:0;pointer-events:none;}
+.q-back.show{opacity:1;pointer-events:auto;}
+.q-back:hover{color:var(--gold);}
+
+.q-stage{min-height:340px;position:relative;}
+.q-card{position:absolute;inset:0;opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease;pointer-events:none;}
+.q-card.on{opacity:1;transform:none;pointer-events:auto;position:relative;}
+.q-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.3rem);font-weight:300;line-height:1.25;margin-bottom:38px;max-width:760px;}
+.q-text em{font-style:italic;color:var(--gold-2);}
+.q-opts{display:flex;flex-direction:column;gap:2px;}
+.q-opt{
+  text-align:left;background:transparent;border:1px solid var(--line-faint);
+  color:var(--bone-dim);font-family:'Jost',sans-serif;font-weight:300;
+  font-size:0.96rem;line-height:1.5;letter-spacing:0.01em;
+  padding:22px 26px;cursor:pointer;position:relative;
+  transition:border-color .3s,color .3s,background .3s,padding-left .3s;
+}
+.q-opt::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gold);transform:scaleY(0);transform-origin:top;transition:transform .35s;}
+.q-opt:hover{color:var(--bone);border-color:var(--line);background:rgba(184,147,90,0.04);padding-left:32px;}
+.q-opt:hover::before{transform:scaleY(1);}
+
+/* RESULT */
+#result{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease;display:none;}
+#result.visible{opacity:1;transform:none;}
+.result-kicker{font-size:0.55rem;letter-spacing:0.45em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.result-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,6vw,4.4rem);font-weight:300;line-height:1;}
+.result-name em{font-style:italic;color:var(--gold-2);}
+.result-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.1rem,2vw,1.45rem);color:var(--bone-dim);margin-top:16px;max-width:680px;line-height:1.5;}
+
+.score-block{display:flex;align-items:flex-end;gap:20px;margin:46px 0;padding-bottom:46px;border-bottom:1px solid var(--line);}
+.score-label{font-size:0.52rem;letter-spacing:0.45em;text-transform:uppercase;color:var(--gold);padding-bottom:12px;}
+.score-numeral{font-family:'Cormorant Garamond',serif;font-size:clamp(3.6rem,8vw,6.5rem);font-weight:300;color:var(--gold);line-height:1;}
+.score-denom{font-size:0.34em;color:var(--gold-dim);margin-left:4px;}
+
+.verdict-quote{border-left:2px solid var(--gold);padding-left:28px;margin-bottom:46px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.55;color:var(--gold-2);max-width:760px;}
+
+.axes-list{display:flex;flex-direction:column;margin-bottom:46px;}
+.axis-row{padding:26px 0;border-bottom:1px solid var(--line-faint);}
+.axis-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;gap:20px;}
+.axis-names{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+.axis-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:400;color:var(--bone);letter-spacing:0.03em;}
+.axis-descriptor{font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--bone-faint);}
+.axis-score-num{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;line-height:1;color:var(--gold);}
+.axis-track{width:100%;height:3px;background:var(--line-faint);overflow:hidden;}
+.axis-fill{height:100%;width:0;background:var(--gold);transition:width 1.1s cubic-bezier(.2,.7,.2,1);}
+
+.result-summary{font-size:0.92rem;color:var(--bone-dim);line-height:1.95;max-width:700px;padding:34px 0 44px;border-top:1px solid var(--line-faint);}
+.result-summary strong{color:var(--bone);font-weight:400;}
+
+.share-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+.share-btn{background:transparent;border:1px solid var(--line);padding:14px 26px;font-family:'Jost',sans-serif;font-size:0.52rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--bone-faint);cursor:pointer;transition:border-color .25s,color .25s;text-decoration:none;display:inline-block;}
+.share-btn:hover{border-color:var(--gold);color:var(--gold);}
+.share-btn.copied{color:var(--gold);border-color:var(--gold);}
+.share-btn.primary{color:var(--ink);background:var(--gold);border-color:var(--gold);}
+.share-btn.primary:hover{background:var(--bone);}
+
+/* BACK + FOOTER */
+.back-link{display:inline-flex;align-items:center;gap:12px;padding:50px 90px;font-size:0.55rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);text-decoration:none;transition:gap .3s;}
+.back-link:hover{gap:20px;}
+.back-link::before{content:'←';}
+footer{padding:44px 72px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;}
+.f-name{font-family:'Cormorant Garamond',serif;font-size:0.9rem;letter-spacing:0.2em;color:var(--gold);font-weight:300;}
+.f-copy{font-size:0.58rem;letter-spacing:0.15em;color:rgba(240,235,225,0.2);}
+
+.note{font-size:0.72rem;color:var(--bone-faint);line-height:1.8;max-width:680px;margin-top:34px;font-style:italic;font-family:'Cormorant Garamond',serif;}
+
+@media (max-width:720px){
+  nav{padding:22px 28px;} .nav-links{display:none;}
+  .page-header{padding:140px 28px 56px;} .tool-section{padding:48px 28px 80px;}
+  .back-link{padding:40px 28px;} footer{padding:32px 28px;flex-direction:column;gap:12px;text-align:center;}
+  .score-block{flex-direction:column;align-items:flex-start;gap:8px;}
+}
+@keyframes up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-name">Harnoor Archive</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="reading.html">Index</a></li>
+    <li><a href="research.html">Desire</a></li>
+    <li><a href="philosophy.html">Frameworks</a></li>
+    <li><a href="wealth.html">Power</a></li>
+    <li><a href="cultural.html">Roots</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-grid"></div>
+  <div class="page-label">Interactive Diagnostic</div>
+  <h1 class="page-title">The Luxury<br><em>Buyer Profile</em></h1>
+  <p class="page-intro">Not all luxury consumers are the same — and the brands that treat them as one lose all of them. Six questions place you among the buyer archetypes from <em>The Customer Is Always Right</em>.</p>
+</header>
+
+<section class="tool-section">
+  <!-- QUIZ -->
+  <div id="quiz">
+    <div class="quiz-top">
+      <span class="q-progress-num" id="qnum">01 / 06</span>
+      <div class="q-progress-track"><div class="q-progress-fill" id="qfill"></div></div>
+      <button class="q-back" id="qback">← back</button>
+    </div>
+    <div class="q-stage" id="stage"></div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result">
+    <div class="result-kicker">Your Profile</div>
+    <h2 class="result-name" id="r-name"></h2>
+    <p class="result-tag" id="r-tag"></p>
+
+    <div class="score-block">
+      <span class="score-numeral" id="r-score"></span>
+      <span class="score-label">Profile match</span>
+    </div>
+
+    <blockquote class="verdict-quote" id="r-verdict"></blockquote>
+
+    <div class="axes-list" id="r-axes"></div>
+
+    <p class="result-summary" id="r-summary"></p>
+
+    <div class="share-row">
+      <button class="share-btn" id="copy-btn">Copy result</button>
+      <button class="share-btn" id="retake-btn">Retake</button>
+      <a class="share-btn primary" href="the-customer-is-always-right.html">Read the case study</a>
+    </div>
+    <p class="note">This readout applies the buyer segmentation from <em>The Customer Is Always Right</em> to your six answers. It runs entirely in your browser — nothing is sent anywhere, and there is no single "best" profile. The point of the essay is that the right strategy is different for each one.</p>
+  </div>
+</section>
+
+<a href="the-customer-is-always-right.html" class="back-link">Back to the case study</a>
+<footer>
+  <div class="f-name">Harnoor Archive</div>
+  <div class="f-copy">© 2025–2026 Harnoor Jhinzer</div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  // axes order: [Discretion, Heritage, Connoisseurship, Price Signal, Access]
+  var AXES = [
+    {name:"Discretion", desc:"loud → quiet"},
+    {name:"Heritage", desc:"novelty → legacy"},
+    {name:"Connoisseurship", desc:"brand-led → knowledge-led"},
+    {name:"Price Signal", desc:"hidden → on display"},
+    {name:"Access", desc:"product → relationships"}
+  ];
+  var TYPES = {
+    inheritor:{ name:"The <em>Inheritor</em>", plain:"The Inheritor", sub:"Old Money",
+      sig:[88,92,68,22,78],
+      tag:"Old money. The real luxury is that no one can tell.",
+      verdict:"You treat visibility as a tax on status, not proof of it. The strongest signal you send is that there's no signal at all.",
+      summary:"You're the buyer luxury houses quietly protect and rarely advertise to. Logos read as insecurity; what moves you is heritage, discretion, and the pieces only your peers can place. <strong>Price is something you'd prefer no one could name.</strong> Brands win you by whispering — archive depth, restraint, and the confidence to leave the label off." },
+    selfmade:{ name:"The <em>Self-Made</em>", plain:"The Self-Made", sub:"New Money",
+      sig:[28,32,42,88,50],
+      tag:"New money — and unbothered about showing the receipts.",
+      verdict:"For you the number is the message. You earned it in the open, and the object should say so out loud.",
+      summary:"You buy visibly and confidently — the watch, the car, the address that announce a self-made arrival. <strong>Legibility is the value:</strong> brands that make their worth obvious win you, and the ones that hide it feel like they're hiding it from you. There's nothing insecure about it — you built the thing, and the signal is part of the reward." },
+    aspirant:{ name:"The <em>Aspirant</em>", plain:"The Aspirant", sub:"Entry Luxury",
+      sig:[22,38,30,80,24],
+      tag:"Reaching for the room you're not quite in yet.",
+      verdict:"You buy the entry piece that signals the tier above. The logo isn't a preference — it's a passport.",
+      summary:"You stretch for the most recognizable piece a brand offers, because recognition is the whole point — it's the fastest available proof of belonging. <strong>It's the most human position in luxury,</strong> and the one the entire aspirational market is engineered around. The brands that serve you well respect the reach instead of exploiting it." },
+    connoisseur:{ name:"The <em>Connoisseur</em>", plain:"The Connoisseur", sub:"Collector",
+      sig:[78,68,95,28,55],
+      tag:"You buy what only you can recognize.",
+      verdict:"Knowledge is your status. The label means nothing; the maker, the movement, the construction mean everything.",
+      summary:"You're driven by craft and information, not logos. You'll take the obscure independent over the famous house every time, and the compliment that lands is that you clearly understand the thing better than the crowd does. <strong>To you, the loud version of a product is the cheap version,</strong> no matter what it costs." },
+    custodian:{ name:"The <em>Custodian</em>", plain:"The Custodian", sub:"UHNW Steward",
+      sig:[92,74,80,18,95],
+      tag:"Beyond brands. What you actually buy is access.",
+      verdict:"Product is the least interesting layer. You pay for relationships, allocation, and rooms most people don't know exist.",
+      summary:"At your tier the object is almost incidental — what's scarce is access, discretion, and being known by name before you arrive. <strong>Bespoke over off-the-shelf, the members' floor over the flagship, the call before the public ever hears.</strong> Brands don't sell to you so much as admit you." }
+  };
+
+  // QUESTIONS — each option carries a reading across the 5 axes.
+  var Q = [
+    { q:"A brand you love starts showing up <em>everywhere.</em> You…",
+      o:[
+        {t:"Quietly move on — the point was that few knew.", v:[92,72,76,18,72]},
+        {t:"Don't care. You liked it first; that's what matters.", v:[58,48,82,28,46]},
+        {t:"Like it more — clearly you had taste before the crowd.", v:[26,36,40,76,42]},
+        {t:"Buy the loudest piece while it's still a flex.", v:[14,30,24,92,26]}
+      ]},
+    { q:"The watch you'd <em>actually</em> wear:",
+      o:[
+        {t:"A thin gold dress watch no one can identify.", v:[92,86,68,16,64]},
+        {t:"A steel Rolex — everyone knows exactly what it is.", v:[30,56,44,82,46]},
+        {t:"An independent maker most people have never heard of.", v:[80,66,98,24,56]},
+        {t:"Whatever the most successful person in the room has on.", v:[20,34,30,84,30]}
+      ]},
+    { q:"Your <em>ideal</em> store experience:",
+      o:[
+        {t:"By appointment, your name already known, no price tags.", v:[86,72,72,16,96]},
+        {t:"A flagship on the best street, the logo out front.", v:[22,30,28,86,30]},
+        {t:"A quiet boutique where the staff talk craft, not status.", v:[78,66,96,26,54]},
+        {t:"The members' floor most people don't know exists.", v:[88,72,68,30,94]}
+      ]},
+    { q:"Money you <em>don't</em> need to spend, you'd rather…",
+      o:[
+        {t:"Keep invisible — discretion is the real luxury.", v:[94,80,64,14,74]},
+        {t:"Put into something rare you can pass down.", v:[80,92,86,22,70]},
+        {t:"Upgrade visibly — car, watch, address.", v:[24,30,34,90,42]},
+        {t:"Buy access — clubs, allocations, the right rooms.", v:[72,56,56,42,96]}
+      ]},
+    { q:"A compliment that would <em>actually</em> land:",
+      o:[
+        {t:"“I'd never have guessed what that cost.”", v:[92,70,70,16,66]},
+        {t:"“You clearly know more about this than anyone.”", v:[76,66,98,24,56]},
+        {t:"“You've obviously done very well for yourself.”", v:[24,34,38,86,46]},
+        {t:"“How did you even get in here?”", v:[80,60,54,40,96]}
+      ]},
+    { q:"Heritage, or the <em>new</em> thing?",
+      o:[
+        {t:"Old houses, archives, the way it's always been done.", v:[80,96,74,24,70]},
+        {t:"The newest thing — heritage is for people without a future.", v:[30,14,40,82,42]},
+        {t:"Whatever is best made, old or new.", v:[72,60,96,28,54]},
+        {t:"Whatever signals I've arrived.", v:[20,34,30,86,30]}
+      ]}
+  ];
+
+  var KEYS = Object.keys(TYPES);
+  var step=0, answers=[];
+  var stage=document.getElementById('stage');
+  var qnum=document.getElementById('qnum'), qfill=document.getElementById('qfill'), qback=document.getElementById('qback');
+
+  function pad(n){return (n<10?'0':'')+n;}
+
+  function render(){
+    qnum.textContent = pad(step+1)+' / '+pad(Q.length);
+    qfill.style.width = (step/Q.length*100)+'%';
+    qback.classList.toggle('show', step>0);
+    var item=Q[step];
+    var card=document.createElement('div');
+    card.className='q-card';
+    var opts='<div class="q-opts">'+item.o.map(function(o,i){
+      return '<button class="q-opt" data-i="'+i+'">'+o.t+'</button>';
+    }).join('')+'</div>';
+    card.innerHTML='<div class="q-text">'+item.q+'</div>'+opts;
+    stage.innerHTML='';
+    stage.appendChild(card);
+    requestAnimationFrame(function(){ card.classList.add('on'); });
+    [].slice.call(card.querySelectorAll('.q-opt')).forEach(function(b){
+      b.addEventListener('click', function(){
+        answers[step]=item.o[+b.getAttribute('data-i')].v;
+        if(step<Q.length-1){ step++; render(); }
+        else { finish(); }
+      });
+    });
+  }
+  qback.addEventListener('click', function(){ if(step>0){ step--; render(); } });
+
+  function finish(){
+    qfill.style.width='100%';
+    // average answers -> user vector
+    var u=[0,0,0,0,0];
+    answers.forEach(function(v){ for(var i=0;i<5;i++) u[i]+=v[i]; });
+    for(var i=0;i<5;i++) u[i]=Math.round(u[i]/answers.length);
+    // nearest archetype (euclidean)
+    var best=null, bestD=1e9;
+    KEYS.forEach(function(k){
+      var s=TYPES[k].sig, d=0;
+      for(var j=0;j<5;j++){ var diff=u[j]-s[j]; d+=diff*diff; }
+      d=Math.sqrt(d);
+      if(d<bestD){ bestD=d; best=k; }
+    });
+    var match=Math.max(72, Math.min(99, Math.round(100 - bestD/1.9)));
+    show(best, u, match);
+  }
+
+  function show(key, u, match){
+    var T=TYPES[key];
+    document.getElementById('quiz').style.display='none';
+    var R=document.getElementById('result');
+    R.style.display='block';
+    document.getElementById('r-name').innerHTML=T.name;
+    document.getElementById('r-tag').textContent=T.tag;
+    document.getElementById('r-score').innerHTML=match+'<span class="score-denom">/100</span>';
+    document.getElementById('r-verdict').textContent='“'+T.verdict+'”';
+    document.getElementById('r-summary').innerHTML=T.summary;
+    // axes
+    var ax=document.getElementById('r-axes');
+    ax.innerHTML=AXES.map(function(a,i){
+      return '<div class="axis-row">'+
+        '<div class="axis-header"><div class="axis-names"><span class="axis-name">'+a.name+'</span>'+
+        '<span class="axis-descriptor">'+a.desc+'</span></div>'+
+        '<span class="axis-score-num">'+u[i]+'</span></div>'+
+        '<div class="axis-track"><div class="axis-fill" data-w="'+u[i]+'"></div></div></div>';
+    }).join('');
+    requestAnimationFrame(function(){
+      R.classList.add('visible');
+      setTimeout(function(){
+        [].slice.call(ax.querySelectorAll('.axis-fill')).forEach(function(f){ f.style.width=f.getAttribute('data-w')+'%'; });
+      },180);
+    });
+    R.scrollIntoView({behavior:'smooth',block:'start'});
+
+    // share
+    var url='https://harnoorarchive.com/luxury-buyer-profile.html';
+    var line='I’m '+T.plain+' ('+T.sub+') on the Harnoor Archive Luxury Buyer Profile — '+match+'/100. '+url;
+    var copy=document.getElementById('copy-btn');
+    copy.onclick=function(){
+      try{ navigator.clipboard.writeText(line); }catch(e){}
+      copy.textContent='Copied'; copy.classList.add('copied');
+      setTimeout(function(){ copy.textContent='Copy result'; copy.classList.remove('copied'); },1800);
+    };
+    document.getElementById('retake-btn').onclick=function(){
+      step=0; answers=[]; R.classList.remove('visible'); R.style.display='none';
+      document.getElementById('quiz').style.display='block'; render();
+      window.scrollTo({top:0,behavior:'smooth'});
+    };
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>

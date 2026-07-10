@@ -85,6 +85,42 @@
     "year": "May 2026"
   },
   {
+    "id": "research-06",
+    "title": "Time: An Exclusivity",
+    "collection": "Desire & Distinction",
+    "type": "Case Study",
+    "description": "Elapsed time is the one luxury input that cannot be manufactured, counterfeited, or bought. Vintage wine, archival fashion, and heritage watches build a framework of temporal scarcity — and a new consumer motive: custodianship.",
+    "tags": [
+      "Temporal Scarcity",
+      "Custodianship",
+      "Provenance",
+      "Heritage",
+      "Vintage"
+    ],
+    "url": "time-an-exclusivity.html",
+    "status": "published",
+    "minutes": 12,
+    "year": "June 2026"
+  },
+  {
+    "id": "research-07",
+    "title": "The Luxury of Risk",
+    "collection": "Desire & Distinction",
+    "type": "Case Study",
+    "description": "Red Bull isolates the one lever of luxury with nothing to do with the object — the performance of freedom from necessity — and runs it at three dollars a can. An extension of Veblen into conspicuous risk.",
+    "tags": [
+      "Conspicuous Risk",
+      "Veblen",
+      "Status Performance",
+      "Brand Strategy",
+      "Red Bull"
+    ],
+    "url": "the-luxury-of-risk.html",
+    "status": "published",
+    "minutes": 14,
+    "year": "July 2026"
+  },
+  {
     "id": "philosophy-01",
     "title": "Motive × Context",
     "collection": "Frameworks",
@@ -131,6 +167,23 @@
     "status": "published",
     "minutes": null,
     "year": "April 2026"
+  },
+  {
+    "id": "interactive-02",
+    "title": "The Luxury Buyer Profile",
+    "collection": "Frameworks",
+    "type": "Interactive",
+    "description": "A six-question diagnostic that places you among the luxury buyer archetypes — Inheritor, Self-Made, Aspirant, Connoisseur, Custodian — with a scored, shareable readout. Runs entirely in your browser.",
+    "tags": [
+      "Interactive",
+      "Buyer Segmentation",
+      "HNW",
+      "Archetypes"
+    ],
+    "url": "luxury-buyer-profile.html",
+    "status": "published",
+    "minutes": 3,
+    "year": "June 2026"
   },
   {
     "id": "wealth-01",
